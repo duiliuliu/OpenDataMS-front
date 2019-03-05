@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import ReactDOM from 'react-dom';
+import logo from './icons/logo.svg';
+import './style/App.css';
+import './style/index.css';
 
 class App extends Component {
   render() {
@@ -28,4 +30,4 @@ class App extends Component {
   }
 }
 
-export default App;
+ReactDOM.render(<App />, document.getElementById('root'));
