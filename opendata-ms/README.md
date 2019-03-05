@@ -14,5 +14,6 @@
 
 构建项目
 
-## Learn More
+- `npm run format`
 
+格式化项目

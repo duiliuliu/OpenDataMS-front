@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
@@ -9,7 +9,8 @@ class App extends Component {
         <header className="App-header">
           <img alt="logo"
               className="App-logo"
-              src={logo} />
+              src={logo}
+          />
           <p>
             Edit <code>src/App.js</code> and save to reload.
           </p>
