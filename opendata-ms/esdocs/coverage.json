@@ -1,0 +1,50 @@
+{
+  "coverage": "22.22%",
+  "expectCount": 18,
+  "actualCount": 4,
+  "files": {
+    "src/App.js": {
+      "expectCount": 2,
+      "actualCount": 0,
+      "undocumentLines": [
+        8,
+        9
+      ]
+    },
+    "src/components/icons/NativeIcon.jsx": {
+      "expectCount": 4,
+      "actualCount": 4,
+      "undocumentLines": []
+    },
+    "src/components/job/JobTab.jsx": {
+      "expectCount": 3,
+      "actualCount": 0,
+      "undocumentLines": [
+        4,
+        6,
+        7
+      ]
+    },
+    "src/contants/ImageConstant.js": {
+      "expectCount": 2,
+      "actualCount": 0,
+      "undocumentLines": [
+        1,
+        2
+      ]
+    },
+    "src/contants/linkConstants.js": {
+      "expectCount": 7,
+      "actualCount": 0,
+      "undocumentLines": [
+        1,
+        4,
+        6,
+        9,
+        10,
+        11,
+        12
+      ]
+    }
+  }
+}

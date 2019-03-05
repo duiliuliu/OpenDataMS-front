@@ -45,4 +45,6 @@
 - [ ] 配置eslint
 - [ ] markdown树形结构 
   https://vimsky.com/article/3606.html
+- [ ] 使用esdoc生成文档
 - [ ] 开发组件
+- [ ] 通过http-proxy-middleware配置代理
