@@ -14,6 +14,10 @@
 
 构建项目
 
+- `npm run esdoc`
+
+生成项目文档
+
 - `npm run format`
 
 格式化项目
