@@ -5,6 +5,8 @@
   "dependencies": {
     "@babel/core": "7.2.2",
     "@svgr/webpack": "4.1.0",
+    "ant-design-pro": "^2.2.1",
+    "antd": "^3.6.4",
     "babel-core": "7.0.0-bridge.0",
     "babel-jest": "23.6.0",
     "babel-loader": "8.0.5",
@@ -112,11 +114,21 @@
   "babel": {
     "presets": [
       "react-app"
+    ],
+    "plugins": [
+      ["import", {
+        "libraryName": "antd",
+        "libraryDirectory": "es",
+        "style": true
+      }]
     ]
   },
   "devDependencies": {
     "babel-eslint": "^9.0.0",
+    "babel-plugin-import": "^1.11.0",
     "eslint-plugin-jsx-a11y": "^6.1.2",
-    "eslint-plugin-react": "^7.12.4"
+    "eslint-plugin-react": "^7.12.4",
+    "less": "^3.9.0",
+    "less-loader": "^4.1.0"
   }
 }
