@@ -5,16 +5,24 @@ import IconTypesMap from '../../constant/ImagesConstant';
 /**
  * NativeIcon
  * 本地图标组件
+ * @example
+ * <NativeIcon type="new" />
+ * <NativeIcon width=20 height=20 type="new" alt="new"/>
  */
 export default class NativeIcon extends React.Component {
 
   /**
-   * 构建图标组件可以手动传入宽高，也可使用默认值
-   * @param {PropTypes.number} width - 宽度
-   * @param {PropTypes.number} height - 高度
-   * @param {PropTypes.string} className - css Class
-   * @param {PropTypes.string.isRequired} type - 图标样式，此处为图标引入文件的名称
-   * @param {PropTypes.string} className - 填充字体
+   * 构建图标组件参数：
+   * width- 宽度、
+   * height- 高度、
+   * className- css Class、
+   * type- 图标样式，此处为图标引入文件的名称、
+   * alt- 填充字体
+   * @param {PropTypes.number} width 
+   * @param {PropTypes.number} height 
+   * @param {PropTypes.string} className 
+   * @param {PropTypes.string.isRequired} type 
+   * @param {PropTypes.string} alt 
    */
   static propTypes = {
     width: PropTypes.number,
@@ -24,7 +32,7 @@ export default class NativeIcon extends React.Component {
     alt: PropTypes.string
   };
 
-    /**
+  /**
    * 图标组件默认值
    * @param {56} width - 宽度
    * @param {56} height - 高度
@@ -38,6 +46,9 @@ export default class NativeIcon extends React.Component {
     alt: ''
   };
 
+  /**
+ * @ignore
+ */
   render() {
     const path = IconTypesMap[this.props.type];
     return (
