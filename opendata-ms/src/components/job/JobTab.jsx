@@ -1,7 +1,7 @@
 import React,{ Component } from 'react';
 import PropTypes from 'prop-types';
 import { Tabs, Icon } from 'antd';
-import {COLLECT_JOB,CLEAN_JOB} from '../../contants/JobContant';
+import {COLLECT_JOB,CLEAN_JOB} from '../../contants/JobContants';
 
 const TabPane = Tabs.TabPane;
 
@@ -13,11 +13,11 @@ const TabPane = Tabs.TabPane;
 export default class JobTab extends Component {
 
    /**
-   * 构建标签页组件参数：
-   * pane_1- 容器组件1
-   * pane_2- 容器组件2
-   * @param {PropTypes.shape.isRequired} pane_1 
-   * @param {PropTypes.shape.isRequired} pane_2 
+   * 构建标签页组件参数：</br>
+   * pane_1- 容器组件1 </br>
+   * pane_2- 容器组件2 </br>
+   * @param {PropTypes.shape.isRequired} pane_1
+   * @param {PropTypes.shape.isRequired} pane_2
    */
   static propTypes = {
     pane_1: PropTypes.shape.isRequired,

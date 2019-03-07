@@ -3,12 +3,12 @@ import PropTypes from 'prop-types';
 import { Input, Form, Select, Switch,
   Radio, Button, Upload, Icon,
   Row, Col, InputNumber} from 'antd';
-import { Validating } from '../../../contants/EnumConstant';
+import { Validating } from '../../../contants/EnumConstants';
 
 const { Option } = Select;
 
 /**
- * 采集任务Form组件
+ * 采集任务Form组件 </br>
  * 其中数据为异步获取
  * @example
  * const cityList = ['佛山', '哈尔滨', '贵州', '深圳'];
@@ -23,8 +23,8 @@ export default class NewCollectJob extends React.Component {
    * @param {PropTypes.Array} cityList
    * @param {PropTypes.Array} urlList
    * @param {PropTypes.Array} dataList
-   * @param {PropTypes.func} dataList
-   * @param {PropTypes.func} dataList
+   * @param {PropTypes.func} onSubmit
+   * @param {PropTypes.func} getDownloadDir
    */
   static propTypes = {
     cityList: PropTypes.arrayOf(PropTypes.string),
@@ -75,7 +75,8 @@ export default class NewCollectJob extends React.Component {
 
   /**
    *获取当前选中城市
-   * @memberof CollectJobForm
+   *
+   * @memberof NewCollectJob
    */
   handleCityChange = value => {
     this.setState({
@@ -86,7 +87,7 @@ export default class NewCollectJob extends React.Component {
   /**
    *获取当前选中url
    *
-   * @memberof CollectJobForm
+   * @memberof NewCollectJob
    */
   handleUrlChange = value => {
     this.setState({
@@ -97,7 +98,7 @@ export default class NewCollectJob extends React.Component {
   /**
    *获取当前输入线程数
    *
-   * @memberof CollectJobForm
+   * @memberof NewCollectJob
    */
   handleThreadChange = e => {
     this.setState({
@@ -108,7 +109,7 @@ export default class NewCollectJob extends React.Component {
   /**
    *获取falg是否保存原始数据
    *
-   * @memberof CollectJobForm
+   * @memberof NewCollectJob
    */
   handleNativeChange = value => {
     this.setState({
@@ -119,7 +120,7 @@ export default class NewCollectJob extends React.Component {
   /**
    *验证并提交form数据
    *
-   * @memberof CollectJobForm
+   * @memberof NewCollectJob
    */
   handleSubmit = e => {
     e.preventDefault();
@@ -134,7 +135,7 @@ export default class NewCollectJob extends React.Component {
   /**
    *获取下载数据路径
    *
-   * @memberof CollectJobForm
+   * @memberof NewCollectJob
    */
   normFile = e => {
     this.props.getDownloadDir(e);

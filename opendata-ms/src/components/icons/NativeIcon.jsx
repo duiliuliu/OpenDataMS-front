@@ -12,17 +12,17 @@ import IconTypesMap from '../../constant/ImagesConstant';
 export default class NativeIcon extends React.Component {
 
   /**
-   * 构建图标组件参数：
-   * width- 宽度、
-   * height- 高度、
-   * className- css Class、
-   * type- 图标样式，此处为图标引入文件的名称、
-   * alt- 填充字体
-   * @param {PropTypes.number} width 
-   * @param {PropTypes.number} height 
-   * @param {PropTypes.string} className 
-   * @param {PropTypes.string.isRequired} type 
-   * @param {PropTypes.string} alt 
+   * 构建图标组件参数: </br>
+   * width- 宽度、 </br>
+   * height- 高度、 </br>
+   * className- css Class、 </br>
+   * type- 图标样式，此处为图标引入文件的名称、 </br>
+   * alt- 填充字体 </br>
+   * @param {PropTypes.number} width
+   * @param {PropTypes.number} height
+   * @param {PropTypes.string} className
+   * @param {PropTypes.string.isRequired} type
+   * @param {PropTypes.string} alt
    */
   static propTypes = {
     width: PropTypes.number,

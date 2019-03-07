@@ -1,15 +1,24 @@
-import React, { Component } from 'react';
-import JobTab from '../../components/job/JobTab';
 import NewCollectJob from '../../components/job/newJob/NewCollectJob';
 import { connect } from 'react-redux';
+import * as JobActions from '../../redux/actions/JobActions';
 
-class NewJob extends Component{
-  render(){
-    return (
-      <JobTab pane_1={<NewCollectJob />}
-          pane_2={<NewCollectJob />} />
-    );
-  }
-}
+const mapStateToProps = state => {
+  return {
+    ...state.JobReduce
+  };
+};
 
-export default connect()(NewJob);
+const mapDispatchToProps = dispatch => {
+  return {
+    getCityList: () => dispatch(JobActions.getCityList),
+    getUrlList: () => dispatch(JobActions.getUrlList),
+    getDataList: () => dispatch(JobActions.getDataList),
+    getDownloadPath: () => dispatch(JobActions.getDownloadPath),
+    submitJob: () => dispatch(JobActions.submitJob)
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(NewCollectJob);
