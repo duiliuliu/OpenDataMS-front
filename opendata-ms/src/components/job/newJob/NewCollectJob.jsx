@@ -20,9 +20,9 @@ export default class NewCollectJob extends React.Component {
 
   /**
    * 构建组件参数
-   * @param {PropTypes.arrayOf(PropTypes.string)} cityList
-   * @param {PropTypes.arrayOf(PropTypes.string)} urlList
-   * @param {PropTypes.arrayOf(PropTypes.string)} dataList
+   * @param {PropTypes.Array} cityList
+   * @param {PropTypes.Array} urlList
+   * @param {PropTypes.Array} dataList
    * @param {PropTypes.func} dataList
    * @param {PropTypes.func} dataList
    */

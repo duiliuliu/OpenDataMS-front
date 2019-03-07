@@ -1,6 +1,7 @@
 /**
  * 判断str是否为空string
  * @param {String} str 
+ * @returns {boolean}
  */
 export const isBlank = (str)=>{
   let  strLen = str.length;
@@ -17,6 +18,7 @@ export const isBlank = (str)=>{
 /**
  * 判断str不为空string
  * @param {String} str 
+ * @returns {boolean}
  */
 export const isNotBlank = (str)=>{
   return !isBlank(str);

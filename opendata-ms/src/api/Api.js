@@ -2,6 +2,10 @@
  * POST请求方式
  * @param {String} url 
  * @param {Object} data 
+ * @example 
+ * postData('http://example.com/answer', {answer: 42})
+ * .then(data => console.log(data)) 
+ * .catch(error => console.error(error))
  */
 export function postData(url,data){
   return fetch(url,{
@@ -21,9 +25,13 @@ export function postData(url,data){
 }
 
 /**
- * GET请求方式
+ * PUT请求方式
  * @param {String} url 
  * @param {Object} data 
+ * @example
+ * putData('http://example.com/answer', {answer: 42})
+ * .then(data => console.log(data)) 
+ * .catch(error => console.error(error))
  */
 export function putData(url,data){
   return fetch(url,{
@@ -44,9 +52,13 @@ export function putData(url,data){
 }
 
 /**
- * PUT请求方式
+ * GET请求方式
  * @param {String} url 
  * @param {Object} params 
+ * @example
+ * getData('http://example.com/answer', {answer: 42})
+ * .then(data => console.log(data)) 
+ * .catch(error => console.error(error))
  */
 export function getData(url,params){
   if (params) {
