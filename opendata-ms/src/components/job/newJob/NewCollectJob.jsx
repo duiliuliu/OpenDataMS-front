@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Input, Form, Select, Switch,
   Radio, Button, Upload, Icon,
   Row, Col, InputNumber} from 'antd';
+import { Validating } from '../../../contants/EnumConstant';
 
 const { Option } = Select;
 
@@ -15,7 +16,7 @@ const { Option } = Select;
  * const dataList = ['全部', '水利工程数据', '特种兵数据', '**数据'];
  * <NewCollectJob cityList={cityList} urlList={urlList} dataList={dataList} />
  */
-class CollectJobForm extends React.Component {
+export default class NewCollectJob extends React.Component {
 
   /**
    * 构建组件参数
@@ -52,7 +53,11 @@ class CollectJobForm extends React.Component {
    * @member city 当前城市
    * @member thread 线程数
    * @member url 当前url
+   * @member datas 数据项
    * @member isSaveNative 是否保存至本地
+   * @member cityStatus 城市选择框状态
+   * @member urlStatus url选择框状态
+   * @member dataStatus 数据项选择框状态
    */
   constructor(props) {
     super(props);
@@ -60,7 +65,11 @@ class CollectJobForm extends React.Component {
       city: '',
       thread: 1,
       url: '',
-      isSaveNative: false
+      datas:[],
+      isSaveNative: false,
+      cityStatus:Validating.NON,
+      urlStatus:Validating.NON,
+      dataStatus:Validating.NON
     };
   }
 
@@ -135,7 +144,6 @@ class CollectJobForm extends React.Component {
    * @ignore
    */
   render() {
-    const { getFieldDecorator } = this.props.form;
     const formItemLayout = {
       labelCol: { span: 7 },
       wrapperCol: { span: 8 }
@@ -151,49 +159,50 @@ class CollectJobForm extends React.Component {
             hasFeedback
             label="URL"
         >
-          {getFieldDecorator('select-group', {
-            rules: [{ required: true, message: 'Please select your city!' }]
-          })(
-            <Row>
-              <Col span={12}>
-                <Select
-                    onChange={this.handleCityChange}
-                    placeholder="Please select a city"
-                >
-                  {this.props.cityList.map(city => {
-                    return (
-                      <Option key={city}
-                          value={city}
-                      >
-                        {city}
-                      </Option>
-                    );
-                  })}
-                </Select>
-              </Col>
-              <Col span={12}>
-                <Select
-                    onChange={this.handleUrlChange}
-                    placeholder="Please select a URL"
-                >
-                  {this.props.urlList[this.state.city].map(url => {
-                    return (
-                      <Option key={url}
-                          value={url}
-                      >
-                        {url}
-                      </Option>
-                    );
-                  })}
-                </Select>
-              </Col>
-            </Row>
-          )}
+          <Row>
+            <Col span={12}>
+              <Select
+                  help="必选，选择城市后会查询相应的支持URL"
+                  onChange={this.handleCityChange}
+                  placeholder="Please select a city"
+                  validateStatus={this.state.cityStatus}
+              >
+                {this.props.cityList.map(city => {
+                  return (
+                    <Option key={city}
+                        value={city}
+                    >
+                      {city}
+                    </Option>
+                  );
+                })}
+              </Select>
+            </Col>
+            <Col span={12}>
+              <Select
+                  help="未选择URL"
+                  onChange={this.handleUrlChange}
+                  placeholder="Please select a URL"
+                  validateStatus={this.state.urlStatus}
+              >
+                {this.props.urlList[this.state.city].map(url => {
+                  return (
+                    <Option key={url}
+                        value={url}
+                    >
+                      {url}
+                    </Option>
+                  );
+                })}
+              </Select>
+            </Col>
+          </Row>
 
-          {getFieldDecorator('radio-group')(
             <Row>
               <Col span={10}>
-                <Radio.Group onChange={this.handleThreadChange}>
+                <Radio.Group onChange={this.handleThreadChange}
+                    value={this.state.thread}
+                >
                   <Radio value={1}>单线程</Radio>
                   <Radio value={2}>多线程</Radio>
                 </Radio.Group>
@@ -201,68 +210,54 @@ class CollectJobForm extends React.Component {
               {this.state.thread > 1 ? (
                 <Col span={8}>
                   <span>线程数: </span>
-                  {getFieldDecorator('input-number', { initialValue: 3 })(
-                    <InputNumber max={10}
+                    <InputNumber defaultValue={3}
+                        max={10}
                         min={1}
+                        onChange={this.handleThreadChange}
                     />
-                  )}
                 </Col>
               ) : null}
             </Row>
-          )}
         </Form.Item>
 
         <Form.Item {...formItemLayout}
             label="数据类目"
         >
-          {getFieldDecorator('Select-multiple', {
-            rules: [
-              {
-                required: true,
-                message: 'Please select your target data!',
-                type: 'array'
-              }
-            ]
-          })(
-            <div>
-              <Select mode="multiple"
-                  placeholder="Please select target data"
-              >
-                {this.props.dataList.map(item => {
-                  return (
-                    <Option key={item}
-                        value={item}
-                    >
-                      {item}
-                    </Option>
-                  );
-                })}
-              </Select>
-              {getFieldDecorator('switch', { valuePropName: 'checked' })(
-                <Switch onChange={this.handleNativeChange} />
-              )}
-              <span style={{ marginRight: '40px', marginLeft: '10px' }}>
-                {' '}
-                保存至本地{' '}
-              </span>
-              {this.state.isSaveNative
-                ? getFieldDecorator('upload', {
-                    valuePropName: 'fileList',
-                    getValueFromEvent: this.normFile
-                  })(
-                    <Upload
-                        action="/download.do"
-                        listType="picture"
-                        name="logo"
-                    >
-                      <Button>
-                        <Icon type="download" /> save
-                      </Button>
-                    </Upload>
-                  )
-                : null}
-            </div>
-          )}
+          <div>
+            <Select help="未选择数据项"
+                mode="multiple"
+                placeholder="Please select target data"
+                validateStatus={this.state.dataStatus}
+            >
+              {this.props.dataList.map(item => {
+                return (
+                  <Option key={item}
+                      value={item}
+                  >
+                    {item}
+                  </Option>
+                );
+              })}
+            </Select>
+              <Switch onChange={this.handleNativeChange} />
+            <span style={{ marginRight: '40px', marginLeft: '10px' }}>
+              {' '}
+              保存至本地{' '}
+            </span>
+            {this.state.isSaveNative
+              ?
+                <Upload
+                    action="/download.do"
+                    listType="picture"
+                    name="logo"
+                    onChange={this.normFile}
+                >
+                  <Button>
+                    <Icon type="download" /> save
+                  </Button>
+                </Upload>
+              : null}
+          </div>
         </Form.Item>
         <Form.Item wrapperCol={{ span: 7, offset: 8 }}>
           <Button htmlType="submit"
@@ -282,6 +277,3 @@ class CollectJobForm extends React.Component {
     );
   }
 }
-
-const NewCollectJob = Form.create({ name: 'JobForm' })(CollectJobForm);
-export default NewCollectJob;
