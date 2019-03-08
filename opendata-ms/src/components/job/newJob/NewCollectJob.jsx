@@ -2,8 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Input, Form, Select, Switch,
   Radio, Button, Upload, Icon,
-  Row, Col, InputNumber} from 'antd';
+  Row,Col, InputNumber} from 'antd';
 import { Validating } from '../../../contants/EnumConstants';
+import * as StringUtil from '../../../util/StringUtil';
 
 const { Option } = Select;
 
@@ -12,23 +13,20 @@ const { Option } = Select;
  * 其中数据为异步获取
  * @example
  * const cityList = ['佛山', '哈尔滨', '贵州', '深圳'];
- * const urlList = {佛山: ['www.foshan'], 哈尔滨: ['www.haerbi', 'www.haerbi2222'], 深圳: ['www.foshan'], 贵州: ['www.foshan']};
  * const dataList = ['全部', '水利工程数据', '特种兵数据', '**数据'];
- * <NewCollectJob cityList={cityList} urlList={urlList} dataList={dataList} />
+ * <NewCollectJob cityList={cityList} dataList={dataList} />
  */
 export default class NewCollectJob extends React.Component {
 
   /**
    * 构建组件参数
    * @param {PropTypes.Array} cityList
-   * @param {PropTypes.Array} urlList
    * @param {PropTypes.Array} dataList
    * @param {PropTypes.func} onSubmit
    * @param {PropTypes.func} getDownloadDir
    */
   static propTypes = {
     cityList: PropTypes.arrayOf(PropTypes.string),
-    urlList: PropTypes.arrayOf(PropTypes.string),
     dataList: PropTypes.arrayOf(PropTypes.string),
     onSubmit: PropTypes.func,
     getDownloadDir: PropTypes.func
@@ -36,14 +34,12 @@ export default class NewCollectJob extends React.Component {
   /**
    * 组件默认值
    * @param {null} cityList
-   * @param {null} urlList
    * @param {null} dataList
    * @param {null} onSubmit
    * @param {null} getDownloadDir
    */
   static defaultProps = {
     cityList: null,
-    urlList: null,
     dataList: null,
     onSubmit: null,
     getDownloadDir: null
@@ -52,26 +48,36 @@ export default class NewCollectJob extends React.Component {
   /**
    * @member city 当前城市
    * @member thread 线程数
-   * @member url 当前url
    * @member datas 数据项
    * @member isSaveNative 是否保存至本地
    * @member cityStatus 城市选择框状态
-   * @member urlStatus url选择框状态
    * @member dataStatus 数据项选择框状态
    */
   constructor(props) {
     super(props);
     this.state = {
+      name:'',
       city: '',
       thread: 1,
-      url: '',
       datas:[],
       isSaveNative: false,
       cityStatus:Validating.NON,
-      urlStatus:Validating.NON,
       dataStatus:Validating.NON
     };
+    this.props.getCityList;
   }
+
+  /**
+   *获取任务名称
+   *
+   * @memberof NewCollectJob
+   */
+  handleNameChange = e => {
+    this.props.getCityList;
+    this.setState({
+      name: e.target.value
+    });
+  };
 
   /**
    *获取当前选中城市
@@ -79,19 +85,26 @@ export default class NewCollectJob extends React.Component {
    * @memberof NewCollectJob
    */
   handleCityChange = value => {
+    if(StringUtil.isBlank(value)){
+      return;
+    }
+    console.log(value);
+    this.props.getDataList.bind(value);
     this.setState({
       city: value
     });
   };
 
+  
   /**
-   *获取当前选中url
+   *获取当前选中数据项
    *
    * @memberof NewCollectJob
    */
-  handleUrlChange = value => {
+  handleDataChange = value => {
+    console.log(value);
     this.setState({
-      url: value
+      city: value
     });
   };
 
@@ -101,6 +114,7 @@ export default class NewCollectJob extends React.Component {
    * @memberof NewCollectJob
    */
   handleThreadChange = e => {
+    console.log(e.target.value);
     this.setState({
       thread: e.target.value
     });
@@ -112,6 +126,7 @@ export default class NewCollectJob extends React.Component {
    * @memberof NewCollectJob
    */
   handleNativeChange = value => {
+    console.log(value);
     this.setState({
       isSaveNative: value
     });
@@ -124,11 +139,25 @@ export default class NewCollectJob extends React.Component {
    */
   handleSubmit = e => {
     e.preventDefault();
-    this.props.form.validateFields((err, values) => {
-      if (!err) {
-        console.log('Received values of form: ', values);
+    if(StringUtil.isBlank(this.state.city)){
+      this.setState({
+        cityStatus:Validating.ERROR
+      });
+    }
+    if(this.state.datas===null || this.state.datas.length===0){
+      this.setState({
+        dataStatus:Validating.ERROR
+      });
+      return;
+    }
+    this.props.onSubmit({
+      job:{
+        name:this.state.name,
+        city:this.state.city,
+        thread:this.state.thread,
+        datas:this.state.datas,
+        isSaveNative:this.state.isSaveNative
       }
-      this.props.onSubmit(values);
     });
   };
 
@@ -137,7 +166,7 @@ export default class NewCollectJob extends React.Component {
    *
    * @memberof NewCollectJob
    */
-  normFile = e => {
+  saveOrigin = e => {
     this.props.getDownloadDir(e);
   };
 
@@ -154,112 +183,103 @@ export default class NewCollectJob extends React.Component {
         <Form.Item {...formItemLayout}
             label="任务名称"
         >
-          <Input placeholder="input placeholder" />
+          <Input onChange={this.handleNameChange}
+              placeholder="input placeholder"
+          />
         </Form.Item>
         <Form.Item {...formItemLayout}
             hasFeedback
-            label="URL"
+            label="城市"
+            validateStatus={this.state.cityStatus}
         >
-          <Row>
-            <Col span={12}>
-              <Select
-                  help="必选，选择城市后会查询相应的支持URL"
-                  onChange={this.handleCityChange}
-                  placeholder="Please select a city"
-                  validateStatus={this.state.cityStatus}
-              >
-                {this.props.cityList.map(city => {
-                  return (
-                    <Option key={city}
-                        value={city}
-                    >
-                      {city}
-                    </Option>
-                  );
-                })}
-              </Select>
-            </Col>
-            <Col span={12}>
-              <Select
-                  help="未选择URL"
-                  onChange={this.handleUrlChange}
-                  placeholder="Please select a URL"
-                  validateStatus={this.state.urlStatus}
-              >
-                {this.props.urlList[this.state.city].map(url => {
-                  return (
-                    <Option key={url}
-                        value={url}
-                    >
-                      {url}
-                    </Option>
-                  );
-                })}
-              </Select>
-            </Col>
-          </Row>
-
-            <Row>
-              <Col span={10}>
-                <Radio.Group onChange={this.handleThreadChange}
-                    value={this.state.thread}
-                >
-                  <Radio value={1}>单线程</Radio>
-                  <Radio value={2}>多线程</Radio>
-                </Radio.Group>
-              </Col>
-              {this.state.thread > 1 ? (
-                <Col span={8}>
-                  <span>线程数: </span>
-                    <InputNumber defaultValue={3}
-                        max={10}
-                        min={1}
-                        onChange={this.handleThreadChange}
-                    />
-                </Col>
-              ) : null}
-            </Row>
+          <Select hasFeedback
+              onChange={this.handleCityChange}
+              placeholder="Please select a city"
+          >
+            {this.props.cityList === null
+              ? null
+              : (this.props.cityList.map(city => {
+                return (
+                  <Option key={city}
+                      value={city}
+                  >
+                    {city}
+                  </Option>
+                );
+              }))
+            }
+          </Select>
         </Form.Item>
 
         <Form.Item {...formItemLayout}
+            hasFeedback
             label="数据类目"
+            validateStatus={this.state.dataStatus}
         >
-          <div>
-            <Select help="未选择数据项"
-                mode="multiple"
-                placeholder="Please select target data"
-                validateStatus={this.state.dataStatus}
-            >
-              {this.props.dataList.map(item => {
-                return (
-                  <Option key={item}
-                      value={item}
-                  >
-                    {item}
-                  </Option>
-                );
-              })}
-            </Select>
-              <Switch onChange={this.handleNativeChange} />
-            <span style={{ marginRight: '40px', marginLeft: '10px' }}>
-              {' '}
-              保存至本地{' '}
-            </span>
-            {this.state.isSaveNative
-              ?
-                <Upload
-                    action="/download.do"
-                    listType="picture"
-                    name="logo"
-                    onChange={this.normFile}
-                >
-                  <Button>
-                    <Icon type="download" /> save
-                  </Button>
-                </Upload>
-              : null}
-          </div>
+          <Select hasFeedback
+              mode="multiple"
+              placeholder="Please select target data"
+          >
+            {this.props.dataList === null
+              ? null
+              : (this.props.dataList.map(item => {
+                  return (
+                    <Option key={item}
+                        value={item}
+                    >
+                      {item}
+                    </Option>
+                  );
+                }))
+            }
+          </Select>
         </Form.Item>
+        <Form.Item  {...formItemLayout}
+            label="运行线程"
+        >
+          <Radio.Group onChange={this.handleThreadChange}
+              value={this.state.thread}
+          >
+              <Radio value={1}>单线程</Radio>
+              <Radio value={2}>多线程</Radio>
+            </Radio.Group>
+            {this.state.thread > 1 ? (
+              <div>
+                <span>线程数: </span>
+                <InputNumber defaultValue={3}
+                    max={10}
+                    min={1}
+                    onChange={this.handleThreadChange}
+                />
+              </div>
+            ) : null}
+        </Form.Item>
+        <Form.Item>
+          <Row>
+            <Col span={7}></Col>
+            <Col span={8}>
+              <Switch onChange={this.handleNativeChange} />
+              <span style={{ marginRight: '40px', marginLeft: '10px' }}>
+                {' '}
+                保存至本地{' '}
+              </span>
+              {this.state.isSaveNative
+                ?
+                  <Upload
+                      action="/download.do"
+                      listType="picture"
+                      name="logo"
+                      onChange={this.saveOrigin}
+                  >
+                    <Button>
+                      <Icon type="download" /> save
+                    </Button>
+                  </Upload>
+                : null}
+            </Col>
+          </Row>
+        </Form.Item>
+
         <Form.Item wrapperCol={{ span: 7, offset: 8 }}>
           <Button htmlType="submit"
               style={{ margin: 10 }}

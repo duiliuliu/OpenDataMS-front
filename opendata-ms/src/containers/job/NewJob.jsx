@@ -1,17 +1,17 @@
-import NewCollectJob from '../../components/job/newJob/NewCollectJob';
 import { connect } from 'react-redux';
+import NewCollectJob from '../../components/job/newJob/NewCollectJob';
 import * as JobActions from '../../redux/actions/JobActions';
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
+  const data = state.JobReducer;
   return {
-    ...state.JobReduce
+    cityList:data.cityList
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    getCityList: () => dispatch(JobActions.getCityList),
-    getUrlList: () => dispatch(JobActions.getUrlList),
+    getCityList: () => { console.log('sssssssssssssssssss');dispatch(JobActions.getCityList);},
     getDataList: () => dispatch(JobActions.getDataList),
     getDownloadPath: () => dispatch(JobActions.getDownloadPath),
     submitJob: () => dispatch(JobActions.submitJob)

@@ -1,33 +1,31 @@
 import * as JobContants from '../../contants/JobContants';
-export const getCityList = () => {
+export const getCityList = (data) => {
+  console.log('city aciotn');
   return {
-    type: JobContants.GET_CITY_LIST
-  };
-};
-
-export const getUrlList = (city) => {
-  return {
-    type: JobContants.GET_URL_LIST,
+    type: JobContants.GET_CITY_LIST,
     payload: {
-      city
+      data
     }
   };
 };
 
-export const getDataList = (url) => {
+export const getDataList = (city,data) => {
+  console.log('data aciotn');
   return {
     type: JobContants.GET_DATA_LIST,
     payload: {
-      url
+      city,
+      data
     }
   };
 };
 
-export const getDownloadPath = (path) => {
+export const getDownloadPath = (path,data) => {
   return {
     type: JobContants.SUBMIT_JOB,
     payload: {
-      path
+      path,
+      data
     }
   };
 };
