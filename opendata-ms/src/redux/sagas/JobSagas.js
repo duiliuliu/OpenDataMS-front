@@ -1,36 +1,47 @@
-import {put, takeLatest, call} from 'redux-saga/effects';
+import {
+  put,
+  take,
+  takeLatest,
+  call
+} from 'redux-saga/effects';
 import * as JobActions from '../actions/JobActions';
-import {getData} from '../../api/Api';
+import * as JobContants from '../../contants/JobContants';
+import {
+  getData
+} from '../../api/Api';
 
-const { getCityList,getDataList } = JobActions;
+const {
+  loadCityListSuccess,
+  loadDataListSuccess
+} = JobActions;
 
 
-function* getCityListAsync() {
-  while(true){
-    console.log('ss');
-    const action=yield call(JobActions.getDataList);
-    const response = yield call(getData.bind(this,'/job/city',{city:action.payload.city}));
-    if (response.success) {
-      yield put(getCityList(response.data));
-    } else {
-      console.log('失败');
-    }
-  }
-}
-
-export function* watchGetCityList(){
-  yield takeLatest(JobActions.getCityList, getCityListAsync);
-}
-
-function* getDataListAsync() {
-  const response = yield call(getData.bind(this,'/job/data'));
-  if (response.success) {
-    yield put(getDataList(response.data));
-  } else {
+export function* getCityListAsync() {
+  try {
+    console.log('22222');
+    const response = yield call(getData.bind(this, '/job/city'));
+    yield put(loadCityListSuccess(response.data));
+  } catch (error) {
     console.log('失败');
   }
 }
 
-export function* watchGetDataList(){
-  yield takeLatest(JobActions.getDataList, getDataListAsync);
+export function* getDataListAsync() {
+  try {
+    const action = yield take(JobActions.getDataList);
+    const response = yield call(getData.bind(this, '/job/data', {
+      city: action.payload.city
+    }));
+    yield put(loadDataListSuccess(response.data));
+  } catch (error) {
+    console.log('失败');
+  }
+}
+
+export function* watchGetCityList() {
+  yield takeLatest(JobContants.GET_CITY_LIST, getCityListAsync);
+}
+
+export function* watchGetDataList() {
+  yield takeLatest(JobContants.GET_DATA_LIST, getDataListAsync);
 }

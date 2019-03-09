@@ -1,5 +1,5 @@
 import {
-  mockApi
+  mockApi,APi
 } from '../contants/linkConstants';
 
 /**
@@ -76,7 +76,7 @@ export function getData(url, params) {
       url += '&' + paramsArray.join('&');
     }
   }
-  return fetch(mockApi + url, {
+  return fetch(APi + url, {
       method: 'GET',
       headers: {
         'user-agent': 'Mozilla/4.0 MDN Example',

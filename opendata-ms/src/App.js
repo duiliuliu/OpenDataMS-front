@@ -5,8 +5,8 @@ import ReactDOM from 'react-dom';
 import configureStore  from './redux/store';
 import rootSaga from './redux/sagas';
 import 'antd/dist/antd.less';
-// import './style/theme.less';
-// import './style/App.css';
+// import './assets/theme.less';
+// import './assets/App.css';
 import 'ant-design-pro/dist/ant-design-pro.css';
 
 import NewJob from './containers/job/NewJob';
@@ -16,6 +16,7 @@ store.runSaga(rootSaga);
 
 class App extends Component {
   render() {
+    console.log('store++++++++ ',store);
     return (
       <Provider store={store}>
         <div className="App">

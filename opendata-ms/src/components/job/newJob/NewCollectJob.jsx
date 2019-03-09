@@ -64,7 +64,11 @@ export default class NewCollectJob extends React.Component {
       cityStatus:Validating.NON,
       dataStatus:Validating.NON
     };
-    this.props.getCityList;
+  }
+
+  componentDidMount(){
+    // console.log(';----');
+    // this.props.getCityList();
   }
 
   /**
@@ -73,7 +77,7 @@ export default class NewCollectJob extends React.Component {
    * @memberof NewCollectJob
    */
   handleNameChange = e => {
-    this.props.getCityList;
+    this.props.getCityList();
     this.setState({
       name: e.target.value
     });
@@ -185,6 +189,7 @@ export default class NewCollectJob extends React.Component {
         >
           <Input onChange={this.handleNameChange}
               placeholder="input placeholder"
+              value={this.state.name}
           />
         </Form.Item>
         <Form.Item {...formItemLayout}
@@ -195,6 +200,7 @@ export default class NewCollectJob extends React.Component {
           <Select hasFeedback
               onChange={this.handleCityChange}
               placeholder="Please select a city"
+              value={this.state.city}
           >
             {this.props.cityList === null
               ? null
@@ -288,10 +294,11 @@ export default class NewCollectJob extends React.Component {
             Submit
           </Button>
           <Button htmlType="reset"
+              onClick={this.handleReset}
               style={{ margin: 10 }}
               type="danger"
           >
-            取消
+            重置
           </Button>
         </Form.Item>
       </Form>
