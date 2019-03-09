@@ -1,43 +1,48 @@
-import * as JobContants from '../../contants/JobContants';
+import * as ActionContants from '../../contants/ActionContants';
 
 const initialState = {
   cityList: [],
-  dataList: []
+  dataList: [],
+  cityStatus:'',
+  dataStatus:''
 };
 
+const loadStatus = 'loading';
+const successStatus = 'success';
+
 export default function (state = initialState, action) {
-  console.log(action,'\n=====================');
   switch (action.type) {
-    case JobContants.GET_CITY_LIST:
-      {
-        // return {
-        //   ...state,
-        //   cityList: action.payload.data
-        // };
-        return {};
-      }
-
-    case JobContants.GET_DATA_LIST:
+    case ActionContants.FETCH_CITY_LIST:
       {
         return {
           ...state,
-          dataList: action.payload.data
+          cityList: action.payload.cityList,
+          cityStatus: successStatus
         };
       }
 
-    case JobContants.LOAD_CITY_LIST_SUCCESS:
+    case ActionContants.FETCH_DATA_LIST:
       {
         return {
           ...state,
-          cityList: action.payload.cityList
+          dataList: action.payload.dataList,
+          dataStatus: successStatus
         };
       }
 
-    case JobContants.LOAD_DATA_LIST_SUCCESS:
+    case ActionContants.LOAD_CITY_LIST:
       {
         return {
           ...state,
-          dataList: action.payload.dataList
+          cityStatus: loadStatus
+        };
+      }
+
+    case ActionContants.LOAD_DATA_LIST:
+      {
+        return {
+          ...state,
+          dataStatus: loadStatus
         };
       }
 

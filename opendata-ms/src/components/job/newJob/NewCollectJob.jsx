@@ -23,26 +23,26 @@ export default class NewCollectJob extends React.Component {
    * @param {PropTypes.Array} cityList
    * @param {PropTypes.Array} dataList
    * @param {PropTypes.func} onSubmit
-   * @param {PropTypes.func} getDownloadDir
+   * @param {PropTypes.func} download
    */
   static propTypes = {
     cityList: PropTypes.arrayOf(PropTypes.string),
     dataList: PropTypes.arrayOf(PropTypes.string),
     onSubmit: PropTypes.func,
-    getDownloadDir: PropTypes.func
+    download: PropTypes.func
   };
   /**
    * 组件默认值
    * @param {null} cityList
    * @param {null} dataList
    * @param {null} onSubmit
-   * @param {null} getDownloadDir
+   * @param {null} download
    */
   static defaultProps = {
     cityList: null,
     dataList: null,
     onSubmit: null,
-    getDownloadDir: null
+    download: null
   };
 
   /**
@@ -67,8 +67,7 @@ export default class NewCollectJob extends React.Component {
   }
 
   componentDidMount(){
-    // console.log(';----');
-    // this.props.getCityList();
+    this.props.requestCityList();
   }
 
   /**
@@ -77,7 +76,6 @@ export default class NewCollectJob extends React.Component {
    * @memberof NewCollectJob
    */
   handleNameChange = e => {
-    this.props.getCityList();
     this.setState({
       name: e.target.value
     });
@@ -92,23 +90,26 @@ export default class NewCollectJob extends React.Component {
     if(StringUtil.isBlank(value)){
       return;
     }
-    console.log(value);
-    this.props.getDataList.bind(value);
+    this.props.requestDataList(value);
     this.setState({
-      city: value
+      city: value,
+      cityStatus: Validating.SUCCESS
     });
   };
 
-  
+
   /**
    *获取当前选中数据项
    *
    * @memberof NewCollectJob
    */
   handleDataChange = value => {
-    console.log(value);
+    if(value===null || value.length===0){
+      return;
+    }
     this.setState({
-      city: value
+      datas: value,
+      dataStatus: Validating.SUCCESS
     });
   };
 
@@ -118,7 +119,6 @@ export default class NewCollectJob extends React.Component {
    * @memberof NewCollectJob
    */
   handleThreadChange = e => {
-    console.log(e.target.value);
     this.setState({
       thread: e.target.value
     });
@@ -130,10 +130,18 @@ export default class NewCollectJob extends React.Component {
    * @memberof NewCollectJob
    */
   handleNativeChange = value => {
-    console.log(value);
     this.setState({
       isSaveNative: value
     });
+  };
+
+  /**
+   *获取下载数据路径
+   *
+   * @memberof NewCollectJob
+   */
+  saveOrigin = e => {
+    this.props.download(e);
   };
 
   /**
@@ -154,24 +162,23 @@ export default class NewCollectJob extends React.Component {
       });
       return;
     }
-    this.props.onSubmit({
-      job:{
+    this.props.submitJob({
         name:this.state.name,
         city:this.state.city,
         thread:this.state.thread,
         datas:this.state.datas,
         isSaveNative:this.state.isSaveNative
       }
-    });
+    );
   };
 
   /**
-   *获取下载数据路径
+   *重置表單
    *
    * @memberof NewCollectJob
    */
-  saveOrigin = e => {
-    this.props.getDownloadDir(e);
+  handleReset = () => {
+
   };
 
   /**
@@ -195,12 +202,11 @@ export default class NewCollectJob extends React.Component {
         <Form.Item {...formItemLayout}
             hasFeedback
             label="城市"
-            validateStatus={this.state.cityStatus}
+            validateStatus={this.props.cityStatus==='loading'? Validating.VALIDATE : this.state.cityStatus}
         >
           <Select hasFeedback
               onChange={this.handleCityChange}
               placeholder="Please select a city"
-              value={this.state.city}
           >
             {this.props.cityList === null
               ? null
@@ -220,10 +226,11 @@ export default class NewCollectJob extends React.Component {
         <Form.Item {...formItemLayout}
             hasFeedback
             label="数据类目"
-            validateStatus={this.state.dataStatus}
+            validateStatus={this.props.dataStatus==='loading'? Validating.VALIDATE : this.state.dataStatus}
         >
           <Select hasFeedback
               mode="multiple"
+              onChange={this.handleDataChange}
               placeholder="Please select target data"
           >
             {this.props.dataList === null

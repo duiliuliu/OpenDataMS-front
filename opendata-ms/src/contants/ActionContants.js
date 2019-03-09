@@ -1,0 +1,14 @@
+export const SUCCESS = 'SUCCESS';
+export const ERROR = 'ERROR';
+
+export const REQUEST_CITY_LIST = 'REQUEST_CITY_LIST';
+export const REQUEST_URL_LIST = 'REQUEST_URL_LIST';
+export const REQUEST_DATA_LIST = 'REQUEST_DATA_LIST';
+export const REQUEST_DOWNLOAD_PATH = 'REQUEST_DOWNLOAD_PATH';
+export const SUBMIT_JOB = 'SUBMIT_JOB';
+
+export const LOAD_CITY_LIST = 'LOAD_CITY_LIST';
+export const LOAD_DATA_LIST = 'LOAD_DATA_LIST';
+
+export const FETCH_CITY_LIST = 'FETCH_CITY_LIST';
+export const FETCH_DATA_LIST = 'FETCH_DATA_LIST';
