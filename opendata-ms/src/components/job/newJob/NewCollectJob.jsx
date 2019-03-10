@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Input, Form, Select, Switch,
   Radio, Button, Upload, Icon,
-  Row,Col, InputNumber} from 'antd';
+  Row,Col, InputNumber, message} from 'antd';
 import { Validating } from '../../../contants/EnumConstants';
 import * as StringUtil from '../../../util/StringUtil';
 
@@ -185,6 +185,13 @@ export default class NewCollectJob extends React.Component {
    * @ignore
    */
   render() {
+    if(this.props.message){
+      if(this.props.success){
+        message.success(this.props.message);
+      }else{
+        message.error(this.props.message);
+      }
+    }
     const formItemLayout = {
       labelCol: { span: 7 },
       wrapperCol: { span: 8 }

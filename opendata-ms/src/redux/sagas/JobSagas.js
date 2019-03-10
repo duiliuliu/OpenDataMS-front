@@ -1,20 +1,21 @@
 import {
   put,
   call,
+  fork,
   takeLatest
 } from 'redux-saga/effects';
 import * as JobActions from '../actions/JobActions';
-import * as Actions from '../actions';
 import * as ActionContants from '../../contants/ActionContants';
 import {
   getData,
   putData
 } from '../../api/Api';
+import {
+  successAsync,
+  errorAsync
+} from './index';
 
-const {
-  success,
-  error
-} = Actions;
+
 const {
   loadCityList,
   loadDataList,
@@ -85,13 +86,13 @@ function* submitJobAsync(action) {
     const response = yield call(putData.bind(this, '/job', {
       job: action.payload.job
     }));
-    yield put(success('成功提交任务：' + response.name));
+    yield fork(successAsync, '成功提交任务：' + response.name);
   } catch (e) {
-    yield put(error('提交任务失败！：'));
+    yield fork(errorAsync, '提交任务失败！：');
   }
 }
 
-export function* watchJob(){
+export function* watchJob() {
   yield takeLatest(ActionContants.REQUEST_CITY_LIST, requestCityListAsync);
   yield takeLatest(ActionContants.REQUEST_DATA_LIST, requestDataListAsync);
   yield takeLatest(ActionContants.SUBMIT_JOB, submitJobAsync);

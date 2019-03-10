@@ -17,3 +17,9 @@ export const error = (message) => {
     }
   };
 };
+
+export const clearMessage = () => {
+  return {
+    type: ActionContants.CLEAR_MESSAGE
+  };
+};

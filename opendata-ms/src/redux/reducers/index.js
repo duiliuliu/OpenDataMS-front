@@ -2,7 +2,7 @@ import * as ActionContants from '../../contants/ActionContants';
 
 const initialState = {
   message: '',
-  errorMessage: ''
+  success: false
 };
 
 export default function (state = initialState, action) {
@@ -11,6 +11,7 @@ export default function (state = initialState, action) {
       {
         return {
           ...state,
+          success: true,
           message: action.payload.message
         };
       }
@@ -19,8 +20,17 @@ export default function (state = initialState, action) {
       {
         return {
           ...state,
-          ...action.payload,
-          errorMessage: action.payload.errorMessage
+          success: false,
+          message: action.payload.message
+        };
+      }
+
+    case ActionContants.CLEAR_MESSAGE:
+      {
+        return {
+          ...state,
+          success: false,
+          message: ''
         };
       }
 

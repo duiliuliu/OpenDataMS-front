@@ -4,8 +4,7 @@
  * @returns {boolean}
  */
 export const isBlank = (str) => {
-  let strLen = str.length;
-  if (str === null || strLen === 0) {
+  if (str === null || str.length === 0) {
     return true;
   }
   for (let ch in str) {

@@ -1,5 +1,6 @@
 export const SUCCESS = 'SUCCESS';
 export const ERROR = 'ERROR';
+export const CLEAR_MESSAGE = 'CLEAR_MESSAGE';
 
 export const REQUEST_CITY_LIST = 'REQUEST_CITY_LIST';
 export const REQUEST_URL_LIST = 'REQUEST_URL_LIST';
