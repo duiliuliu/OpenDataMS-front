@@ -1,7 +1,7 @@
 import React,{ Component } from 'react';
 import PropTypes from 'prop-types';
 import { Tabs, Icon } from 'antd';
-import {COLLECT_JOB,CLEAN_JOB} from '../../contants/JobContants';
+import {COLLECT_JOB,CLEAN_JOB} from '../../contants/JobConstants';
 
 const TabPane = Tabs.TabPane;
 
@@ -36,7 +36,7 @@ export default class JobTab extends Component {
           {this.props.pane_1}
         </TabPane>
         <TabPane key={CLEAN_JOB}
-            tab={<span><Icon type="android" />CLEAN_JOB</span>}
+            tab={<span><Icon type="android" />{CLEAN_JOB}</span>}
         >
           {this.props.pane_2}
         </TabPane>

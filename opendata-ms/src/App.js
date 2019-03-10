@@ -9,6 +9,8 @@ import 'antd/dist/antd.less';
 // import './assets/App.css';
 import 'ant-design-pro/dist/ant-design-pro.css';
 
+import NewCollectJob from './containers/job/NewCollectJob';
+import NewCleanJob from './containers/job/NewCleanJob';
 import NewJob from './containers/job/NewJob';
 
 const store = configureStore(window.__INITIAL_STATE__);
@@ -22,10 +24,20 @@ class App extends Component {
           <header className="App-header">
           <span>opendata MS</span>
           <BrowserRouter>
-          <Route component={NewJob}
-              exact
-              path="/newjob"
-          />
+            <div>
+              <Route component={NewCollectJob}
+                  exact
+                  path="/newCollectJob"
+              />
+              <Route component={NewCleanJob}
+                  exact
+                  path="/newCleantJob"
+              />
+              <Route component={NewJob}
+                  exact
+                  path="/newJob"
+              />
+            </div>
           </BrowserRouter>
           </header>
         </div>

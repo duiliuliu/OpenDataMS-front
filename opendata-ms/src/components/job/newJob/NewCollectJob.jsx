@@ -232,7 +232,7 @@ export default class NewCollectJob extends React.Component {
 
         <Form.Item {...formItemLayout}
             hasFeedback
-            label="数据类目"
+            label="数据项"
             validateStatus={this.props.dataStatus==='loading'? Validating.VALIDATE : this.state.dataStatus}
         >
           <Select hasFeedback
