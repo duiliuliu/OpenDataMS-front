@@ -6,10 +6,10 @@ const mapStateToProps = state => {
   const data = state.JobReducer;
   const succenninfo = state.Reducer;
   return {
-    cityStatus: data.cityStatus,
-    dataStatus: data.dataStatus,
-    cityList: data.cityList,
-    dataList: data.dataList,
+    cityStatus: data.CleanCityStatus,
+    dataStatus: data.CleanDataStatus,
+    cityList: data.CleanCityList,
+    dataList: data.CleanDataList,
     functionList:[],
     dataColList:[],
     success: succenninfo.success,
@@ -19,10 +19,10 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    requestCityList: () => dispatch(JobActions.requestCityList()),
-    requestDataList: city => dispatch(JobActions.requestDataList(city)),
+    requestCityList: () => dispatch(JobActions.requestCleanCityList()),
+    requestDataList: city => dispatch(JobActions.requestCleanDataList(city)),
     requestDownloadPath: () => dispatch(JobActions.download()),
-    submitJob: job => dispatch(JobActions.submitJob(job))
+    submitJob: job => dispatch(JobActions.submitCleanJob(job))
   };
 };
 

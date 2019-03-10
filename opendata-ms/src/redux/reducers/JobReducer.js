@@ -1,10 +1,14 @@
 import * as ActionContants from '../../contants/ActionContants';
 
 const initialState = {
-  cityList: [],
-  dataList: [],
-  cityStatus:'',
-  dataStatus:''
+  collectCityList: [],
+  collectDataList: [],
+  collectCityStatus: '',
+  collectDataStatus: '',
+  cleanCityList: [],
+  cleanDataList: [],
+  cleanCityStatus: '',
+  cleanDataStatus: ''
 };
 
 const loadStatus = 'loading';
@@ -12,37 +16,71 @@ const successStatus = 'success';
 
 export default function (state = initialState, action) {
   switch (action.type) {
-    case ActionContants.FETCH_CITY_LIST:
+    case ActionContants.FETCH_COLLECT_CITY_LIST:
       {
         return {
           ...state,
-          cityList: action.payload.cityList,
-          cityStatus: successStatus
+          collectCityList: action.payload.collectCityList,
+          collectCityStatus: successStatus
         };
       }
 
-    case ActionContants.FETCH_DATA_LIST:
+    case ActionContants.FETCH_COLLECT_DATA_LIST:
       {
         return {
           ...state,
-          dataList: action.payload.dataList,
-          dataStatus: successStatus
+          collectDataList: action.payload.collectDataList,
+          collectDataStatus: successStatus
         };
       }
 
-    case ActionContants.LOAD_CITY_LIST:
+    case ActionContants.LOAD_COLLECT_CITY_LIST:
       {
         return {
           ...state,
-          cityStatus: loadStatus
+          collectCityStatus: loadStatus
         };
       }
 
-    case ActionContants.LOAD_DATA_LIST:
+    case ActionContants.LOAD_COLLECT_DATA_LIST:
       {
         return {
           ...state,
-          dataStatus: loadStatus
+          collectDataStatus: loadStatus
+        };
+      }
+
+    case ActionContants.FETCH_CLEAN_CITY_LIST:
+      {
+        return {
+          ...state,
+          cleanCityList: action.payload.cleanCityList,
+          cleanCityStatus: successStatus
+        };
+      }
+
+    case ActionContants.FETCH_CLEAN_DATA_LIST:
+      {
+        return {
+          ...state,
+          cleanDataList: action.payload.cleanDataList,
+          cleanDataStatus: successStatus
+        };
+      }
+
+    case ActionContants.LOAD_CLEAN_CITY_LIST:
+      {
+        return {
+          ...state,
+          cleanCityStatus: loadStatus
+        };
+      }
+
+    case ActionContants.LOAD_CLEAN_DATA_LIST:
+      {
+        return {
+          ...state,
+          cleanDataStatus: loadStatus
         };
       }
 

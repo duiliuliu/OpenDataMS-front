@@ -276,8 +276,16 @@ export default class NewCollectJob extends React.Component {
         </Form.Item>
         <Form.Item>
           <Row>
-            <Col span={7}></Col>
-            <Col span={8}>
+            <Col md={7}
+                sm={7}
+                xl={7}
+                xs={0}
+            ></Col>
+            <Col md={8}
+                sm={8}
+                xl={8}
+                xs={8}
+            >
               <Switch onChange={this.handleNativeChange} />
               <span style={{ marginRight: '40px', marginLeft: '10px' }}>
                 {' '}

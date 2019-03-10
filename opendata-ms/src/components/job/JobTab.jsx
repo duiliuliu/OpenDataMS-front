@@ -16,12 +16,12 @@ export default class JobTab extends Component {
    * 构建标签页组件参数：</br>
    * pane_1- 容器组件1 </br>
    * pane_2- 容器组件2 </br>
-   * @param {PropTypes.shape.isRequired} pane_1
-   * @param {PropTypes.shape.isRequired} pane_2
+   * @param {PropTypes.element.isRequired} pane_1
+   * @param {PropTypes.element.isRequired} pane_2
    */
   static propTypes = {
-    pane_1: PropTypes.shape.isRequired,
-    pane_2: PropTypes.shape.isRequired
+    pane_1: PropTypes.element.isRequired,
+    pane_2: PropTypes.element.isRequired
   };
 
   /**
@@ -30,7 +30,7 @@ export default class JobTab extends Component {
   render() {
     return (
       <Tabs defaultActiveKey={COLLECT_JOB}>
-        <TabPane key="1"
+        <TabPane key={COLLECT_JOB}
             tab={<span><Icon type="apple" />{COLLECT_JOB}</span>}
         >
           {this.props.pane_1}
