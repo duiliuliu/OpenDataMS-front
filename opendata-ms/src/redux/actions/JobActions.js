@@ -37,7 +37,7 @@ export const submitJob = (job) => {
 
 /**
  * 保存采集到的数据至本地
- * @param {String} path 
+ * @param {String} path
  */
 export const download = (path) => {
   return {
