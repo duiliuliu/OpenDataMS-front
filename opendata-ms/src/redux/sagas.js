@@ -1,10 +1,12 @@
 import { all } from 'redux-saga/effects';
-import {watchJob} from './sagas/JobSagas';
+import {watchCollectJob} from './sagas/NewCollectJobSagas';
+import {watchCleanJob} from './sagas/NewCleanJobSagas';
 
 
 
 export default function* root() {
   yield all([
-    watchJob()
+    watchCollectJob(),
+    watchCleanJob()
   ]);
 }

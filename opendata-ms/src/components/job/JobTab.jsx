@@ -29,7 +29,7 @@ export default class JobTab extends Component {
    */
   render() {
     return (
-      <Tabs defaultActiveKey={COLLECT_JOB}>
+      <Tabs defaultActiveKey={CLEAN_JOB}>
         <TabPane key={COLLECT_JOB}
             tab={<span><Icon type="apple" />{COLLECT_JOB}</span>}
         >

@@ -2,7 +2,7 @@
 // 数据选择 城市 数据
 // 函数选择
 // 选择数据列
-// 参数校验 
+// 参数校验
 // 提交
 
 import React from 'react';
@@ -11,7 +11,7 @@ import { Input, Form, Select, Button, message} from 'antd';
 import { Validating } from '../../../contants/EnumConstants';
 import * as StringUtil from '../../../util/StringUtil';
 
-const { Option } = Select;
+const { Option, OptGroup  } = Select;
 
 /**
  * 采集任务Form组件 </br>
@@ -19,7 +19,7 @@ const { Option } = Select;
  * @example
  * const cityList = ['佛山', '哈尔滨', '贵州', '深圳'];
  * const dataList = ['全部', '水利工程数据', '特种兵数据', '**数据'];
- * <NewCollectJob cityList={cityList} dataList={dataList} />
+ * <NewCleanJob cityList={cityList} dataList={dataList} />
  */
 export default class NewCleanJob extends React.Component {
 
@@ -33,6 +33,8 @@ export default class NewCleanJob extends React.Component {
   static propTypes = {
     cityList: PropTypes.arrayOf(PropTypes.string),
     dataList: PropTypes.arrayOf(PropTypes.string),
+    functionList: PropTypes.arrayOf(PropTypes.string),
+    dataColList: PropTypes.object,
     onSubmit: PropTypes.func,
     download: PropTypes.func
   };
@@ -46,6 +48,8 @@ export default class NewCleanJob extends React.Component {
   static defaultProps = {
     cityList: null,
     dataList: null,
+    functionList: null,
+    dataColList: null,
     onSubmit: null,
     download: null
   };
@@ -64,21 +68,27 @@ export default class NewCleanJob extends React.Component {
       name:'',
       city: '',
       thread: 1,
+      function:'',
+      dataCols:[],
       datas:[],
       isSaveNative: false,
+      functionStatus:Validating.NON,
+      dataColStatus:Validating.NON,
       cityStatus:Validating.NON,
-      dataStatus:Validating.NON
+      dataStatus:Validating.NON,
+      colWidth: 8
     };
   }
 
   componentDidMount(){
     this.props.requestCityList();
+    this.props.requestFunctionList();
   }
 
   /**
    *获取任务名称
    *
-   * @memberof NewCollectJob
+   * @memberof NewCleanJob
    */
   handleNameChange = e => {
     this.setState({
@@ -89,10 +99,13 @@ export default class NewCleanJob extends React.Component {
   /**
    *获取当前选中城市
    *
-   * @memberof NewCollectJob
+   * @memberof NewCleanJob
    */
   handleCityChange = value => {
     if(StringUtil.isBlank(value)){
+      this.setState({
+        cityStatus: Validating.NON
+      });
       return;
     }
     this.props.requestDataList(value);
@@ -106,55 +119,66 @@ export default class NewCleanJob extends React.Component {
   /**
    *获取当前选中数据项
    *
-   * @memberof NewCollectJob
+   * @memberof NewCleanJob
    */
   handleDataChange = value => {
     if(value===null || value.length===0){
+      this.setState({
+        dataStatus: Validating.WARN
+      });
       return;
     }
+    this.props.requestDataColList(value);
     this.setState({
       datas: value,
       dataStatus: Validating.SUCCESS
     });
   };
 
-  /**
-   *获取当前输入线程数
+    /**
+   *获取当前选中数据项
    *
-   * @memberof NewCollectJob
+   * @memberof NewCleanJob
    */
-  handleThreadChange = e => {
+  handlefunctionChange = value => {
+    if(value===null || value.length===0){
+      this.setState({
+        functionStatus: Validating.WARN
+      });
+      return;
+    }
     this.setState({
-      thread: e.target.value
+      function: value,
+      functionStatus: Validating.SUCCESS
     });
   };
 
-  /**
-   *获取falg是否保存原始数据
-   *
-   * @memberof NewCollectJob
-   */
-  handleNativeChange = value => {
-    this.setState({
-      isSaveNative: value
-    });
-  };
 
-  /**
-   *获取下载数据路径
+    /**
+   *获取当前选中数据项
    *
-   * @memberof NewCollectJob
+   * @memberof NewCleanJob
    */
-  saveOrigin = e => {
-    this.props.download(e);
+  handleDataColChange = value => {
+    if(value===null || value.length===0){
+      this.setState({
+        dataColStatus: Validating.WARN
+      });
+      return;
+    }
+    this.setState({
+      dataCols: value,
+      dataColStatus: Validating.SUCCESS
+    });
   };
 
   /**
    *验证并提交form数据
    *
-   * @memberof NewCollectJob
+   * @memberof NewCleanJob
    */
   handleSubmit = e => {
+    let flag = false;
     e.preventDefault();
     if(StringUtil.isBlank(this.state.city)){
       this.setState({
@@ -165,6 +189,21 @@ export default class NewCleanJob extends React.Component {
       this.setState({
         dataStatus:Validating.ERROR
       });
+      flag = true;
+    }
+    if(!this.state.function){
+      this.setState({
+        functionStatus:Validating.ERROR
+      });
+      flag = true;
+    }
+    if(this.state.dataCols===null || this.state.dataCols.length===0){
+      this.setState({
+        dataColStatus:Validating.ERROR
+      });
+      flag = true;
+    }
+    if(flag){
       return;
     }
     this.props.submitJob({
@@ -172,6 +211,8 @@ export default class NewCleanJob extends React.Component {
         city:this.state.city,
         thread:this.state.thread,
         datas:this.state.datas,
+        function:this.state.function,
+        dataCols:this.state.dataCols,
         isSaveNative:this.state.isSaveNative
       }
     );
@@ -180,7 +221,7 @@ export default class NewCleanJob extends React.Component {
   /**
    *重置表單
    *
-   * @memberof NewCollectJob
+   * @memberof NewCleanJob
    */
   handleReset = () => {
 
@@ -195,6 +236,32 @@ export default class NewCleanJob extends React.Component {
         message.success(this.props.message);
       }else{
         message.error(this.props.message);
+      }
+    }
+    /**
+     * 数据列下拉菜单，以数据项分组
+     */
+    const dataColOptions = [];
+    if(this.props.dataColList){
+      const dataColList = this.props.dataColList;
+      for(let key in dataColList) {
+        let optGroups = [];
+        for(let item of dataColList[key]){
+          optGroups.push(
+            <Option key={key+'.'+item}
+                value={key+'.'+item}
+            >
+              {key+'.'+item}
+            </Option>
+          );
+        }
+        dataColOptions.push(
+          <OptGroup key={key}
+              label={key}
+          >
+            {optGroups}
+          </OptGroup>
+        );
       }
     }
     const formItemLayout = {
@@ -213,7 +280,7 @@ export default class NewCleanJob extends React.Component {
         </Form.Item>
         <Form.Item {...formItemLayout}
             hasFeedback
-            label="城市"
+            label="数据项"
             validateStatus={this.props.cityStatus==='loading'? Validating.VALIDATE : this.state.cityStatus}
         >
           <Select hasFeedback
@@ -233,33 +300,36 @@ export default class NewCleanJob extends React.Component {
               }))
             }
           </Select>
-        </Form.Item>
 
-        <Form.Item {...formItemLayout}
-            hasFeedback
-            label="数据项"
-            validateStatus={this.props.dataStatus==='loading'? Validating.VALIDATE : this.state.dataStatus}
-        >
-          <Select hasFeedback
-              mode="multiple"
-              onChange={this.handleDataChange}
-              placeholder="Please select target data"
-          >
-            {this.props.dataList === null
-              ? null
-              : (this.props.dataList.map(item => {
-                  return (
-                    <Option key={item}
-                        value={item}
-                    >
-                      {item}
-                    </Option>
-                  );
-                }))
-            }
-          </Select>
         </Form.Item>
-
+        {
+            this.state.city
+            ? (
+              <Form.Item {...{ wrapperCol: { offset:7,span: 8 }}}
+                  hasFeedback
+                  validateStatus={this.props.dataStatus==='loading'? Validating.VALIDATE : this.state.dataStatus}
+              >
+                  <Select hasFeedback
+                      mode="multiple"
+                      onChange={this.handleDataChange}
+                      placeholder="Please select target data"
+                  >
+                    {this.props.dataList === null
+                      ? null
+                      : (this.props.dataList.map(item => {
+                          return (
+                            <Option key={item}
+                                value={item}
+                            >
+                              {item}
+                            </Option>
+                          );
+                        }))
+                    }
+                  </Select>
+                </Form.Item>)
+            : null
+          }
         <Form.Item {...formItemLayout}
             hasFeedback
             label="函数"
@@ -294,18 +364,7 @@ export default class NewCleanJob extends React.Component {
               onChange={this.handleDataColChange}
               placeholder="Please select target data"
           >
-            {this.props.dataColList === null
-              ? null
-              : (this.props.dataColList.map(item => {
-                  return (
-                    <Option key={item}
-                        value={item}
-                    >
-                      {item}
-                    </Option>
-                  );
-                }))
-            }
+            {dataColOptions}
           </Select>
         </Form.Item>
 

@@ -1,10 +1,12 @@
 import { combineReducers } from 'redux';
 import Reducer from './reducers';
-import JobReducer from './reducers/JobReducer';
+import NewCollectJobReducer from './reducers/NewCollectJobReducer';
+import NewCleanReducers from './reducers/NewCleanReducers';
 
 const allReducers = {
   Reducer,
-  JobReducer
+  NewCleanReducers,
+  NewCollectJobReducer
 };
 
 const rootReducer = combineReducers(allReducers);

@@ -9,14 +9,6 @@ export const requestCollectCityList = () => {
   };
 };
 
-/**
- * 请求清洗任务城市
- */
-export const requestCleanCityList = () => {
-  return {
-    type: ActionConstants.REQUEST_CLEAN_CITY_LIST
-  };
-};
 
 /**
  * 请求采集任务相应城市的数据项
@@ -32,38 +24,12 @@ export const requestCollectDataList = (city) => {
 };
 
 /**
- * 请求清洗任务相应城市得数据项
- * @param {String} city 城市
- */
-export const requestCleanDataList = (city) => {
-  return {
-    type: ActionConstants.REQUEST_CLEAN_DATA_LIST,
-    payload: {
-      city
-    }
-  };
-};
-
-/**
  * 提交采集任务
  * @param {Object} job 任务
  */
 export const submitCollectJob = (job) => {
   return {
     type: ActionConstants.SUBMIT_COLLECT_JOB,
-    payload: {
-      job
-    }
-  };
-};
-
-/**
- * 提交清洗任务
- * @param {Object} job 任务
- */
-export const submitCleanJob = (job) => {
-  return {
-    type: ActionConstants.SUBMIT_CLEAN_JOB,
     payload: {
       job
     }
@@ -85,7 +51,7 @@ export const download = (path) => {
 
 /**
  * 获取到采集任务城市列表
- * @param {Array} cityList 城市列表数据
+ * @param {Array} collectCityList 城市列表数据
  */
 export const fetchCollectCityList = (collectCityList) => {
   return {
@@ -97,21 +63,8 @@ export const fetchCollectCityList = (collectCityList) => {
 };
 
 /**
- * 获取清洗任务城市列表
- * @param {Array} collectCityList 城市列表
- */
-export const fetchCleanCityList = (collectCityList) => {
-  return {
-    type: ActionConstants.FETCH_CLEAN_CITY_LIST,
-    payload: {
-      collectCityList
-    }
-  };
-};
-
-/**
  * 获取到采集任务相应城市数据项列表
- * @param {Array} dataList 数据项列表
+ * @param {Array} collectDataList 数据项列表
  */
 export const fetchCollectDataList = (collectDataList) => {
   return {
@@ -123,21 +76,7 @@ export const fetchCollectDataList = (collectDataList) => {
 };
 
 /**
- * 获取清洗任务数据项列表
- * @param {Array} collectDataList 数据项列表
- */
-export const fetchCleanDataList = (collectDataList) => {
-  return {
-    type: ActionConstants.FETCH_CLEAN_DATA_LIST,
-    payload: {
-      collectDataList
-    }
-  };
-};
-
-/**
  * 加载采集任务城市列表
- * @param {Array} cityList 城市列表数据
  */
 export const loadCollectCityList = () => {
   return {
@@ -146,29 +85,10 @@ export const loadCollectCityList = () => {
 };
 
 /**
- * 加载清洗任务城市数据
- */
-export const loadCleanCityList = () => {
-  return {
-    type: ActionConstants.LOAD_CLEAN_CITY_LIST
-  };
-};
-
-/**
  * 加载采集任务相应城市数据项列表
- * @param {Array} dataList 数据项列表
  */
 export const loadCollectDataList = () => {
   return {
     type: ActionConstants.LOAD_COLLECT_DATA_LIST
-  };
-};
-
-/**
- * 加载清洗任务数据项
- */
-export const loadCleanDataList = () => {
-  return {
-    type: ActionConstants.LOAD_CLEAN_DATA_LIST
   };
 };

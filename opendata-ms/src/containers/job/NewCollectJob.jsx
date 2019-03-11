@@ -1,9 +1,9 @@
 import { connect } from 'react-redux';
 import NewCollectJob from '../../components/job/newJob/NewCollectJob';
-import * as JobActions from '../../redux/actions/JobActions';
+import * as NewCollectJobActions from '../../redux/actions/NewCollectJobActions';
 
 const mapStateToProps = state => {
-  const data = state.JobReducer;
+  const data = state.NewCollectJobReducer;
   const succenninfo = state.Reducer;
   return {
     cityStatus: data.collectCityStatus,
@@ -17,10 +17,10 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    requestCityList: () => dispatch(JobActions.requestCollectCityList()),
-    requestDataList: city => dispatch(JobActions.requestCollectDataList(city)),
-    requestDownloadPath: () => dispatch(JobActions.download()),
-    submitJob: job => dispatch(JobActions.submitCollectJob(job))
+    requestCityList: () => dispatch(NewCollectJobActions.requestCollectCityList()),
+    requestDataList: city => dispatch(NewCollectJobActions.requestCollectDataList(city)),
+    requestDownloadPath: () => dispatch(NewCollectJobActions.download()),
+    submitJob: job => dispatch(NewCollectJobActions.submitCollectJob(job))
   };
 };
 

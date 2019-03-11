@@ -88,6 +88,9 @@ export default class NewCollectJob extends React.Component {
    */
   handleCityChange = value => {
     if(StringUtil.isBlank(value)){
+      this.setState({
+        cityStatus: Validating.NON
+      });
       return;
     }
     this.props.requestDataList(value);
@@ -105,6 +108,9 @@ export default class NewCollectJob extends React.Component {
    */
   handleDataChange = value => {
     if(value===null || value.length===0){
+      this.setState({
+        dataStatus: Validating.WARN
+      });
       return;
     }
     this.setState({

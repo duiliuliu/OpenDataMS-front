@@ -1,17 +1,17 @@
 import { connect } from 'react-redux';
 import NewCleanJob from '../../components/job/newJob/NewCleanJob';
-import * as JobActions from '../../redux/actions/JobActions';
+import * as NewCleanJobAction from '../../redux/actions/NewCleanJobAction';
 
 const mapStateToProps = state => {
-  const data = state.JobReducer;
+  const data = state.NewCleanReducers;
   const succenninfo = state.Reducer;
   return {
-    cityStatus: data.CleanCityStatus,
-    dataStatus: data.CleanDataStatus,
-    cityList: data.CleanCityList,
-    dataList: data.CleanDataList,
-    functionList:[],
-    dataColList:[],
+    cityStatus: data.cleanCityStatus,
+    dataStatus: data.cleanDataStatus,
+    cityList: data.cleanCityList,
+    dataList: data.cleanDataList,
+    functionList:data.functionList,
+    dataColList:data.dataColList,
     success: succenninfo.success,
     message: succenninfo.message
   };
@@ -19,10 +19,11 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    requestCityList: () => dispatch(JobActions.requestCleanCityList()),
-    requestDataList: city => dispatch(JobActions.requestCleanDataList(city)),
-    requestDownloadPath: () => dispatch(JobActions.download()),
-    submitJob: job => dispatch(JobActions.submitCleanJob(job))
+    requestCityList: () => dispatch(NewCleanJobAction.requestCleanCityList()),
+    requestDataList: city => dispatch(NewCleanJobAction.requestCleanDataList(city)),
+    requestFunctionList: () => dispatch(NewCleanJobAction.requestFunctionList()),
+    requestDataColList: city => dispatch(NewCleanJobAction.requestDataColList(city)),
+    submitJob: job => dispatch(NewCleanJobAction.submitCleanJob(job))
   };
 };
 
