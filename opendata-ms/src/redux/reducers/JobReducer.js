@@ -1,4 +1,4 @@
-import * as ActionContants from '../../contants/ActionContants';
+import * as ActionConstants from '../../contants/ActionConstants';
 
 const initialState = {
   collectCityList: [],
@@ -16,7 +16,7 @@ const successStatus = 'success';
 
 export default function (state = initialState, action) {
   switch (action.type) {
-    case ActionContants.FETCH_COLLECT_CITY_LIST:
+    case ActionConstants.FETCH_COLLECT_CITY_LIST:
       {
         return {
           ...state,
@@ -25,7 +25,7 @@ export default function (state = initialState, action) {
         };
       }
 
-    case ActionContants.FETCH_COLLECT_DATA_LIST:
+    case ActionConstants.FETCH_COLLECT_DATA_LIST:
       {
         return {
           ...state,
@@ -34,7 +34,7 @@ export default function (state = initialState, action) {
         };
       }
 
-    case ActionContants.LOAD_COLLECT_CITY_LIST:
+    case ActionConstants.LOAD_COLLECT_CITY_LIST:
       {
         return {
           ...state,
@@ -42,7 +42,7 @@ export default function (state = initialState, action) {
         };
       }
 
-    case ActionContants.LOAD_COLLECT_DATA_LIST:
+    case ActionConstants.LOAD_COLLECT_DATA_LIST:
       {
         return {
           ...state,
@@ -50,7 +50,7 @@ export default function (state = initialState, action) {
         };
       }
 
-    case ActionContants.FETCH_CLEAN_CITY_LIST:
+    case ActionConstants.FETCH_CLEAN_CITY_LIST:
       {
         return {
           ...state,
@@ -59,7 +59,7 @@ export default function (state = initialState, action) {
         };
       }
 
-    case ActionContants.FETCH_CLEAN_DATA_LIST:
+    case ActionConstants.FETCH_CLEAN_DATA_LIST:
       {
         return {
           ...state,
@@ -68,7 +68,7 @@ export default function (state = initialState, action) {
         };
       }
 
-    case ActionContants.LOAD_CLEAN_CITY_LIST:
+    case ActionConstants.LOAD_CLEAN_CITY_LIST:
       {
         return {
           ...state,
@@ -76,7 +76,7 @@ export default function (state = initialState, action) {
         };
       }
 
-    case ActionContants.LOAD_CLEAN_DATA_LIST:
+    case ActionConstants.LOAD_CLEAN_DATA_LIST:
       {
         return {
           ...state,

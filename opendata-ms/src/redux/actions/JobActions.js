@@ -1,11 +1,11 @@
-import * as ActionContants from '../../contants/ActionContants';
+import * as ActionConstants from '../../contants/ActionConstants';
 
 /**
  * 請求采集任务城市
  */
 export const requestCollectCityList = () => {
   return {
-    type: ActionContants.REQUEST_COLLECT_CITY_LIST
+    type: ActionConstants.REQUEST_COLLECT_CITY_LIST
   };
 };
 
@@ -14,7 +14,7 @@ export const requestCollectCityList = () => {
  */
 export const requestCleanCityList = () => {
   return {
-    type: ActionContants.REQUEST_CLEAN_CITY_LIST
+    type: ActionConstants.REQUEST_CLEAN_CITY_LIST
   };
 };
 
@@ -24,7 +24,7 @@ export const requestCleanCityList = () => {
  */
 export const requestCollectDataList = (city) => {
   return {
-    type: ActionContants.REQUEST_COLLECT_DATA_LIST,
+    type: ActionConstants.REQUEST_COLLECT_DATA_LIST,
     payload: {
       city
     }
@@ -37,7 +37,7 @@ export const requestCollectDataList = (city) => {
  */
 export const requestCleanDataList = (city) => {
   return {
-    type: ActionContants.REQUEST_CLEAN_DATA_LIST,
+    type: ActionConstants.REQUEST_CLEAN_DATA_LIST,
     payload: {
       city
     }
@@ -50,7 +50,7 @@ export const requestCleanDataList = (city) => {
  */
 export const submitCollectJob = (job) => {
   return {
-    type: ActionContants.SUBMIT_COLLECT_JOB,
+    type: ActionConstants.SUBMIT_COLLECT_JOB,
     payload: {
       job
     }
@@ -63,7 +63,7 @@ export const submitCollectJob = (job) => {
  */
 export const submitCleanJob = (job) => {
   return {
-    type: ActionContants.SUBMIT_CLEAN_JOB,
+    type: ActionConstants.SUBMIT_CLEAN_JOB,
     payload: {
       job
     }
@@ -76,7 +76,7 @@ export const submitCleanJob = (job) => {
  */
 export const download = (path) => {
   return {
-    type: ActionContants.SUBMIT_COLLECT_JOB,
+    type: ActionConstants.SUBMIT_COLLECT_JOB,
     payload: {
       path
     }
@@ -89,7 +89,7 @@ export const download = (path) => {
  */
 export const fetchCollectCityList = (collectCityList) => {
   return {
-    type: ActionContants.FETCH_COLLECT_CITY_LIST,
+    type: ActionConstants.FETCH_COLLECT_CITY_LIST,
     payload: {
       collectCityList
     }
@@ -102,7 +102,7 @@ export const fetchCollectCityList = (collectCityList) => {
  */
 export const fetchCleanCityList = (collectCityList) => {
   return {
-    type: ActionContants.FETCH_CLEAN_CITY_LIST,
+    type: ActionConstants.FETCH_CLEAN_CITY_LIST,
     payload: {
       collectCityList
     }
@@ -115,7 +115,7 @@ export const fetchCleanCityList = (collectCityList) => {
  */
 export const fetchCollectDataList = (collectDataList) => {
   return {
-    type: ActionContants.FETCH_COLLECT_DATA_LIST,
+    type: ActionConstants.FETCH_COLLECT_DATA_LIST,
     payload: {
       collectDataList
     }
@@ -128,7 +128,7 @@ export const fetchCollectDataList = (collectDataList) => {
  */
 export const fetchCleanDataList = (collectDataList) => {
   return {
-    type: ActionContants.FETCH_CLEAN_DATA_LIST,
+    type: ActionConstants.FETCH_CLEAN_DATA_LIST,
     payload: {
       collectDataList
     }
@@ -141,7 +141,7 @@ export const fetchCleanDataList = (collectDataList) => {
  */
 export const loadCollectCityList = () => {
   return {
-    type: ActionContants.LOAD_COLLECT_CITY_LIST
+    type: ActionConstants.LOAD_COLLECT_CITY_LIST
   };
 };
 
@@ -150,7 +150,7 @@ export const loadCollectCityList = () => {
  */
 export const loadCleanCityList = () => {
   return {
-    type: ActionContants.LOAD_CLEAN_CITY_LIST
+    type: ActionConstants.LOAD_CLEAN_CITY_LIST
   };
 };
 
@@ -160,7 +160,7 @@ export const loadCleanCityList = () => {
  */
 export const loadCollectDataList = () => {
   return {
-    type: ActionContants.LOAD_COLLECT_DATA_LIST
+    type: ActionConstants.LOAD_COLLECT_DATA_LIST
   };
 };
 
@@ -169,6 +169,6 @@ export const loadCollectDataList = () => {
  */
 export const loadCleanDataList = () => {
   return {
-    type: ActionContants.LOAD_CLEAN_DATA_LIST
+    type: ActionConstants.LOAD_CLEAN_DATA_LIST
   };
 };

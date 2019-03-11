@@ -5,7 +5,7 @@ import {
   takeLatest
 } from 'redux-saga/effects';
 import * as JobActions from '../actions/JobActions';
-import * as ActionContants from '../../contants/ActionContants';
+import * as ActionConstants from '../../contants/ActionConstants';
 import {
   getData,
   putData
@@ -165,11 +165,11 @@ function* submitCleanJobAsync(action) {
 }
 
 export function* watchJob() {
-  yield takeLatest(ActionContants.REQUEST_COLLECT_CITY_LIST, requestCollectCityListAsync);
-  yield takeLatest(ActionContants.REQUEST_COLLECT_DATA_LIST, requestCollectDataListAsync);
-  yield takeLatest(ActionContants.SUBMIT_COLLECT_JOB, submitCollectJobAsync);
+  yield takeLatest(ActionConstants.REQUEST_COLLECT_CITY_LIST, requestCollectCityListAsync);
+  yield takeLatest(ActionConstants.REQUEST_COLLECT_DATA_LIST, requestCollectDataListAsync);
+  yield takeLatest(ActionConstants.SUBMIT_COLLECT_JOB, submitCollectJobAsync);
 
-  yield takeLatest(ActionContants.REQUEST_CLEAN_CITY_LIST, requestCleanCityListAsync);
-  yield takeLatest(ActionContants.REQUEST_CLEAN_DATA_LIST, requestCleanDataListAsync);
-  yield takeLatest(ActionContants.SUBMIT_CLEAN_JOB, submitCleanJobAsync);
+  yield takeLatest(ActionConstants.REQUEST_CLEAN_CITY_LIST, requestCleanCityListAsync);
+  yield takeLatest(ActionConstants.REQUEST_CLEAN_DATA_LIST, requestCleanDataListAsync);
+  yield takeLatest(ActionConstants.SUBMIT_CLEAN_JOB, submitCleanJobAsync);
 }

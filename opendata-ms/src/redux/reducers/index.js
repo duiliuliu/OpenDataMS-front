@@ -1,4 +1,4 @@
-import * as ActionContants from '../../contants/ActionContants';
+import * as ActionConstants from '../../contants/ActionConstants';
 
 const initialState = {
   message: '',
@@ -7,7 +7,7 @@ const initialState = {
 
 export default function (state = initialState, action) {
   switch (action.type) {
-    case ActionContants.SUCCESS:
+    case ActionConstants.SUCCESS:
       {
         return {
           ...state,
@@ -16,7 +16,7 @@ export default function (state = initialState, action) {
         };
       }
 
-    case ActionContants.ERROR:
+    case ActionConstants.ERROR:
       {
         return {
           ...state,
@@ -25,7 +25,7 @@ export default function (state = initialState, action) {
         };
       }
 
-    case ActionContants.CLEAR_MESSAGE:
+    case ActionConstants.CLEAR_MESSAGE:
       {
         return {
           ...state,

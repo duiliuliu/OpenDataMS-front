@@ -1,8 +1,8 @@
-import * as ActionContants from '../../contants/ActionContants';
+import * as ActionConstants from '../../contants/ActionConstants';
 
 export const success = (message) => {
   return {
-    type: ActionContants.SUCCESS,
+    type: ActionConstants.SUCCESS,
     payload: {
       message
     }
@@ -11,7 +11,7 @@ export const success = (message) => {
 
 export const error = (message) => {
   return {
-    type: ActionContants.ERROR,
+    type: ActionConstants.ERROR,
     payload: {
       message
     }
@@ -20,6 +20,6 @@ export const error = (message) => {
 
 export const clearMessage = () => {
   return {
-    type: ActionContants.CLEAR_MESSAGE
+    type: ActionConstants.CLEAR_MESSAGE
   };
 };
