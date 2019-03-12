@@ -1,5 +1,7 @@
 @import './index.css';
 
+@import './job/currentJob/index.css';
+
 .App {
   text-align: center;
 }
