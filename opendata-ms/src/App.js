@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
-import { BrowserRouter,Route } from 'react-router-dom';
+// import { BrowserRouter,Route } from 'react-router-dom';
 import ReactDOM from 'react-dom';
 import configureStore  from './redux/store';
 import rootSaga from './redux/sagas';
@@ -9,11 +9,14 @@ import './assets/theme.less';
 import './assets/App.css';
 import 'ant-design-pro/dist/ant-design-pro.css';
 
-import NewCollectJob from './containers/job/NewCollectJob';
-import NewCleanJob from './containers/job/NewCleanJob';
-import NewJob from './containers/job/NewJob';
+import Layout from './containers/layout/Layout';
 
-import MessageWindow from './components/job/currentJob/MessageWindow';
+// import NewCollectJob from './containers/job/NewCollectJob';
+// import NewCleanJob from './containers/job/NewCleanJob';
+// import NewJob from './containers/job/NewJob';
+
+// import MessageWindow from './components/job/currentJob/MessageWindow';
+// import SideBar from './components/layout/SideBar';
 
 const store = configureStore(window.__INITIAL_STATE__);
 store.runSaga(rootSaga);
@@ -25,8 +28,9 @@ class App extends Component {
         <div className="App">
           <header className="App-header">
           <span>opendata MS</span>
-          <BrowserRouter>
+          <Layout>
             <div>
+              {/* <SideBar />
               <Route component={NewCollectJob}
                   exact
                   path="/newCollectJob"
@@ -42,9 +46,9 @@ class App extends Component {
               <Route component={MessageWindow}
                   exact
                   path="/MessageWindow"
-              />
+              /> */}
             </div>
-          </BrowserRouter>
+          </Layout>
           </header>
         </div>
       </Provider>

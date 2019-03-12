@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import IconTypesMap from '../../constant/ImagesConstant';
+import IconTypesMap from '../../contants/ImageConstants';
 
 /**
  * NativeIcon
