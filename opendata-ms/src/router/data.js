@@ -2,6 +2,7 @@ import NewCollectJob from '../containers/job/NewCollectJob';
 import NewCleanJob from '../containers/job/NewCleanJob';
 import NewJob from '../containers/job/NewJob';
 import MessageWindow from '../components/job/currentJob/MessageWindow';
+import StatusTab from '../components/job/currentJob/StatusTab';
 
 export const routerData = [{
     key: 'dashboard',
@@ -64,6 +65,12 @@ export const routerData = [{
         text: '消息窗口',
         path: '/job/current/messagewindow',
         component: MessageWindow
+      },
+      {
+        key: '14',
+        text: '状态栏',
+        path: '/job/current/mstatustab',
+        component: StatusTab
       }
     ]
   }

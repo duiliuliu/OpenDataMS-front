@@ -1,3 +1,5 @@
+/* message-window */
+
 .message-window .build-trace .bash {
     display: block;
 } 
@@ -47,4 +49,18 @@
     border: 1px solid #e5e5e5;
     border-radius: 2px;
     overflow: auto;
+}
+
+/* statusbar */
+
+.status-bar{
+    text-align: left;
+}
+
+.status-bar .divider{
+    margin: 6px;
+}
+
+.status-bar .status-bar-content{
+    margin-left: 6px;
 }

@@ -1,6 +1,6 @@
 import {
   mockApi,APi
-} from '../contants/linkConstants';
+} from '../contants/apiConstants';
 
 /**
  * POST请求方式

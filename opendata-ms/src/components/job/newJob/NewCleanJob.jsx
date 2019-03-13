@@ -75,8 +75,7 @@ export default class NewCleanJob extends React.Component {
       functionStatus:Validating.NON,
       dataColStatus:Validating.NON,
       cityStatus:Validating.NON,
-      dataStatus:Validating.NON,
-      colWidth: 8
+      dataStatus:Validating.NON
     };
   }
 
@@ -265,7 +264,7 @@ export default class NewCleanJob extends React.Component {
       }
     }
     const formItemLayout = {
-      labelCol: { span: 7 },
+      labelCol: { span: 9 },
       wrapperCol: { span: 8 }
     };
     return (
@@ -302,7 +301,7 @@ export default class NewCleanJob extends React.Component {
         </Form.Item>
         {
             this.state.city && (
-              <Form.Item {...{ wrapperCol: { offset:7,span: 8 }}}
+              <Form.Item {...{ wrapperCol: { offset:9,span: 8 }}}
                   hasFeedback
                   validateStatus={this.props.dataStatus==='loading'? Validating.VALIDATE : this.state.dataStatus}
               >

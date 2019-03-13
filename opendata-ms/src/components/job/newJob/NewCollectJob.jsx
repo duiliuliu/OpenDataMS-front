@@ -199,7 +199,7 @@ export default class NewCollectJob extends React.Component {
       }
     }
     const formItemLayout = {
-      labelCol: { span: 7 },
+      labelCol: { span: 9 },
       wrapperCol: { span: 8 }
     };
     return (

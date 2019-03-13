@@ -12,9 +12,7 @@ export default class MessageWindow extends Component {
   };
   render() {
     return (
-      <div className="message-window"
-          style={{width:this.props.width,height:this.props.height}}
-      >
+      <div className="message-window">
         <pre className="build-trace"
             id="build-trace"
         >
