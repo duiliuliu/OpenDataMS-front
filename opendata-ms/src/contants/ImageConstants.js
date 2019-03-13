@@ -1,4 +1,4 @@
-const requireContext = require.context('../../public/icon', true, /^\.\/.*\.*$/);
+const requireContext = require.context('../assets/icon', true, /^\.\/.*\.*$/);
 const IconTypesMap = {};
 requireContext.keys().map((i) => {
     let type = i.match(/^.*\/(.*)\..*$/);

@@ -1,5 +1,6 @@
 @import './index.css';
 
+@import './layout/index.less';
 @import './job/currentJob/index.css';
 
 .App {

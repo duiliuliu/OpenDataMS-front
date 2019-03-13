@@ -49,12 +49,13 @@ class MyLayout extends React.Component {
 
   render() {
     return (
-      <BrowserRouter>
+      <BrowserRouter className="layout">
         <Layout>
           <PagesHeader />
           <Layout>
             <SideBar
                 collapsed={this.state.collapsed}
+                onCollapsed={this.toggleCollapsed}
                 width={this.state.width}
             />
 
@@ -72,12 +73,13 @@ class MyLayout extends React.Component {
                 <Breadcrumb.Item>List</Breadcrumb.Item>
                 <Breadcrumb.Item>App</Breadcrumb.Item> */}
               </Breadcrumb>
-              <Content
+              <Content className="content"
                   style={{
                   background: '#fff',
                   padding: 24,
                   margin: 0,
-                  minHeight: 280
+                  minHeight: 280,
+                  overflow: 'auto'
                 }}
               >
                 <AppRouter />
@@ -92,4 +94,3 @@ class MyLayout extends React.Component {
 }
 
 export default connect()(MyLayout);
-
