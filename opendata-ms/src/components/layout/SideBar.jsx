@@ -21,14 +21,10 @@ class Sidebar extends Component {
     const { pathname } = location;
     routerData.map(item => {
       if (item.pathname) {
-        // 做一些事情,这里只有二级菜单
+      // TODO
       }
-      // 因为菜单只有二级,简单的做个遍历就可以了
       if (item.children && item.children.length > 0) {
         item.children.map(childitem => {
-          /**
-           * 此处用match可匹配url带参数的情况
-           */
           if (pathname.match(childitem.path)) {
             this.setState({
               openKeys: [item.key],
