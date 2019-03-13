@@ -44,15 +44,15 @@ class Sidebar extends Component {
   render() {
     const { selectedKeys } = this.state;
     const { collapsed } = this.props;
-    const SideTree = routerData.map(item => (
+    const SideTree = routerData.map(item =>
       <SubMenu
           key={item.key}
           title={
-          <span>
-            <Icon type={item.title.icon} />
-            <span>{item.title.text}</span>
-          </span>
-        }
+            <span>
+              <Icon type={item.title.icon} />
+              <span>{item.title.text}</span>
+            </span>
+          }
       >
         {item.children &&
           item.children.map(menuItem => (
@@ -67,7 +67,7 @@ class Sidebar extends Component {
             </Item>
           ))}
       </SubMenu>
-    ));
+  );
     return (
       <Sider
           breakpoint="lg"
