@@ -287,9 +287,7 @@ export default class NewCleanJob extends React.Component {
               onChange={this.handleCityChange}
               placeholder="Please select a city"
           >
-            {this.props.cityList === null
-              ? null
-              : (this.props.cityList.map(city => {
+            {this.props.cityList && (this.props.cityList.map(city => {
                 return (
                   <Option key={city}
                       value={city}
@@ -303,8 +301,7 @@ export default class NewCleanJob extends React.Component {
 
         </Form.Item>
         {
-            this.state.city
-            ? (
+            this.state.city && (
               <Form.Item {...{ wrapperCol: { offset:7,span: 8 }}}
                   hasFeedback
                   validateStatus={this.props.dataStatus==='loading'? Validating.VALIDATE : this.state.dataStatus}
@@ -314,9 +311,8 @@ export default class NewCleanJob extends React.Component {
                       onChange={this.handleDataChange}
                       placeholder="Please select target data"
                   >
-                    {this.props.dataList === null
-                      ? null
-                      : (this.props.dataList.map(item => {
+                    {
+                      this.props.dataList && (this.props.dataList.map(item => {
                           return (
                             <Option key={item}
                                 value={item}
@@ -327,9 +323,8 @@ export default class NewCleanJob extends React.Component {
                         }))
                     }
                   </Select>
-                </Form.Item>)
-            : null
-          }
+                </Form.Item>
+        )}
         <Form.Item {...formItemLayout}
             hasFeedback
             label="函数"
@@ -339,9 +334,8 @@ export default class NewCleanJob extends React.Component {
               onChange={this.handlefunctionChange}
               placeholder="Please select funciton"
           >
-            {this.props.functionList === null
-              ? null
-              : (this.props.functionList.map(item => {
+            {
+              this.props.functionList && (this.props.functionList.map(item => {
                   return (
                     <Option key={item}
                         value={item}

@@ -51,7 +51,7 @@ class MyLayout extends React.Component {
     return (
       <BrowserRouter className="layout">
         <Layout>
-          <PagesHeader />
+          <PagesHeader title="OpenDataMS" />
           <Layout>
             <SideBar
                 collapsed={this.state.collapsed}
@@ -68,7 +68,7 @@ class MyLayout extends React.Component {
                       type={this.state.collapsed ? 'menu-unfold' : 'menu-fold'}
                   />
                 </Breadcrumb.Item>
-
+                {/* // 面包屑 */}
                 {/* <Breadcrumb.Item>Home</Breadcrumb.Item>
                 <Breadcrumb.Item>List</Breadcrumb.Item>
                 <Breadcrumb.Item>App</Breadcrumb.Item> */}
@@ -78,7 +78,7 @@ class MyLayout extends React.Component {
                   background: '#fff',
                   padding: 24,
                   margin: 0,
-                  minHeight: 280,
+                  minHeight: 200,
                   overflow: 'auto'
                 }}
               >

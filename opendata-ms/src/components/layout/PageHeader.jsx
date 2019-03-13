@@ -6,11 +6,15 @@ import NativeIcon from '../icons/NativeIcon';
 export default class PagesHeader extends React.Component {
   state = { msgCount: 0 }
   render() {
-    const title = <span>开放数据管理系统</span>;
+    const title = <span className="header-title">{this.props.title}</span>;
     const action = (
-      <div>
-        <NoticeIcon count={this.state.msgCount} />
-        <NativeIcon type="interesting" />
+      <div className="header-left" >
+        <NoticeIcon className="notice" count={this.state.msgCount} />
+        <NativeIcon className="photo"
+            height={35}
+            type="interesting2"
+            width={35}
+        />
       </div>
     );
     return (
@@ -18,10 +22,13 @@ export default class PagesHeader extends React.Component {
         <PageHeader
             action={action}
             className="pageheader"
-            logo={<NativeIcon height={30}
-                type="spider"
-                width={30}
-                  />}
+            logo={
+                <NativeIcon className="App-logo"
+                    height={30}
+                    type="spider"
+                    width={30}
+                />
+            }
             title={title}
         />
       </div>

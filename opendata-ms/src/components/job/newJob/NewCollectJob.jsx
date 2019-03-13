@@ -221,9 +221,7 @@ export default class NewCollectJob extends React.Component {
               onChange={this.handleCityChange}
               placeholder="Please select a city"
           >
-            {this.props.cityList === null
-              ? null
-              : (this.props.cityList.map(city => {
+            {this.props.cityList && (this.props.cityList.map(city => {
                 return (
                   <Option key={city}
                       value={city}
@@ -246,9 +244,7 @@ export default class NewCollectJob extends React.Component {
               onChange={this.handleDataChange}
               placeholder="Please select target data"
           >
-            {this.props.dataList === null
-              ? null
-              : (this.props.dataList.map(item => {
+            {this.props.dataList && (this.props.dataList.map(item => {
                   return (
                     <Option key={item}
                         value={item}
@@ -269,7 +265,7 @@ export default class NewCollectJob extends React.Component {
               <Radio value={1}>单线程</Radio>
               <Radio value={2}>多线程</Radio>
             </Radio.Group>
-            {this.state.thread > 1 ? (
+            {this.state.thread > 1 && (
               <div>
                 <span>线程数: </span>
                 <InputNumber defaultValue={3}
@@ -278,7 +274,7 @@ export default class NewCollectJob extends React.Component {
                     onChange={this.handleThreadChange}
                 />
               </div>
-            ) : null}
+            )}
         </Form.Item>
         <Form.Item>
           <Row>
@@ -297,8 +293,8 @@ export default class NewCollectJob extends React.Component {
                 {' '}
                 保存至本地{' '}
               </span>
-              {this.state.isSaveNative
-                ?
+              {
+                this.state.isSaveNative &&
                   <Upload
                       action="/download.do"
                       listType="picture"
@@ -309,7 +305,7 @@ export default class NewCollectJob extends React.Component {
                       <Icon type="download" /> save
                     </Button>
                   </Upload>
-                : null}
+              }
             </Col>
           </Row>
         </Form.Item>
