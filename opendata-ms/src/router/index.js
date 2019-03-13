@@ -1,7 +1,7 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
+import { Route,Redirect } from 'react-router-dom';
 import {
-  routerData
+  routerData,dashboard
 } from './data';
 
 
@@ -23,15 +23,15 @@ const routerComponents = getRouterComponent(routerData, []);
  */
 
 export default class AppRouter extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
-
   render() {
-
     return (
       <div>
+        <Route exact
+            path="/"
+            render={
+              () => <Redirect to={dashboard.path} />
+            }
+        />
         {
           routerComponents.map(item =>
             <Route

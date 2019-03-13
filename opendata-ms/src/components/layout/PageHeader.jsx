@@ -9,7 +9,9 @@ export default class PagesHeader extends React.Component {
     const title = <span className="header-title">{this.props.title}</span>;
     const action = (
       <div className="header-left" >
-        <NoticeIcon className="notice" count={this.state.msgCount} />
+        <NoticeIcon className="notice"
+            count={this.state.msgCount}
+        />
         <NativeIcon className="photo"
             height={35}
             type="interesting2"

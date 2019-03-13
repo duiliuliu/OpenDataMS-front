@@ -45,15 +45,17 @@ class Sidebar extends Component {
     const { selectedKeys } = this.state;
     const { collapsed } = this.props;
     const SideTree = routerData.map(item =>
-      <SubMenu
-          key={item.key}
-          title={
+      item.children
+      ? (
+        <SubMenu
+            key={item.key}
+            title={
             <span>
-              <Icon type={item.title.icon} />
-              <span>{item.title.text}</span>
+              <Icon type={item.icon} />
+              <span>{item.text}</span>
             </span>
           }
-      >
+        >
         {item.children &&
           item.children.map(menuItem => (
             <Item
@@ -67,6 +69,20 @@ class Sidebar extends Component {
             </Item>
           ))}
       </SubMenu>
+      )
+      : (
+        <Item key={item.key}
+            onClick={() => {
+              this.setState({ selectedKeys: [item.key] });
+              document.title = item.text;
+            }}
+            title={item.text}
+        >
+            <Icon type={item.icon} />
+            <span>{item.text}</span>
+            <Link to={item.path}>{item.text}</Link>
+        </Item>
+      )
   );
     return (
       <Sider
