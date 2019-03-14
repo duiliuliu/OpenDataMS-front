@@ -2,11 +2,12 @@ import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Layout, Breadcrumb, Icon } from 'antd';
+import { Layout, Icon } from 'antd';
 import AppRouter from '../../router/';
 import PagesHeader from '../../components/layout/PageHeader';
 import PagesFooter from '../../components/layout/PageFooter';
 import SideBar from '../../components/layout/SideBar';
+import MyBreadcrumb from '../../components/layout/MyBreadcrumb';
 
 const { Content } = Layout;
 
@@ -20,8 +21,6 @@ class MyLayout extends React.Component {
       collapsed: false,
       width: 200
     };
-
-    console.log(this.context);
   }
 
   componentDidMount() {
@@ -33,11 +32,6 @@ class MyLayout extends React.Component {
     if (width < 800 && !this.state.collapsed) {
       this.toggleCollapsed();
     }
-  };
-
-  changeRouter = () => {
-    // 改变路由显示
-    // 路由改变后，菜单焦点相应改变
   };
 
   toggleCollapsed = () => {
@@ -60,20 +54,17 @@ class MyLayout extends React.Component {
             />
 
             <Layout style={{ padding: '0 24px 24px' }}>
-              <Breadcrumb style={{ margin: '8px 0' }}>
-                <Breadcrumb.Item>
+              <MyBreadcrumb
+                  action={
                   <Icon
                       className="collapse"
                       onClick={this.toggleCollapsed}
                       type={this.state.collapsed ? 'menu-unfold' : 'menu-fold'}
                   />
-                </Breadcrumb.Item>
-                {/* // 面包屑 */}
-                {/* <Breadcrumb.Item>Home</Breadcrumb.Item>
-                <Breadcrumb.Item>List</Breadcrumb.Item>
-                <Breadcrumb.Item>App</Breadcrumb.Item> */}
-              </Breadcrumb>
-              <Content className="content"
+                }
+              />
+              <Content
+                  className="content"
                   style={{
                   background: '#fff',
                   padding: 24,
@@ -92,5 +83,4 @@ class MyLayout extends React.Component {
     );
   }
 }
-
 export default connect()(MyLayout);

@@ -20,9 +20,6 @@ class Sidebar extends Component {
   setDefaultActiveItem = ({ location }) => {
     const { pathname } = location;
     routerData.map(item => {
-      if (item.pathname) {
-      // TODO
-      }
       if (item.children && item.children.length > 0) {
         item.children.map(childitem => {
           if (pathname.match(childitem.path)) {

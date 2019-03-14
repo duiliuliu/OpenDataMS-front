@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Divider, Tag, Avatar } from 'antd';
+import { Divider, Tag, Avatar, Button } from 'antd';
 
 const statusStyle = {
   pending: 'orange',
@@ -43,6 +43,9 @@ export default class MessageWindow extends Component {
                 style={{ margin: '4px' }}
             />
             {job.creator}
+          </span>
+          <span className="tab-right">
+            <Button type="primary">Retry</Button>
           </span>
         </div>
         <Divider className="divider" />

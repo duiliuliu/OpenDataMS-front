@@ -3,12 +3,10 @@ import PropTypes from 'prop-types';
 
 export default class MessageWindow extends Component {
   static propTypes = {
-    width: PropTypes.number,
-    height: PropTypes.number
+    message: PropTypes.array
   };
   static defaultProps = {
-    width: 800,
-    height: 1000
+    message: []
   };
   render() {
     return (

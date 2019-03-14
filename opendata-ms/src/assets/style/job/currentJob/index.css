@@ -59,8 +59,15 @@
 
 .status-bar .divider{
     margin: 6px;
+    margin-left: 4px;
+    margin-right: 8px;
 }
 
 .status-bar .status-bar-content{
     margin-left: 6px;
+}
+
+.status-bar .tab-right{
+    float: right;
+    margin-right: 6px;
 }
