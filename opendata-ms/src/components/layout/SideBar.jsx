@@ -90,6 +90,7 @@ class Sidebar extends Component {
             selectedKeys={selectedKeys}
             style={{ height: '100%', borderRight: 0 }}
             subMenuOpenDelay={0.3}
+            theme="light"
         >
           {SideTree}
         </Menu>

@@ -1,4 +1,4 @@
-import JobTab from '../../components/job/JobTab';
+import JobTab from '../../components/job/newJob/JobTab';
 import React,{ Component } from 'react';
 import NewCleanJob from './NewCleanJob';
 import NewCollectJob from './NewCollectJob';

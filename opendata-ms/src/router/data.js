@@ -1,9 +1,9 @@
-import NewCollectJob from '../containers/job/NewCollectJob';
-import NewCleanJob from '../containers/job/NewCleanJob';
 import NewJob from '../containers/job/NewJob';
+
 import MessageWindow from '../components/job/currentJob/MessageWindow';
-import StatusTab from '../components/job/currentJob/StatusTab';
+import StatusTab from '../components/job/StatusTab';
 import CurrentJob from '../components/job/currentJob/CurrentJob';
+import JobList from '../components/job/managerJob/JobList';
 
 export const routerData = [{
     key: 'dashboard',
@@ -13,7 +13,7 @@ export const routerData = [{
   },
   {
     key: 'job',
-    icon: 'info-circle',
+    icon: 'play-circle',
     text: '任务',
     children: [{
         key: 'newJob',
@@ -25,41 +25,40 @@ export const routerData = [{
         key: 'currentJob',
         text: '当前任务',
         path: '/job/current',
-        component: NewJob
+        component: CurrentJob
+      },
+      {
+        key: 'managerJob',
+        text: '当前任务',
+        path: '/job/manager'
       }
     ]
   },
   {
-    key: 'group1',
-    icon: 'play-circle',
-    text: '音频',
+    key: 'function',
+    icon: 'code',
+    text: '函数',
     children: [{
         key: '6',
-        text: '声兮列表',
-        path: '/voice/sxlist'
+        text: '注册函数',
+        path: '/function/regsite'
       },
       {
         key: '7',
-        text: '回声列表',
-        path: '/voice/calllist'
+        text: '函数管理',
+        path: '/function/manager'
       }
     ]
   },
   {
-    key: 'test',
+    key: '测试',
     icon: 'schedule',
     text: 'test',
     children: [{
         key: '11',
-        text: '采集任务',
-        path: '/job/new/collectJob',
-        component: NewCollectJob
-      },
-      {
-        key: '12',
-        text: '清洗任务',
-        path: '/job/new/cleanJob',
-        component: NewCleanJob
+        text: 'joblist',
+        path: '/job/manager/joblist',
+        component: JobList
       },
       {
         key: '13',

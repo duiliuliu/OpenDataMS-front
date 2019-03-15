@@ -1,7 +1,7 @@
 import React,{ Component } from 'react';
 import PropTypes from 'prop-types';
 import { Tabs, Icon } from 'antd';
-import {COLLECT_JOB,CLEAN_JOB} from '../../contants/JobConstants';
+import {COLLECT_JOB,CLEAN_JOB} from '../../../contants/JobConstants';
 
 const TabPane = Tabs.TabPane;
 

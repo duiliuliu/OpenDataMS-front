@@ -18,7 +18,8 @@ class MyBreadcrumb extends Component {
         pathname &&
         pathname.split('/').map(item => (
           <Item className="breadcrumb"
-              key={item}>
+              key={item}
+          >
             {item}
           </Item>
         ))

@@ -4,7 +4,7 @@ import { Divider, Tag, Avatar, Button } from 'antd';
 
 const statusStyle = {
   pending: 'orange',
-  completed: 'green',
+  finished: 'green',
   running: 'green',
   failed: 'red'
 };
@@ -33,7 +33,6 @@ export default class MessageWindow extends Component {
         <Divider className="divider" />
         <div className="status-bar-content">
           <Tag color={statusStyle[job.status]}>{job.status}</Tag>
-          <span>
             <strong>{job.name}</strong>
             &nbsp;&nbsp;triggered&nbsp;&nbsp;
             <span>{job.created}</span>
@@ -42,8 +41,7 @@ export default class MessageWindow extends Component {
                 size="small"
                 style={{ margin: '4px' }}
             />
-            {job.creator}
-          </span>
+            <span>{job.creator}</span>
           <span className="tab-right">
             <Button type="primary">Retry</Button>
           </span>
