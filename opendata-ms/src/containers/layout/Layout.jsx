@@ -65,6 +65,7 @@ class MyLayout extends React.Component {
               />
               <Content
                   className="content"
+                  id="content"
                   style={{
                   background: '#fff',
                   padding: 24,

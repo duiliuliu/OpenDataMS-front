@@ -1,9 +1,9 @@
 import NewJob from '../containers/job/NewJob';
 
 import MessageWindow from '../components/job/currentJob/MessageWindow';
-import StatusTab from '../components/job/StatusTab';
 import CurrentJob from '../components/job/currentJob/CurrentJob';
-import JobList from '../components/job/managerJob/JobList';
+import ManagerJob from '../components/job/managerJob/ManagerJob';
+import NumberIcon from '../components/icons/NumberIcon';
 
 export const routerData = [{
     key: 'dashboard',
@@ -29,8 +29,9 @@ export const routerData = [{
       },
       {
         key: 'managerJob',
-        text: '当前任务',
-        path: '/job/manager'
+        text: '管理任务',
+        path: '/job/,manager',
+        component: ManagerJob
       }
     ]
   },
@@ -56,21 +57,21 @@ export const routerData = [{
     text: 'test',
     children: [{
         key: '11',
-        text: 'joblist',
+        text: 'ManagerJob',
         path: '/job/manager/joblist',
-        component: JobList
+        component: ManagerJob
+      },
+      {
+        key: '12',
+        text: 'NumberIcon',
+        path: '/job/manager/NumberIcon',
+        component: NumberIcon
       },
       {
         key: '13',
         text: '消息窗口',
         path: '/job/current/messagewindow',
         component: MessageWindow
-      },
-      {
-        key: '14',
-        text: '状态栏',
-        path: '/job/current/mstatustab',
-        component: StatusTab
       },
       {
         key: '15',

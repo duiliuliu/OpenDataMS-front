@@ -1,52 +1,73 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Divider, Tag, Avatar, Button } from 'antd';
+import { Divider, Tag, Avatar, Icon } from 'antd';
 
 const statusStyle = {
   pending: 'orange',
   finished: 'green',
-  running: 'green',
+  running: 'blue',
   failed: 'red'
 };
 
-export default class MessageWindow extends Component {
+export default class StatusTab extends Component {
   static propTypes = {
     job: PropTypes.shape({
       status: PropTypes.string,
       name: PropTypes.string,
       created: PropTypes.string,
-      creator: PropTypes.string
-    })
+      creator: PropTypes.object
+    }),
+    action: PropTypes.element
   };
   static defaultProps = {
     job: {
       status: 'pending',
-      name: '默认初始任务',
-      created: '一月前',
-      creator: '对六'
-    }
+      name: '',
+      created: '',
+      creator: {
+        name: '',
+        photo: 'user'
+      }
+    },
+    offset: 4,
+    action: null,
+    underLine: false
   };
+  /**
+   * 可做手机适应，屏小时选择列式展示
+   */
   render() {
-    const { job } = this.props;
+    const { job, offset, action, underLine } = this.props;
     return (
       <div className="status-bar">
         <Divider className="divider" />
-        <div className="status-bar-content">
-          <Tag color={statusStyle[job.status]}>{job.status}</Tag>
-            <strong>{job.name}</strong>
-            &nbsp;&nbsp;triggered&nbsp;&nbsp;
-            <span>{job.created}</span>
-            &nbsp;&nbsp;by&nbsp;&nbsp;
-            <Avatar icon="user"
+        <span className="status-bar-content">
+          <span style={{ marginRight: offset }}>
+            <a href={'/job/' + job.name}>
+              <Tag color={statusStyle[job.status]}>{job.status}</Tag>
+            </a>
+          </span>
+          <span style={{ marginRight: offset }}>
+            <a href={'/job/' + job.name}>
+              <span>#{job.name}</span>
+            </a>
+          </span>
+          <span style={{ marginRight: offset }}>
+            <Avatar
+                icon={job.creator.photo}
                 size="small"
                 style={{ margin: '4px' }}
             />
-            <span>{job.creator}</span>
-          <span className="tab-right">
-            <Button type="primary">Retry</Button>
+            <span>{job.creator.name}</span>
           </span>
-        </div>
-        <Divider className="divider" />
+          <span style={{ marginRight: offset }}>
+            <Icon type="dashboard"></Icon>
+            <span>{job.created}</span>
+          </span>
+        </span>
+        <span className="tab-right">{action}</span>
+
+        {underLine && <Divider className="divider" />}
       </div>
     );
   }

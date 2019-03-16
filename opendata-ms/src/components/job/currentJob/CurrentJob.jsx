@@ -11,15 +11,21 @@ export default class CurrentJob extends Component {
   };
 
   render() {
+    const job = {
+      name: '默认初始任务',
+      created: '一月前',
+      creator: {
+        name: 'duiliu',
+        photo: 'user'
+      },
+      status: 'finished'
+    };
     return (
       <div>
         <StatusTab
             action={<Button type="primary">Retry</Button>}
-            created={'  triggered  一月前    by  '}
-            creator={'liuliu'}
-            name={'默认初始任务'}
-            space={4}
-            status={'finished'}
+            job={job}
+            offset={15}
         />
         <MessageWindow />
       </div>

@@ -1,2 +1,14 @@
-.joblist .status-bar .status-item {
+.joblist .jobtab {
+    text-align: left;
+    margin: 6px;
+    margin-left: 12px;
+}
+.joblist .divider{
+    margin: 6px;
+    margin-left: 4px;
+    margin-right: 8px;
+}
+
+.ManagerJob{
+    text-align: left;
 }

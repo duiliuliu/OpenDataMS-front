@@ -1,0 +1,9 @@
+.number-icon{
+    width: 23px;
+    height: 21px;
+    border-radius: 50%;
+    text-align: center;
+    background-color: rgb(198, 214, 214);
+    margin-left: 2px;
+    float: right;
+}
