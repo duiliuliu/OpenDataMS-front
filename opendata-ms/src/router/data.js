@@ -4,12 +4,26 @@ import MessageWindow from '../components/job/currentJob/MessageWindow';
 import CurrentJob from '../components/job/currentJob/CurrentJob';
 import ManagerJob from '../components/job/managerJob/ManagerJob';
 import NumberIcon from '../components/icons/NumberIcon';
+import RegisteFunction from '../components/function/RegisteFunction';
+import ManagerFunction from '../components/function/ManagerFunction';
+import ManagerData from '../components/data/ManagerData';
 
 export const routerData = [{
     key: 'dashboard',
     icon: 'home',
     text: '首页',
     path: '/dashboard'
+  },
+  {
+    key: 'user',
+    icon: 'team',
+    text: '用户',
+    children: [{
+      key: 'managerUser',
+      text: '用户管理',
+      path: '/user/manager',
+      component: ManagerData
+    }]
   },
   {
     key: 'job',
@@ -40,16 +54,29 @@ export const routerData = [{
     icon: 'code',
     text: '函数',
     children: [{
-        key: '6',
+        key: 'regsiteFunction',
         text: '注册函数',
-        path: '/function/regsite'
+        path: '/function/regsite',
+        component: RegisteFunction
       },
       {
-        key: '7',
+        key: 'managerFunction',
         text: '函数管理',
-        path: '/function/manager'
+        path: '/function/manager',
+        component: ManagerFunction
       }
     ]
+  },
+  {
+    key: 'data',
+    icon: 'laptop',
+    text: '数据',
+    children: [{
+      key: 'managerData',
+      text: '数据管理',
+      path: '/data/manager',
+      component: ManagerData
+    }]
   },
   {
     key: '测试',

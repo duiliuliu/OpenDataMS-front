@@ -27,6 +27,7 @@ export default class AppRouter extends React.Component {
     return (
       <div>
         <Route exact
+            key="home"
             path="/"
             render={
               () => <Redirect to={dashboard.path} />

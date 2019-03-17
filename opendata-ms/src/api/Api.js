@@ -1,9 +1,10 @@
 import {
-  mockApi,APi
+  mockApi,
+  APi
 } from '../contants/apiConstants';
 
 /**
- * POST请求方式
+ * POST更新资源
  * @param {String} url
  * @param {Object} data
  * @example
@@ -29,7 +30,7 @@ export function postData(url, data) {
 }
 
 /**
- * PUT请求方式
+ * PUT添加资源
  * @param {String} url
  * @param {Object} data
  * @example
@@ -56,7 +57,7 @@ export function putData(url, data) {
 }
 
 /**
- * GET请求方式
+ * GET请求请求资源
  * @param {String} url
  * @param {Object} params
  * @example
@@ -78,6 +79,37 @@ export function getData(url, params) {
   }
   return fetch(APi + url, {
       method: 'GET',
+      headers: {
+        'user-agent': 'Mozilla/4.0 MDN Example',
+        'content-type': 'application/json'
+      }
+    })
+    .then(response => response.json());
+}
+
+/**
+ * DELETE删除资源
+ * @param {String} url
+ * @param {Object} params
+ * @example
+ * deleteData('http://example.com/answer', {answer: 42})
+ * .then(data => console.log(data))
+ * .catch(error => console.error(error))
+ */
+export function deleteData(url, params) {
+
+  if (params) {
+    let paramsArray = [];
+    //拼接参数
+    Object.keys(params).forEach(key => paramsArray.push(key + '=' + params[key]));
+    if (url.search(/\?/) === -1) {
+      url += '?' + paramsArray.join('&');
+    } else {
+      url += '&' + paramsArray.join('&');
+    }
+  }
+  return fetch(APi + url, {
+      method: 'DELETE',
       headers: {
         'user-agent': 'Mozilla/4.0 MDN Example',
         'content-type': 'application/json'
