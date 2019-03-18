@@ -47,8 +47,8 @@ export default class NativeIcon extends React.Component {
   };
 
   /**
- * @ignore
- */
+   * @ignore
+   */
   render() {
     const path = IconTypesMap[this.props.type];
     return (

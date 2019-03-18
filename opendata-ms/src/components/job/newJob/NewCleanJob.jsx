@@ -1,10 +1,3 @@
-
-// 数据选择 城市 数据
-// 函数选择
-// 选择数据列
-// 参数校验
-// 提交
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Input, Form, Select, Button, message} from 'antd';
@@ -134,7 +127,7 @@ export default class NewCleanJob extends React.Component {
     });
   };
 
-    /**
+  /**
    *获取当前选中数据项
    *
    * @memberof NewCleanJob
@@ -153,7 +146,7 @@ export default class NewCleanJob extends React.Component {
   };
 
 
-    /**
+  /**
    *获取当前选中数据项
    *
    * @memberof NewCleanJob

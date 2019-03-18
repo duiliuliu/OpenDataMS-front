@@ -7,6 +7,7 @@ import NumberIcon from '../components/icons/NumberIcon';
 import RegisteFunction from '../components/function/RegisteFunction';
 import ManagerFunction from '../components/function/ManagerFunction';
 import ManagerData from '../components/data/ManagerData';
+import ManagerUser from '../components/user/ManagerUser';
 
 export const routerData = [{
     key: 'dashboard',
@@ -18,12 +19,8 @@ export const routerData = [{
     key: 'user',
     icon: 'team',
     text: '用户',
-    children: [{
-      key: 'managerUser',
-      text: '用户管理',
-      path: '/user/manager',
-      component: ManagerData
-    }]
+    path: '/user/manager',
+    component: ManagerUser
   },
   {
     key: 'job',
@@ -71,12 +68,8 @@ export const routerData = [{
     key: 'data',
     icon: 'laptop',
     text: '数据',
-    children: [{
-      key: 'managerData',
-      text: '数据管理',
-      path: '/data/manager',
-      component: ManagerData
-    }]
+    path: '/data/manager',
+    component: ManagerData
   },
   {
     key: '测试',

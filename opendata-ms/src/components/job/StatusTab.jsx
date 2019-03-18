@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Divider, Tag, Avatar, Icon } from 'antd';
 
+/**
+ * 常量 不同的状态颜色映射
+ */
 const statusStyle = {
   pending: 'orange',
   finished: 'green',
@@ -9,7 +12,16 @@ const statusStyle = {
   failed: 'red'
 };
 
+/**
+ * 组件 状态栏
+ */
 export default class StatusTab extends Component {
+
+  /**
+   * 构成组件参数：
+   * job 任务对象
+   * action 操作
+   */
   static propTypes = {
     job: PropTypes.shape({
       status: PropTypes.string,
@@ -17,7 +29,9 @@ export default class StatusTab extends Component {
       created: PropTypes.string,
       creator: PropTypes.object
     }),
-    action: PropTypes.element
+    action: PropTypes.element,
+    offset:PropTypes.number,
+    underLine:PropTypes.bool
   };
   static defaultProps = {
     job: {

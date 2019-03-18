@@ -3,16 +3,35 @@ import PropTypes from 'prop-types';
 import StatusTab from '../StatusTab';
 import { Button, Empty, Pagination, Divider } from 'antd';
 
-
+/**
+ * 常量
+ * 标签头部 名称
+ */
 const tabs = ['Status', 'Name', 'Creator', 'Created'];
 
+/**
+ * 组件：任务列表
+ */
 export default class JobList extends Component {
+
+  /**
+   * 构成组件参数：
+   * jobList 任务列表数据
+   * totalJob 任务总数
+   */
   static propTypes = {
-    jobList: PropTypes.arrayOf(PropTypes.object)
+    jobList: PropTypes.arrayOf(PropTypes.object),
+    totalJob:PropTypes.number
   };
+
   static defaultProps = {
-    jobList: null
+    jobList: null,
+    totalJob:0
   };
+
+  /**
+   * @member {number} offset - 位置偏移
+   */
   constructor(props) {
     super(props);
     this.state = {
@@ -26,10 +45,17 @@ export default class JobList extends Component {
   componentWillUnmount() {
     window.removeEventListener('resize', this.onWindowResize);
   }
+
+  /**
+   * 监听窗口实时调整offset
+   */
   onWindowResize() {
     this.setState({ offset: document.body.offsetWidth / 4 - 200 });
   }
 
+  /**
+   * @ignore
+   */
   render() {
     return (
       <div className="joblist">
@@ -65,7 +91,7 @@ export default class JobList extends Component {
               <Divider className="divider" />
               <Pagination defaultCurrent={1}
                   pageSize={10}
-                  total={50}
+                  total={this.props.totalJob}
               />
             </div>
         }
