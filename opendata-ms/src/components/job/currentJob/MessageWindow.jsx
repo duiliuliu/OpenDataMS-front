@@ -11,10 +11,10 @@ export default class MessageWindow extends Component {
    * message 实时消息
    */
   static propTypes = {
-    message: PropTypes.array
+    messages: PropTypes.array
   };
   static defaultProps = {
-    message: []
+    messages: []
   };
   render() {
     /**

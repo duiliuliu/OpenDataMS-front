@@ -6,45 +6,49 @@ import NumberIcon from '../../icons/NumberIcon';
 
 const TabPane = Tabs.TabPane;
 
-const job = {
-  name: '默认初始任务',
-  created: '一月前',
-  creator: {
-    name: 'duiliu',
-    photo: 'user'
-  },
-  status: 'finished'
-};
-const joblist = new Array(10);
-joblist.fill(job);
-
 const tabs = ['All', 'Pending', 'Running', 'Finished'];
 
+/**
+ * 任务管理组件
+ * 构成组件参数：
+ * jobList 
+ * countlist
+ * requestJobList
+ * @param {Array}  jobList
+ * @param {Object} countlist
+ * @param {func} requestJobList
+ */
 export default class ManagerJob extends Component {
   static propTypes = {
     jobList: PropTypes.arrayOf(PropTypes.object),
-    countList: PropTypes.shape,
-    requireJobList: PropTypes.func
+    countList: PropTypes.shape({
+      'All': PropTypes.number,
+      'Pending': PropTypes.number,
+      'Runing': PropTypes.number,
+      'Finished': PropTypes.number
+    }),
+    requestJobList: PropTypes.func
   };
   static defaultProps = {
-    jobList: joblist,
+    jobList: [],
     countList: {
       'All': 10,
       'Pending': 0,
       'Runing': 0,
       'Finished': 0
     },
-    requireJobList: (tab)=>{
-        console.log(tab);
-    }
+    requestJobList: null
   };
 
   componentDidMount(){
-    this.props.requireJobList('All');
+    this.props.requestJobList('All');
   }
 
+  /**
+   * 选中tab处理
+   */
   handerTab = tab => {
-    this.props.requireJobList(tab);
+    this.props.requestJobList(tab);
   };
 
   /**

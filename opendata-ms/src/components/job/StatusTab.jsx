@@ -21,6 +21,8 @@ export default class StatusTab extends Component {
    * 构成组件参数：
    * job 任务对象
    * action 操作
+   * offset tab偏移
+   * underLine 下划线
    */
   static propTypes = {
     job: PropTypes.shape({
