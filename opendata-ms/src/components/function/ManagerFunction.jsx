@@ -29,6 +29,11 @@ const data = [
 const color = 'green';
 const Search = Input.Search;
 export default class FunctionManager extends React.Component {
+
+  static propTypes = { 
+  };
+  static defaultProps = { 
+  };
   constructor(props) {
     super(props);
     this.state = {

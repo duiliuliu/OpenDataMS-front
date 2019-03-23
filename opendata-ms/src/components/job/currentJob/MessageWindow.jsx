@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import InfoMessage from '../message/InfoMessage';
+import SuccessMessage from '../message/SuccessMessage';
+import FailedMessage from '../message/FailedMessage';
 
 /**
  * 实时消息窗口组件
@@ -11,11 +14,17 @@ export default class MessageWindow extends Component {
    * message 实时消息
    */
   static propTypes = {
-    messages: PropTypes.array
+    messages: PropTypes.arrayof(
+      PropTypes.shape({
+        type:PropTypes.string,
+        text:PropTypes.string
+      })
+    )
   };
   static defaultProps = {
     messages: []
   };
+
   render() {
     /**
      * info message 浅白
@@ -29,26 +38,21 @@ export default class MessageWindow extends Component {
             id="build-trace"
         >
           <code className="bash js-build-output">
-            Running with gitlab-ci-multi-runner 9.5.0 (413da38)
-            <br /> on kubernetes-runner-1.8 (c6a86aad)
-            <span className="term-fg-l-green term-bold">
-              Cloning repository...
-            </span>
-            <br />
-      
-            [INFO] Total time: 22.362 s<br />
-            [INFO] Finished at: 2019-02-12T18:21:50+08:00
-            <br />
-            [INFO] Final Memory: 151M/1958M
-            <br />
-            [INFO]
-            ------------------------------------------------------------------------ 
-            Uploading cache.zip to
-            http://ci-storage-minio:9000/ci-cache/runner/c6a86aad/project/3555/default-1{' '} 
-            <span className="term-fg-l-green term-bold">
-              Job succeeded
-              <br />
-            </span>
+            {
+              this.props.messages.map(message=>{
+                switch (message.type){
+                  case 'success':
+                  case 'command':
+                    return <SuccessMessage message={message.text} />;
+                  case 'failed':
+                    return <FailedMessage message={message.text} />;
+                  case 'info':
+                    return <InfoMessage message={message.text} />;
+                  default:
+                    return message.text;
+                }
+              })
+            }
           </code>
         </pre>
       </div>

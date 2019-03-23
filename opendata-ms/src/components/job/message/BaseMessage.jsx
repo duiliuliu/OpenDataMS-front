@@ -4,14 +4,18 @@ import PropTypes from 'prop-types';
 class MessageWindow extends Component{
   static propTypes = {
     message: PropTypes.string.isRequired,
-    className:PropTypes.string
+    className:PropTypes.string,
+    color:PropTypes.string
   };
   static defaultProps = {
-    className: ''
+    className: '',
+    color:'#e1ffe8'
   };
   render(){
     return(
-      <span className={this.props.className}>
+      <span className={this.props.className}
+          style={{color:this.props.color}}
+      >
         {this.props.message}
         <br />
       </span>

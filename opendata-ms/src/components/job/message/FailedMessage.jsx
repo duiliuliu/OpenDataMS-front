@@ -2,13 +2,12 @@ import React,{ Component } from 'react';
 import PropTypes from 'prop-types';
 import BaseMessage from './BaseMessage';
 
-class InfoMessage extends Component{
+class FailedMessage extends Component{
   static propTypes = {
     message: PropTypes.string.isRequired
   };
   render(){
-    return <BaseMessage className={'term-fg-l-green term-bold'}
-        color={'#00d600'}
+    return <BaseMessage color={'red'}
         message={this.props.message}
            />;
   }

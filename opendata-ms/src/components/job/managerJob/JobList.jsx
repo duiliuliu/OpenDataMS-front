@@ -39,9 +39,17 @@ export default class JobList extends Component {
     };
     this.onWindowResize = this.onWindowResize.bind(this);
   }
+
+  /**
+   * 组件渲染之后监听窗口
+   */
   componentDidMount() {
     window.addEventListener('resize', this.onWindowResize);
   }
+
+  /**
+   * 窗口变化时，组件大小也进行改变
+   */
   componentWillUnmount() {
     window.removeEventListener('resize', this.onWindowResize);
   }
