@@ -1,42 +1,52 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Input, Tabs, Tree } from 'antd';
-
-const treeData = [
-  {
-    name: '数据管理',
-    data: [
-      {
-        name: '佛山',
-        data: ['佛山武装数据.csv', '佛山农业数据.xlsx']
-      },
-      {
-        name: '深圳',
-        data: ['深圳武装数据.csv', '深圳农业数据.xlsx']
-      },
-      {
-        name: '贵州',
-        data: ['贵州武装数据.csv', '贵州农业数据.xlsx']
-      }
-    ]
-  }
-];
 
 const TabPane = Tabs.TabPane;
 const DirectoryTree = Tree.DirectoryTree;
 const { TreeNode } = Tree;
 
+/**
+ * 数据管理组件
+ */
 export default class DataManager extends React.Component {
+
+  /**
+   * 构成组件参数
+   * @param {Array} treeData 数据目录。以树状结构展示
+   */
+  static propTypes = {
+    treeData:PropTypes.arrayOf(
+      PropTypes.shape({
+        name:PropTypes.string,
+        data:PropTypes.array
+      })
+    )
+  };
+  static defaultProps = { 
+    treeData:[]
+  };
+
+  /**
+   * @member {string} activeKey 当前选中标签
+   * @member {Array} panes 标签页，初始化为空，在点击树之后创建标签页
+   * @member {Array} openPanes 标签页，初始化为空，已经打开的标签页，防止标签页重复创建
+   * @param {*} props 
+   */
   constructor(props) {
     super(props);
     this.newTabIndex = 0;
-    const panes = [];
     this.state = {
       activeKey: 'tree',
-      panes,
+      panes:[],
       openPanes: []
     };
   }
 
+  /**
+   * 生成树组件
+   * @param {Object} node 
+   */
   TreeMap(node) {
     if (!(node[0].name && node[0].data)) {
       return node.map(subNode => {
@@ -57,22 +67,37 @@ export default class DataManager extends React.Component {
     });
   }
 
+  /**
+   * 树叶子展开函数
+   */
   onExpand = () => {
     console.log('Trigger Expand');
   };
 
+  /**
+   * 标签改变函数
+   */
   onChange = activeKey => {
     this.setState({ activeKey });
   };
 
+  /**
+   * 标签编辑函数，此处无用只是占位
+   */
   onEdit = (targetKey, action) => {
     this[action](targetKey);
   };
 
+  /**
+   * 搜索函数，搜索相应的数据标签
+   */
   onSearch = value => {
     console.log(value);
   };
 
+  /**
+   * 添加标签页函数
+   */
   add = value => {
     const panes = this.state.panes;
     const tab = value[0];
@@ -85,6 +110,9 @@ export default class DataManager extends React.Component {
     this.setState({ panes, activeKey: tab });
   };
 
+  /**
+   * 删除标签页函数
+   */
   remove = targetKey => {
     let activeKey = this.state.activeKey;
     let lastIndex;
@@ -105,9 +133,12 @@ export default class DataManager extends React.Component {
     this.setState({ panes, activeKey });
   };
 
+  /**
+   * 渲染组件
+   */
   render() {
     return (
-      <div>
+      <div className="datamanager">
         <Tabs
             activeKey={this.state.activeKey}
             hideAdd
@@ -130,7 +161,7 @@ export default class DataManager extends React.Component {
                 onExpand={this.onExpand}
                 onSelect={this.add}
             >
-              {this.TreeMap(treeData)}
+              {this.TreeMap(this.props.treeData)}
             </DirectoryTree>
           </TabPane>
           {this.state.panes.map(pane => (

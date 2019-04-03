@@ -1,58 +1,61 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Input } from 'antd';
 import { Table, Divider, Modal, Tag, Button } from 'antd';
 
-const data = [
-  {
-    functionName: 'udftest',
-    lastModifier: 'John Brown',
-    lastModified: 32,
-    resource: 'New York No. 1 Lake Park',
-    tags: ['nice', 'developer']
-  },
-  {
-    functionName: 'extract_scan_n_feature',
-    lastModifier: 'Jim Green',
-    lastModified: 42,
-    resource: 'London No. 1 Lake Park',
-    tags: ['loser']
-  },
-  {
-    functionName: '3',
-    creator: 'Joe Black',
-    created: 32,
-    resource: 'Sidney No. 1 Lake Park',
-    tags: ['cool', 'teacher']
-  }
-];
-
 const color = 'green';
 const Search = Input.Search;
+
+/**
+ * 函数管理组件
+ */
 export default class FunctionManager extends React.Component {
 
-  static propTypes = { 
+  /**
+   * 构成组件参数
+   */
+  static propTypes = {
+    data: PropTypes.arrayOf(
+      PropTypes.shape({
+        functionName: PropTypes.string,
+        creator: PropTypes.string,
+        created: PropTypes.string,
+        resource: PropTypes.string,
+        tags: PropTypes.array
+      })
+    )
   };
-  static defaultProps = { 
+  static defaultProps = {
+    data:[]
   };
+
+  /**
+   * @member {number} pageSize 每业数据量
+   * @member {boolean} modalVisible
+   * @member {string} currentFunc 当前选中函数
+   * @param {*} props
+   */
   constructor(props) {
     super(props);
     this.state = {
       pageSize: 10,
-      visible: false,
+      modalVisible: false,
       currentFunc: ''
     };
   }
 
-  showModal = () => {
+  /**
+   * 显示模态框函数
+   */
+  showModal = (record) => {
     this.setState({
-      visible: true
+      modalVisible: true
     });
+    // 通过record请求相应数据
+    this.props.requestFunctionData(record);
   };
 
-  onClick = () => {
-    this.showModal();
-  };
-
+  // 表格列绘制
   columns = [
     {
       title: '函数名称',
@@ -86,7 +89,7 @@ export default class FunctionManager extends React.Component {
       render: (text, record) => (
         <span>
           <Button ghost
-              onClick={() => this.onClick(record)}
+              onClick={() => this.showModal.bind(this,record)}
               type="primary"
           >
             查看变更历史
@@ -102,6 +105,9 @@ export default class FunctionManager extends React.Component {
     }
   ];
 
+  /**
+   * 渲染组价
+   */
   render() {
     return (
       <div>
@@ -112,19 +118,20 @@ export default class FunctionManager extends React.Component {
         />
         <Table
             columns={this.columns}
-            dataSource={data}
+            dataSource={this.props.data}
             pagination={{ pageSize: this.state.pageSize }}
         />
         <br />
         <Modal
+            modalVisible={this.state.modalVisible}
             onCancel={this.handleCancel}
             onOk={this.handleOk}
             title={'Basic Modal'}
-            visible={this.state.visible}
         >
-          <p>Some contents...</p>
-          <p>Some contents...</p>
-          <p>Some contents...</p>
+        {/* 表格  表头： 时间 更新用户   */}
+          {
+            this.props.functionData
+          }
         </Modal>
       </div>
     );

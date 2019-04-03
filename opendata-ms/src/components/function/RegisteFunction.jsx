@@ -1,7 +1,8 @@
 import React from 'react';
 import { Input, Form, Button, Upload, Icon, Switch, Col } from 'antd';
+import { Validating } from '../../contants/EnumConstants';
 
-class JobForm extends React.Component {
+export default  class FunctionRegister extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -11,7 +12,7 @@ class JobForm extends React.Component {
       isSaveOrigin: false
     };
   }
-
+ 
   render() {
     const formItemLayout = {
       labelCol: { span: 7 },
@@ -26,7 +27,9 @@ class JobForm extends React.Component {
         </Form.Item>
 
         <Form.Item {...formItemLayout}
+            hasFeedback
             label="关联资源类名"
+            validateStatus={this.props.cityStatus==='loading'? Validating.VALIDATE : this.state.cityStatus}
         >
           <Input placeholder="输入关联资源类名！" />
           <Col span={6}>
@@ -38,7 +41,9 @@ class JobForm extends React.Component {
         </Form.Item>
 
         <Form.Item {...formItemLayout}
+            hasFeedback
             label="上传资源"
+            validateStatus={this.props.cityStatus==='loading'? Validating.VALIDATE : this.state.cityStatus}
         >
           <div className="dropbox">
             <Upload.Dragger action="/upload.do"
@@ -75,6 +80,3 @@ class JobForm extends React.Component {
     );
   }
 }
-
-const FunctionRegister = Form.create({ name: 'validate_other' })(JobForm);
-export default FunctionRegister;
