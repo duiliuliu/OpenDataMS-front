@@ -2,7 +2,7 @@ import React,{ Component } from 'react';
 import PropTypes from 'prop-types';
 import BaseMessage from './BaseMessage';
 
-class FailedMessage extends Component{
+export default class FailedMessage extends Component{
   static propTypes = {
     message: PropTypes.string.isRequired
   };
