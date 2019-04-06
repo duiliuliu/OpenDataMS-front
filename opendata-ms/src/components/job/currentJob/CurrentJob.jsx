@@ -14,12 +14,7 @@ export default class CurrentJob extends Component {
    *  status: [] 标识实时消息传输结束
    */
   static propTypes = {
-    messages: PropTypes.arrayof(
-      PropTypes.shape({
-        type:PropTypes.string,
-        text:PropTypes.string
-      })
-    ),
+    messages: PropTypes.array,
     status:PropTypes.string
   };
   static defaultProps = {

@@ -2,7 +2,7 @@ import React,{ Component } from 'react';
 import PropTypes from 'prop-types';
 import BaseMessage from './BaseMessage';
 
-export default class InfoMessage extends Component{
+export default class SuccessMessage extends Component{
   static propTypes = {
     message: PropTypes.string.isRequired
   };

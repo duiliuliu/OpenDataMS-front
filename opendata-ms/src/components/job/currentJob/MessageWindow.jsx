@@ -14,12 +14,7 @@ export default class MessageWindow extends Component {
    * message 实时消息
    */
   static propTypes = {
-    messages: PropTypes.arrayof(
-      PropTypes.shape({
-        type:PropTypes.string,
-        text:PropTypes.string
-      })
-    )
+    messages: PropTypes.array
   };
   static defaultProps = {
     messages: []

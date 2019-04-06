@@ -1,7 +1,7 @@
 import React,{ Component } from 'react';
 import PropTypes from 'prop-types';
 
-export default class MessageWindow extends Component{
+export default class BaseMessage extends Component{
   static propTypes = {
     message: PropTypes.string.isRequired,
     className:PropTypes.string,
