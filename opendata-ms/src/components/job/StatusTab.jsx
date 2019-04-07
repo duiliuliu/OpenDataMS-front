@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Divider, Tag, Avatar, Icon } from 'antd';
+import { Divider, Tag, Avatar } from 'antd';
+import NativeIcon from '../icons/NativeIcon';
 
 /**
  * 常量 不同的状态颜色映射
@@ -16,7 +17,6 @@ const statusStyle = {
  * 组件 状态栏
  */
 export default class StatusTab extends Component {
-
   /**
    * 构成组件参数：
    * job 任务对象
@@ -27,27 +27,33 @@ export default class StatusTab extends Component {
   static propTypes = {
     job: PropTypes.shape({
       status: PropTypes.string,
+      data: PropTypes.string,
       name: PropTypes.string,
       created: PropTypes.string,
-      creator: PropTypes.object
+      creator: PropTypes.object,
+      completed: PropTypes.string
     }),
     action: PropTypes.element,
-    offset:PropTypes.number,
-    underLine:PropTypes.bool
+    offset: PropTypes.number,
+    underLine: PropTypes.bool,
+    isDetail: PropTypes.bool
   };
   static defaultProps = {
     job: {
       status: 'pending',
-      name: '',
-      created: '',
+      name: 'name',
+      created: 'created',
       creator: {
-        name: '',
+        name: 'username',
         photo: 'user'
-      }
+      },
+      data: 'data',
+      completed: 'completed'
     },
     offset: 4,
     action: null,
-    underLine: false
+    underLine: false,
+    isDetail: false
   };
   /**
    * 可做手机适应，屏小时选择列式展示
@@ -68,6 +74,13 @@ export default class StatusTab extends Component {
               <span>#{job.name}</span>
             </a>
           </span>
+          {this.props.isDetail && (
+            <span style={{ marginRight: offset }}>
+              <a href={'/data/' + job.data}>
+                <span>{job.data}</span>
+              </a>
+            </span>
+          )}
           <span style={{ marginRight: offset }}>
             <Avatar
                 icon={job.creator.photo}
@@ -77,9 +90,21 @@ export default class StatusTab extends Component {
             <span>{job.creator.name}</span>
           </span>
           <span style={{ marginRight: offset }}>
-            <Icon type="dashboard"></Icon>
+            <NativeIcon height={20}
+                type="clock"
+                width={20}
+            />
             <span>{job.created}</span>
           </span>
+          {this.props.isDetail && (
+            <span style={{ marginRight: offset }}>
+              <NativeIcon height={20}
+                  type="clock"
+                  width={20}
+              />
+              <span>{job.created}</span>
+            </span>
+          )}
         </span>
         <span className="tab-right">{action}</span>
 

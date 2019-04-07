@@ -56,7 +56,9 @@ export default class CurrentJob extends Component {
     return (
       <div>
         <StatusTab
-            action={<Button type="primary">Retry</Button>}
+            action={<Button size="small"
+                type="primary"
+                    >Retry</Button>}
             job={job}
             offset={15}
         />

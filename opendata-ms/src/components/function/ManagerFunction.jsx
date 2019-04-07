@@ -10,7 +10,6 @@ const Search = Input.Search;
  * 函数管理组件
  */
 export default class FunctionManager extends React.Component {
-
   /**
    * 构成组件参数
    */
@@ -26,7 +25,7 @@ export default class FunctionManager extends React.Component {
     )
   };
   static defaultProps = {
-    data:[]
+    data: []
   };
 
   /**
@@ -47,7 +46,7 @@ export default class FunctionManager extends React.Component {
   /**
    * 显示模态框函数
    */
-  showModal = (record) => {
+  showModal = record => {
     this.setState({
       modalVisible: true
     });
@@ -64,12 +63,12 @@ export default class FunctionManager extends React.Component {
       render: text => <a href="javascript:;">{text}</a>
     },
     {
-      title: 'last modifier',
+      title: '更新者',
       dataIndex: 'lastModifier',
       key: 'lastModifier'
     },
     {
-      title: 'last modified',
+      title: '更新时间',
       dataIndex: 'lastModified',
       key: 'lastModified'
     },
@@ -88,8 +87,9 @@ export default class FunctionManager extends React.Component {
       key: 'action',
       render: (text, record) => (
         <span>
-          <Button ghost
-              onClick={() => this.showModal.bind(this,record)}
+          <Button
+              ghost
+              onClick={() => this.showModal.bind(this, record)}
               type="primary"
           >
             查看变更历史
@@ -110,7 +110,7 @@ export default class FunctionManager extends React.Component {
    */
   render() {
     return (
-      <div>
+      <div className="functionmanager">
         <Search
             onSearch={value => console.log(value)}
             placeholder="输入函数名称搜索"
@@ -128,10 +128,8 @@ export default class FunctionManager extends React.Component {
             onOk={this.handleOk}
             title={'Basic Modal'}
         >
-        {/* 表格  表头： 时间 更新用户   */}
-          {
-            this.props.functionData
-          }
+          {/* 表格  表头： 时间 更新用户   */}
+          {this.props.functionData}
         </Modal>
       </div>
     );

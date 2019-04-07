@@ -7,26 +7,36 @@ import { Button, Empty, Pagination, Divider } from 'antd';
  * 常量
  * 标签头部 名称
  */
-const tabs = ['Status', 'Name', 'Creator', 'Created'];
+const tabs = ['状态', '名称', '数据', '创建人', '创建时间', '完成时间'];
+const tabSize = tabs.length - 1;
+const LeftWrapper = 200;
 
 /**
  * 组件：任务列表
  */
 export default class JobList extends Component {
-
   /**
    * 构成组件参数：
    * jobList 任务列表数据
    * totalJob 任务总数
    */
   static propTypes = {
-    jobList: PropTypes.arrayOf(PropTypes.object),
-    totalJob:PropTypes.number
+    jobList: PropTypes.arrayOf(
+      PropTypes.shape({
+        status: PropTypes.string,
+        name: PropTypes.string,
+        data: PropTypes.string,
+        creator: PropTypes.object,
+        created: PropTypes.string,
+        completed: PropTypes.string
+      })
+    ),
+    totalJob: PropTypes.number
   };
 
   static defaultProps = {
-    jobList: null,
-    totalJob:0
+    jobList: [],
+    totalJob: 0
   };
 
   /**
@@ -35,7 +45,7 @@ export default class JobList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      offset: document.body.offsetWidth / 4 - 200
+      offset: document.body.offsetWidth / tabSize - LeftWrapper
     };
     this.onWindowResize = this.onWindowResize.bind(this);
   }
@@ -58,7 +68,9 @@ export default class JobList extends Component {
    * 监听窗口实时调整offset
    */
   onWindowResize() {
-    this.setState({ offset: document.body.offsetWidth / 4 - 200 });
+    this.setState({
+      offset: document.body.offsetWidth / tabSize - LeftWrapper
+    });
   }
 
   /**
@@ -70,13 +82,13 @@ export default class JobList extends Component {
         <div className="jobtab">
           {tabs.map(tab => (
             <span key={tab}
-                style={{ marginRight: this.state.offset+30 }}
+                style={{ marginRight: this.state.offset + 20 }}
             >
               {tab}
             </span>
           ))}
         </div>
-        {this.props.jobList ? (
+        {this.props.jobList && this.props.jobList.length > 0 ? (
           this.props.jobList.map((job, index) => (
             <StatusTab
                 action={
@@ -85,6 +97,7 @@ export default class JobList extends Component {
                   <Button type="danger">delete</Button>
                 </div>
               }
+                isDetail
                 job={job}
                 key={job.name + index}
                 offset={this.state.offset}
@@ -93,16 +106,16 @@ export default class JobList extends Component {
         ) : (
           <Empty />
         )}
-        {
-          this.props.jobList &&
-            <div>
-              <Divider className="divider" />
-              <Pagination defaultCurrent={1}
-                  pageSize={10}
-                  total={this.props.totalJob}
-              />
-            </div>
-        }
+        {this.props.jobList && this.props.jobList.length > 0 && (
+          <div>
+            <Divider className="divider" />
+            <Pagination
+                defaultCurrent={1}
+                pageSize={10}
+                total={this.props.totalJob}
+            />
+          </div>
+        )}
       </div>
     );
   }

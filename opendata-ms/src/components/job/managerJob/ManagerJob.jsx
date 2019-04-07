@@ -6,12 +6,12 @@ import NumberIcon from '../../icons/NumberIcon';
 
 const TabPane = Tabs.TabPane;
 
-const tabs = ['All', 'Pending', 'Running', 'Finished'];
+const tabs = ['所有任务', '待定任务', '运行中任务', '已完成任务'];
 
 /**
  * 任务管理组件
  * 构成组件参数：
- * jobList 
+ * jobList
  * countlist
  * requestJobList
  * @param {Array}  jobList
@@ -22,26 +22,27 @@ export default class ManagerJob extends Component {
   static propTypes = {
     jobList: PropTypes.arrayOf(PropTypes.object),
     countList: PropTypes.shape({
-      'All': PropTypes.number,
-      'Pending': PropTypes.number,
-      'Runing': PropTypes.number,
-      'Finished': PropTypes.number
-    }),
-    requestJobList: PropTypes.func
+      All: PropTypes.number,
+      Pending: PropTypes.number,
+      Runing: PropTypes.number,
+      Finished: PropTypes.number
+    })
   };
   static defaultProps = {
     jobList: [],
-    countList: {
-      'All': 10,
-      'Pending': 0,
-      'Runing': 0,
-      'Finished': 0
-    },
-    requestJobList: null
+    countList: {}
   };
 
-  componentDidMount(){
-    this.props.requestJobList('All');
+  constructor(props) {
+    super(props);
+  }
+
+  componentDidMount() {
+    this.props.requestJobList({
+      type: 'All',
+      page: 0,
+      size: 20
+    });
   }
 
   /**

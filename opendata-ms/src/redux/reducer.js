@@ -1,12 +1,18 @@
-import { combineReducers } from 'redux';
+import {
+  combineReducers
+} from 'redux';
 import Reducer from './reducers';
 import NewCollectJobReducer from './reducers/NewCollectJobReducer';
-import NewCleanReducers from './reducers/NewCleanReducers';
+import NewCleanJobReducers from './reducers/NewCleanJobReducers';
+import ManagerJobReducers from './reducers/ManagerJobReducers';
+import ManagerDataReducers from './reducers/ManagerDataReducers';
 
 const allReducers = {
   Reducer,
-  NewCleanReducers,
-  NewCollectJobReducer
+  NewCleanJobReducers,
+  NewCollectJobReducer,
+  ManagerJobReducers,
+  ManagerDataReducers
 };
 
 const rootReducer = combineReducers(allReducers);

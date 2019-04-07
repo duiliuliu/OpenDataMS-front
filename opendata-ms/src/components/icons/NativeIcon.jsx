@@ -7,10 +7,9 @@ import IconTypesMap from '../../contants/ImageConstants';
  * 本地图标组件
  * @example
  * <NativeIcon type="new" />
- * <NativeIcon width=20 height=20 type="new" alt="new"/>
+ * <NativeIcon width={20} height={20} type="new" alt="new"/>
  */
 export default class NativeIcon extends React.Component {
-
   /**
    * 构建图标组件参数: </br>
    * width- 宽度、 </br>

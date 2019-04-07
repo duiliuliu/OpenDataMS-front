@@ -1,12 +1,11 @@
 import NewJob from '../containers/job/NewJob';
-
 import MessageWindow from '../components/job/currentJob/MessageWindow';
 import CurrentJob from '../components/job/currentJob/CurrentJob';
-import ManagerJob from '../components/job/managerJob/ManagerJob';
+import ManagerJob from '../containers/job/ManagerJob';
 import NumberIcon from '../components/icons/NumberIcon';
 import RegisteFunction from '../components/function/RegisteFunction';
 import ManagerFunction from '../components/function/ManagerFunction';
-import ManagerData from '../components/data/ManagerData';
+import ManagerData from '../containers/data/ManagerData';
 import ManagerUser from '../components/user/ManagerUser';
 
 export const routerData = [{
@@ -41,7 +40,7 @@ export const routerData = [{
       {
         key: 'managerJob',
         text: '管理任务',
-        path: '/job/,manager',
+        path: '/job/manager',
         component: ManagerJob
       }
     ]

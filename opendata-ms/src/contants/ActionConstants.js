@@ -15,6 +15,9 @@ export const CLEAR_MESSAGE = 'CLEAR_MESSAGE';
  * FETCH_* 获取*
  * SUBMIT_* 提交*
  */
+
+/**newJob */
+
 export const REQUEST_COLLECT_CITY_LIST = 'REQUEST_COLLECT_CITY_LIST';
 export const REQUEST_COLLECT_DATA_LIST = 'REQUEST_COLLECT_DATA_LIST';
 export const REQUEST_CLEAN_CITY_LIST = 'REQUEST_CLEAN_CITY_LIST';
@@ -44,3 +47,17 @@ export const FETCH_DATA_COL_LIST = 'FETCH_DATA_COL_LIST';
 
 export const SUBMIT_COLLECT_JOB = 'SUBMIT_COLLECT_JOB';
 export const SUBMIT_CLEAN_JOB = 'SUBMIT_CLEAN_JOB';
+
+
+/**managerJob */
+
+export const REQUEST_JOB_LIST = 'REQUEST_JOB_LIST';
+export const LOAD_JOB_LIST = 'LOAD_JOB_LIST';
+export const FETCH_JOB_LIST = 'FETCH_JOB_LIST';
+
+
+/**managerData */
+
+export const REQUEST_TREE_DATA = 'REQUEST_TREE_DATA';
+export const LOAD_TREE_DATA = 'LOAD_TREE_DATA';
+export const FETCH_TREE_DATA = 'FETCH_TREE_DATA';

@@ -10,55 +10,62 @@ const { TreeNode } = Tree;
  * 数据管理组件
  */
 export default class DataManager extends React.Component {
-
   /**
    * 构成组件参数
    * @param {Array} treeData 数据目录。以树状结构展示
    */
   static propTypes = {
-    treeData:PropTypes.arrayOf(
+    treeData: PropTypes.arrayOf(
       PropTypes.shape({
-        name:PropTypes.string,
-        data:PropTypes.array
+        name: PropTypes.string,
+        data: PropTypes.array
       })
     )
   };
-  static defaultProps = { 
-    treeData:[]
+  static defaultProps = {
+    treeData: [
+      {
+        name: '数据目录'
+      }
+    ]
   };
 
   /**
    * @member {string} activeKey 当前选中标签
    * @member {Array} panes 标签页，初始化为空，在点击树之后创建标签页
    * @member {Array} openPanes 标签页，初始化为空，已经打开的标签页，防止标签页重复创建
-   * @param {*} props 
+   * @param {*} props
    */
   constructor(props) {
     super(props);
     this.newTabIndex = 0;
     this.state = {
       activeKey: 'tree',
-      panes:[],
+      panes: [],
       openPanes: []
     };
   }
 
+  componentDidMount() {
+    this.props.requestTreeData();
+  }
+
   /**
    * 生成树组件
-   * @param {Object} node 
+   * @param {Object} node
    */
   TreeMap(node) {
-    if (!(node[0].name && node[0].data)) {
-      return node.map(subNode => {
-        return <TreeNode isLeaf
-            key={subNode}
-            title={subNode}
-               />;
-      });
-    }
-    return node.map(subNode => {
+    return node.map((subNode, index) => {
+      if (!subNode.data) {
+        return (
+          <TreeNode isLeaf
+              key={subNode.name + index}
+              title={subNode.name}
+          />
+        );
+      }
       return (
-        <TreeNode key={subNode.name}
+        <TreeNode key={subNode.name + index}
             title={subNode.name}
         >
           {this.TreeMap(subNode.data)}
@@ -98,7 +105,10 @@ export default class DataManager extends React.Component {
   /**
    * 添加标签页函数
    */
-  add = value => {
+  add = (value, e) => {
+    if (!e.node.isLeaf()) {
+      return;
+    }
     const panes = this.state.panes;
     const tab = value[0];
     // 判断标签页是否存在
@@ -130,7 +140,7 @@ export default class DataManager extends React.Component {
       }
     }
     this.state.openPanes.pop(targetKey);
-    this.setState({ panes, activeKey });
+    this.setState({ panes, activeKey: 'tree' });
   };
 
   /**
