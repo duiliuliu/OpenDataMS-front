@@ -13,6 +13,9 @@ import {
 import {
   watchTreeData
 } from './sagas/ManagerDataSagas';
+import {
+  watchUserList
+} from './sagas/ManagerUserSagas';
 
 
 
@@ -21,6 +24,7 @@ export default function* root() {
     watchCollectJob(),
     watchCleanJob(),
     watchJobList(),
-    watchTreeData()
+    watchTreeData(),
+    watchUserList()
   ]);
 }

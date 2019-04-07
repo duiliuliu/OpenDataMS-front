@@ -6,7 +6,7 @@ import NumberIcon from '../components/icons/NumberIcon';
 import RegisteFunction from '../components/function/RegisteFunction';
 import ManagerFunction from '../components/function/ManagerFunction';
 import ManagerData from '../containers/data/ManagerData';
-import ManagerUser from '../components/user/ManagerUser';
+import ManagerUser from '../containers/user/ManagerUser';
 
 export const routerData = [{
     key: 'dashboard',

@@ -1,8 +1,9 @@
 import React from 'react';
-import { Route,Redirect } from 'react-router-dom';
+import { Route,Redirect,Switch } from 'react-router-dom';
 import {
   routerData,dashboard
 } from './data';
+import NotFoundPage from '../components/Exception/NotFoundPage';
 
 
 function getRouterComponent(items, compontents) {
@@ -26,23 +27,26 @@ export default class AppRouter extends React.Component {
   render() {
     return (
       <div>
-        <Route exact
-            key="home"
-            path="/"
-            render={
-              () => <Redirect to={dashboard.path} />
-            }
-        />
-        {
-          routerComponents.map(item =>
-            <Route
-                component={item.component}
-                exact
-                key={item.key}
-                path={item.path}
-            />
-          )
-        }
+          <Switch>
+          <Route exact
+              key="home"
+              path="/"
+              render={
+                () => <Redirect to={dashboard.path} />
+              }
+          />
+          {
+            routerComponents.map(item =>
+              <Route
+                  component={item.component}
+                  exact
+                  key={item.key}
+                  path={item.path}
+              />
+            )
+          }
+          <Route   component={NotFoundPage}></Route>
+        </Switch>
       </div>
     );
   }

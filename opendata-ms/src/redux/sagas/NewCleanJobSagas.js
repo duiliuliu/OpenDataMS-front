@@ -4,7 +4,7 @@ import {
   fork,
   takeLatest
 } from 'redux-saga/effects';
-import * as NewCleanJobAction from '../actions/NewCleanJobAction';
+import * as NewCleanJobActions from '../actions/NewCleanJobActions';
 import * as ActionConstants from '../../contants/ActionConstants';
 import {
   getData,
@@ -25,7 +25,7 @@ const {
   fetchCleanDataList,
   fetchFunctionList,
   fetchDataColList
-} = NewCleanJobAction;
+} = NewCleanJobActions;
 
 function* requestCleanCityListAsync() {
   try {

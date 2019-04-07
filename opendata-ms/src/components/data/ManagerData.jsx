@@ -20,7 +20,8 @@ export default class DataManager extends React.Component {
         name: PropTypes.string,
         data: PropTypes.array
       })
-    )
+    ),
+    requestTreeData:PropTypes.func.isRequired
   };
   static defaultProps = {
     treeData: [

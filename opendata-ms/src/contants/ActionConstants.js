@@ -61,3 +61,9 @@ export const FETCH_JOB_LIST = 'FETCH_JOB_LIST';
 export const REQUEST_TREE_DATA = 'REQUEST_TREE_DATA';
 export const LOAD_TREE_DATA = 'LOAD_TREE_DATA';
 export const FETCH_TREE_DATA = 'FETCH_TREE_DATA';
+
+/**managerUser */
+
+export const REQUEST_USER_DATA = 'REQUEST_USER_DATA';
+export const LOAD_USER_DATA = 'LOAD_USER_DATA';
+export const FETCH_USER_DATA = 'FETCH_USER_DATA';

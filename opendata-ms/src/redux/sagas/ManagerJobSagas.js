@@ -3,7 +3,7 @@ import {
   call,
   takeLatest
 } from 'redux-saga/effects';
-import * as ManagerJobAction from '../actions/ManagerJobAction';
+import * as ManagerJobActions from '../actions/ManagerJobActions';
 import * as ActionConstants from '../../contants/ActionConstants';
 import {
   getData
@@ -13,7 +13,7 @@ import {
 const {
   loadJobList,
   fetchJobList
-} = ManagerJobAction;
+} = ManagerJobActions;
 
 function* requestJobListAsync(action) {
   try {

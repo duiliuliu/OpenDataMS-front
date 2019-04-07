@@ -1,9 +1,8 @@
 import { connect } from 'react-redux';
 import ManagerData from '../../components/data/ManagerData';
-import * as ManagerDataAction from '../../redux/actions/ManagerDataAction';
+import * as ManagerDataActions from '../../redux/actions/ManagerDataActions';
 
 const mapStateToProps = state => {
-  console.log(state);
   const data = state.ManagerDataReducers;
   return {
     loadStatus: data.loadStatus,
@@ -13,7 +12,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    requestTreeData: () => dispatch(ManagerDataAction.requestTreeData())
+    requestTreeData: () => dispatch(ManagerDataActions.requestTreeData())
   };
 };
 

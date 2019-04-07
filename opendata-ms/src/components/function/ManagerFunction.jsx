@@ -22,7 +22,8 @@ export default class FunctionManager extends React.Component {
         resource: PropTypes.string,
         tags: PropTypes.array
       })
-    )
+    ),
+    requestFunctionData:PropTypes.func.isRequired
   };
   static defaultProps = {
     data: []

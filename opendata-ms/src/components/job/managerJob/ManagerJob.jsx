@@ -26,7 +26,8 @@ export default class ManagerJob extends Component {
       Pending: PropTypes.number,
       Runing: PropTypes.number,
       Finished: PropTypes.number
-    })
+    }),
+    requestJobList:PropTypes.func.isRequired
   };
   static defaultProps = {
     jobList: [],

@@ -3,7 +3,7 @@ import {
     call,
     takeLatest
 } from 'redux-saga/effects';
-import * as ManagerDataAction from '../actions/ManagerDataAction';
+import * as ManagerDataActions from '../actions/ManagerDataActions';
 import * as ActionConstants from '../../contants/ActionConstants';
 import {
     getData
@@ -13,7 +13,7 @@ import {
 const {
     loadTreeData,
     fetchTreeData
-} = ManagerDataAction;
+} = ManagerDataActions;
 
 function* requestTreeDataAsync() {
     try {
@@ -30,8 +30,7 @@ function* requestTreeDataAsync() {
                 name: '数据目录',
                 data: [{
                         name: '佛山',
-                        data: [
-                            {
+                        data: [{
                                 name: '佛山asdasd数据'
                             },
                             {
@@ -44,8 +43,7 @@ function* requestTreeDataAsync() {
                     },
                     {
                         name: '贵州',
-                        data: [
-                            {
+                        data: [{
                                 name: '佛山asdasd数据'
                             },
                             {

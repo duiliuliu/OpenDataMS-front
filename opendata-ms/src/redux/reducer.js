@@ -2,17 +2,19 @@ import {
   combineReducers
 } from 'redux';
 import Reducer from './reducers';
-import NewCollectJobReducer from './reducers/NewCollectJobReducer';
+import NewCollectJobReducers from './reducers/NewCollectJobReducers';
 import NewCleanJobReducers from './reducers/NewCleanJobReducers';
 import ManagerJobReducers from './reducers/ManagerJobReducers';
 import ManagerDataReducers from './reducers/ManagerDataReducers';
+import ManagerUserReducers from './reducers/ManagerUserReducers';
 
 const allReducers = {
   Reducer,
   NewCleanJobReducers,
-  NewCollectJobReducer,
+  NewCollectJobReducers,
   ManagerJobReducers,
-  ManagerDataReducers
+  ManagerDataReducers,
+  ManagerUserReducers
 };
 
 const rootReducer = combineReducers(allReducers);

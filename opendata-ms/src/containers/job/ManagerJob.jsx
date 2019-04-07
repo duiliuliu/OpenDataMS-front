@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import ManagerJob from '../../components/job/managerJob/ManagerJob';
-import * as ManagerJobAction from '../../redux/actions/ManagerJobAction';
+import * as ManagerJobActions from '../../redux/actions/ManagerJobActions';
 
 const mapStateToProps = state => {
   const data = state.ManagerJobReducers;
@@ -13,7 +13,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    requestJobList: param => dispatch(ManagerJobAction.requestJobList(param))
+    requestJobList: param => dispatch(ManagerJobActions.requestJobList(param))
   };
 };
 
