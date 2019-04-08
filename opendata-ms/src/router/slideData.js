@@ -7,7 +7,11 @@ import RegisteFunction from '../components/function/RegisteFunction';
 import ManagerFunction from '../components/function/ManagerFunction';
 import ManagerData from '../containers/data/ManagerData';
 import ManagerUser from '../containers/user/ManagerUser';
+import Login from '../components/login/Login';
 
+/**
+ * 侧边栏与root数据
+ */
 export const routerData = [{
     key: 'dashboard',
     icon: 'home',
@@ -94,9 +98,9 @@ export const routerData = [{
       },
       {
         key: '15',
-        text: '当前任务',
-        path: '/job/currentjob',
-        component: CurrentJob
+        text: 'login',
+        path: '/login',
+        component: Login
       }
     ]
   }

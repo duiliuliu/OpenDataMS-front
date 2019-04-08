@@ -2,7 +2,7 @@ import React from 'react';
 import { Route,Redirect,Switch } from 'react-router-dom';
 import {
   routerData,dashboard
-} from './data';
+} from './slideData';
 import NotFoundPage from '../components/Exception/NotFoundPage';
 
 

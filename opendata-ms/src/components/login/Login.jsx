@@ -1,6 +1,6 @@
+import React, { Component } from 'react';
 import Login from 'ant-design-pro/lib/Login';
 import { Alert, Checkbox } from 'antd';
-import { Component } from 'react';
 
 const { Tab, UserName, Password, Mobile, Captcha, Submit } = Login;
 

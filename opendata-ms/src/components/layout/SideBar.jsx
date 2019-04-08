@@ -3,7 +3,7 @@ import { Link, withRouter } from 'react-router-dom';
 import { Layout, Menu, Icon } from 'antd';
 const { Sider } = Layout;
 const { SubMenu, Item } = Menu;
-import { routerData } from '../../router/data';
+import { routerData } from '../../router/slideData';
 
 class Sidebar extends Component {
   constructor(props) {
