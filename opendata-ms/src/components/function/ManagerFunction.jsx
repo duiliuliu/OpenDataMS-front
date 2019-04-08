@@ -14,16 +14,16 @@ export default class FunctionManager extends React.Component {
    * 构成组件参数
    */
   static propTypes = {
-    data: PropTypes.arrayOf(
+    functionData: PropTypes.arrayOf(
       PropTypes.shape({
         functionName: PropTypes.string,
-        creator: PropTypes.string,
-        created: PropTypes.string,
+        lastModifier: PropTypes.string,
+        lastModified: PropTypes.string,
         resource: PropTypes.string,
         tags: PropTypes.array
       })
     ),
-    requestFunctionData:PropTypes.func.isRequired
+    requestFunctionData: PropTypes.func.isRequired
   };
   static defaultProps = {
     data: []
@@ -42,6 +42,10 @@ export default class FunctionManager extends React.Component {
       modalVisible: false,
       currentFunc: ''
     };
+  }
+
+  componentDidMount() {
+    this.props.requestFunctionData();
   }
 
   /**
@@ -119,7 +123,7 @@ export default class FunctionManager extends React.Component {
         />
         <Table
             columns={this.columns}
-            dataSource={this.props.data}
+            dataSource={this.props.functionData}
             pagination={{ pageSize: this.state.pageSize }}
         />
         <br />
