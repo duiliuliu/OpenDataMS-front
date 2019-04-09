@@ -5,6 +5,9 @@ export const SUCCESS = 'SUCCESS';
 export const ERROR = 'ERROR';
 export const CLEAR_MESSAGE = 'CLEAR_MESSAGE';
 
+/**jumprouter */
+export const JUMP_ROUTER = 'JUMP_ROUTER';
+
 /**
  * job
  * _COLLECT_*表示与采集任务相关
@@ -25,9 +28,7 @@ export const REQUEST_CLEAN_DATA_LIST = 'REQUEST_CLEAN_DATA_LIST';
 export const REQUEST_FUNCTION_LIST = 'REQUEST_FUNCTION_LIST';
 export const REQUEST_DATA_COL_LIST = 'REQUEST_DATA_COL_LIST';
 
-
 export const REQUEST_DOWNLOAD_PATH = 'REQUEST_DOWNLOAD_PATH';
-
 
 export const LOAD_COLLECT_CITY_LIST = 'LOAD_COLLECT_CITY_LIST';
 export const LOAD_COLLECT_DATA_LIST = 'LOAD_COLLECT_DATA_LIST';
@@ -36,7 +37,6 @@ export const LOAD_CLEAN_DATA_LIST = 'LOAD_CLEAN_DATA_LIST';
 export const LOAD_FUNCTION_LIST = 'LOAD_FUNCTION_LIST';
 export const LOAD_DATA_COL_LIST = 'LOAD_DATA_COL_LIST';
 
-
 export const FETCH_COLLECT_CITY_LIST = 'FETCH_COLLECT_CITY_LIST';
 export const FETCH_COLLECT_DATA_LIST = 'FETCH_COLLECT_DATA_LIST';
 export const FETCH_CLEAN_CITY_LIST = 'FETCH_CLEAN_CITY_LIST';
@@ -44,17 +44,14 @@ export const FETCH_CLEAN_DATA_LIST = 'FETCH_CLEAN_DATA_LIST';
 export const FETCH_FUNCTION_LIST = 'FETCH_FUNCTION_LIST';
 export const FETCH_DATA_COL_LIST = 'FETCH_DATA_COL_LIST';
 
-
 export const SUBMIT_COLLECT_JOB = 'SUBMIT_COLLECT_JOB';
 export const SUBMIT_CLEAN_JOB = 'SUBMIT_CLEAN_JOB';
-
 
 /**managerJob */
 
 export const REQUEST_JOB_LIST = 'REQUEST_JOB_LIST';
 export const LOAD_JOB_LIST = 'LOAD_JOB_LIST';
 export const FETCH_JOB_LIST = 'FETCH_JOB_LIST';
-
 
 /**managerData */
 
@@ -68,9 +65,12 @@ export const REQUEST_USER_DATA = 'REQUEST_USER_DATA';
 export const LOAD_USER_DATA = 'LOAD_USER_DATA';
 export const FETCH_USER_DATA = 'FETCH_USER_DATA';
 
-
 /**managerFunction */
 
 export const REQUEST_FUNCTION_DATA = 'REQUEST_FUNCTION_DATA';
 export const LOAD_FUNCTION_DATA = 'LOAD_FUNCTION_DATA';
 export const FETCH_FUNCTION_DATA = 'FETCH_FUNCTION_DATA';
+
+/**submitFUnction */
+
+export const SUBMIT_FUNCTION = 'SUBMIT_FUNCTION';

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Tabs } from 'antd';
+import { Spin, Tabs } from 'antd';
 import JobList from './JobList';
 import NumberIcon from '../../icons/NumberIcon';
 
@@ -27,7 +27,7 @@ export default class ManagerJob extends Component {
       Runing: PropTypes.number,
       Finished: PropTypes.number
     }),
-    requestJobList:PropTypes.func.isRequired
+    requestJobList: PropTypes.func.isRequired
   };
   static defaultProps = {
     jobList: [],
@@ -58,25 +58,27 @@ export default class ManagerJob extends Component {
    */
   render() {
     return (
-      <Tabs
-          className="ManagerJob"
-          defaultActiveKey="All"
-          onChange={this.handerTab}
-      >
-        {tabs.map(tab => (
-          <TabPane
-              key={tab}
-              tab={
-              <span>
-                {tab}
-                <NumberIcon number={this.props.countList[tab]} />
-              </span>
-            }
-          >
-            <JobList jobList={this.props.jobList} />
-          </TabPane>
-        ))}
-      </Tabs>
+      <Spin spinning={this.props.loadStatus}>
+        <Tabs
+            className="ManagerJob"
+            defaultActiveKey="All"
+            onChange={this.handerTab}
+        >
+          {tabs.map(tab => (
+            <TabPane
+                key={tab}
+                tab={
+                <span>
+                  {tab}
+                  <NumberIcon number={this.props.countList[tab]} />
+                </span>
+              }
+            >
+              <JobList jobList={this.props.jobList} />
+            </TabPane>
+          ))}
+        </Tabs>
+      </Spin>
     );
   }
 }

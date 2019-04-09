@@ -2,11 +2,8 @@ import * as ActionConstants from '../../contants/ActionConstants';
 
 const initialState = {
   functionData: [],
-  loadStatus: ''
+  loadStatus: false
 };
-
-const loadStatus = 'loading';
-const successStatus = 'success';
 
 export default function(state = initialState, action) {
   switch (action.type) {
@@ -14,14 +11,14 @@ export default function(state = initialState, action) {
       return {
         ...state,
         functionData: action.payload.functionData,
-        loadStatus: successStatus
+        loadStatus: false
       };
     }
 
     case ActionConstants.LOAD_FUNCTION_DATA: {
       return {
         ...state,
-        loadStatus: loadStatus
+        loadStatus: true
       };
     }
 

@@ -1,10 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Input, Form, Select, Switch,
-  Radio, Button, Upload, Icon,
-  Row,Col, InputNumber, message} from 'antd';
+import {
+  Input,
+  Form,
+  Select,
+  Switch,
+  Radio,
+  Button,
+  Upload,
+  Icon,
+  Row,
+  Col,
+  InputNumber,
+  message
+} from 'antd';
 import { Validating } from '../../../contants/EnumConstants';
 import * as StringUtil from '../../../util/StringUtil';
+import * as ListUtil from '../../../util/ListUtil';
 
 const { Option } = Select;
 
@@ -17,7 +29,6 @@ const { Option } = Select;
  * <NewCollectJob cityList={cityList} dataList={dataList} />
  */
 export default class NewCollectJob extends React.Component {
-
   /**
    * 构建组件参数
    * @param {PropTypes.Array} cityList
@@ -51,22 +62,22 @@ export default class NewCollectJob extends React.Component {
    * @member datas 数据项
    * @member isSaveNative 是否保存至本地
    * @member cityStatus 城市选择框状态
-   * @member dataStatus 数据项选择框状态
+   * @member datasStatus 数据项选择框状态
    */
   constructor(props) {
     super(props);
     this.state = {
-      name:'',
+      name: '',
       city: '',
       thread: 1,
-      datas:[],
+      datas: [],
       isSaveNative: false,
-      cityStatus:Validating.NON,
-      dataStatus:Validating.NON
+      cityStatus: Validating.NON,
+      datasStatus: Validating.NON
     };
   }
 
-  componentDidMount(){
+  componentDidMount() {
     this.props.requestCityList();
   }
 
@@ -87,7 +98,7 @@ export default class NewCollectJob extends React.Component {
    * @memberof NewCollectJob
    */
   handleCityChange = value => {
-    if(StringUtil.isBlank(value)){
+    if (StringUtil.isBlank(value)) {
       this.setState({
         cityStatus: Validating.NON
       });
@@ -100,22 +111,21 @@ export default class NewCollectJob extends React.Component {
     });
   };
 
-
   /**
    *获取当前选中数据项
    *
    * @memberof NewCollectJob
    */
   handleDataChange = value => {
-    if(value===null || value.length===0){
+    if (value === null || value.length === 0) {
       this.setState({
-        dataStatus: Validating.WARN
+        datasStatus: Validating.WARN
       });
       return;
     }
     this.setState({
       datas: value,
-      dataStatus: Validating.SUCCESS
+      datasStatus: Validating.SUCCESS
     });
   };
 
@@ -151,31 +161,52 @@ export default class NewCollectJob extends React.Component {
   };
 
   /**
+   *判断state是否为空
+   *
+   * @memberof NewCollectJob
+   */
+  handleCheckString = key => {
+    if (StringUtil.isBlank(this.state[key])) {
+      this.setState({
+        [key + 'Status']: Validating.ERROR
+      });
+      return true;
+    }
+    return false;
+  };
+
+  /**
+   *判断state是否为空
+   *setState方法中的key传递为字符串了
+   * @memberof NewCollectJob
+   */
+  handleCheckList = key => {
+    if (ListUtil.isEmpty(this.state[key])) {
+      this.setState({
+        [key + 'Status']: Validating.ERROR
+      });
+      return true;
+    }
+    return false;
+  };
+
+  /**
    *验证并提交form数据
    *
    * @memberof NewCollectJob
    */
   handleSubmit = e => {
     e.preventDefault();
-    if(StringUtil.isBlank(this.state.city)){
-      this.setState({
-        cityStatus:Validating.ERROR
-      });
-    }
-    if(this.state.datas===null || this.state.datas.length===0){
-      this.setState({
-        dataStatus:Validating.ERROR
-      });
+    if (this.handleCheckString('city') | this.handleCheckList('datas')) {
       return;
     }
     this.props.submitJob({
-        name:this.state.name,
-        city:this.state.city,
-        thread:this.state.thread,
-        datas:this.state.datas,
-        isSaveNative:this.state.isSaveNative
-      }
-    );
+      name: this.state.name,
+      city: this.state.city,
+      thread: this.state.thread,
+      datas: this.state.datas,
+      isSaveNative: this.state.isSaveNative
+    });
   };
 
   /**
@@ -183,18 +214,16 @@ export default class NewCollectJob extends React.Component {
    *
    * @memberof NewCollectJob
    */
-  handleReset = () => {
-
-  };
+  handleReset = () => {};
 
   /**
    * @ignore
    */
   render() {
-    if(this.props.message){
-      if(this.props.success){
+    if (this.props.message) {
+      if (this.props.success) {
         message.success(this.props.message);
-      }else{
+      } else {
         message.error(this.props.message);
       }
     }
@@ -207,21 +236,29 @@ export default class NewCollectJob extends React.Component {
         <Form.Item {...formItemLayout}
             label="任务名称"
         >
-          <Input onChange={this.handleNameChange}
+          <Input
+              onChange={this.handleNameChange}
               placeholder="input placeholder"
               value={this.state.name}
           />
         </Form.Item>
-        <Form.Item {...formItemLayout}
+        <Form.Item
+            {...formItemLayout}
             hasFeedback
             label="城市"
-            validateStatus={this.props.cityStatus==='loading'? Validating.VALIDATE : this.state.cityStatus}
+            validateStatus={
+            this.props.cityStatus
+              ? Validating.VALIDATE
+              : this.state.cityStatus
+          }
         >
-          <Select hasFeedback
+          <Select
+              hasFeedback
               onChange={this.handleCityChange}
               placeholder="Please select a city"
           >
-            {this.props.cityList && (this.props.cityList.map(city => {
+            {this.props.cityList &&
+              this.props.cityList.map(city => {
                 return (
                   <Option key={city}
                       value={city}
@@ -229,52 +266,59 @@ export default class NewCollectJob extends React.Component {
                     {city}
                   </Option>
                 );
-              }))
-            }
+              })}
           </Select>
         </Form.Item>
 
-        <Form.Item {...formItemLayout}
+        <Form.Item
+            {...formItemLayout}
             hasFeedback
             label="数据项"
-            validateStatus={this.props.dataStatus==='loading'? Validating.VALIDATE : this.state.dataStatus}
+            validateStatus={
+            this.props.datasStatus
+              ? Validating.VALIDATE
+              : this.state.datasStatus
+          }
         >
-          <Select hasFeedback
+          <Select
+              hasFeedback
               mode="multiple"
               onChange={this.handleDataChange}
               placeholder="Please select target data"
           >
-            {this.props.dataList && (this.props.dataList.map(item => {
-                  return (
-                    <Option key={item}
-                        value={item}
-                    >
-                      {item}
-                    </Option>
-                  );
-                }))
-            }
+            {this.props.dataList &&
+              this.props.dataList.map(item => {
+                return (
+                  <Option key={item}
+                      value={item}
+                  >
+                    {item}
+                  </Option>
+                );
+              })}
           </Select>
         </Form.Item>
-        <Form.Item  {...formItemLayout}
+        <Form.Item {...formItemLayout}
             label="运行线程"
         >
-          <Radio.Group onChange={this.handleThreadChange}
+          <Radio.Group
+              onChange={this.handleThreadChange}
               value={this.state.thread}
           >
-              <Radio value={1}>单线程</Radio>
-              <Radio value={2}>多线程</Radio>
-            </Radio.Group>
-            {this.state.thread > 1 && (
-              <div>
-                <span>线程数: </span>
-                <InputNumber defaultValue={3}
-                    max={10}
-                    min={1}
-                    onChange={this.handleThreadChange}
-                />
-              </div>
-            )}
+            <Radio value={1}>单线程</Radio>
+            <Radio value={2}>多线程</Radio>
+          </Radio.Group>
+          {this.state.thread > 1 && (
+            <div>
+              <span>线程数: </span>
+              <InputNumber
+                  defaultValue={3}
+                  max={10}
+                  min={1}
+                  onChange={this.handleThreadChange}
+              />
+            </div>
+          )}
         </Form.Item>
         <Form.Item>
           <Row>
@@ -282,7 +326,7 @@ export default class NewCollectJob extends React.Component {
                 sm={7}
                 xl={7}
                 xs={0}
-            ></Col>
+            />
             <Col md={8}
                 sm={8}
                 xl={8}
@@ -293,19 +337,18 @@ export default class NewCollectJob extends React.Component {
                 {' '}
                 保存至本地{' '}
               </span>
-              {
-                this.state.isSaveNative &&
-                  <Upload
-                      action="/download.do"
-                      listType="picture"
-                      name="logo"
-                      onChange={this.saveOrigin}
-                  >
-                    <Button>
-                      <Icon type="download" /> save
-                    </Button>
-                  </Upload>
-              }
+              {this.state.isSaveNative && (
+                <Upload
+                    action="/download.do"
+                    listType="picture"
+                    name="logo"
+                    onChange={this.saveOrigin}
+                >
+                  <Button>
+                    <Icon type="download" /> save
+                  </Button>
+                </Upload>
+              )}
             </Col>
           </Row>
         </Form.Item>
@@ -317,7 +360,8 @@ export default class NewCollectJob extends React.Component {
           >
             Submit
           </Button>
-          <Button htmlType="reset"
+          <Button
+              htmlType="reset"
               onClick={this.handleReset}
               style={{ margin: 10 }}
               type="danger"

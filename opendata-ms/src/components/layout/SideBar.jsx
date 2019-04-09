@@ -3,7 +3,7 @@ import { Link, withRouter } from 'react-router-dom';
 import { Layout, Menu, Icon } from 'antd';
 const { Sider } = Layout;
 const { SubMenu, Item } = Menu;
-import { routerData } from '../../router/slideData';
+import { sidebarRouterData } from '../../router/routerData';
 
 class Sidebar extends Component {
   constructor(props) {
@@ -19,7 +19,7 @@ class Sidebar extends Component {
 
   setDefaultActiveItem = ({ location }) => {
     const { pathname } = location;
-    routerData.map(item => {
+    sidebarRouterData.map(item => {
       if (item.children && item.children.length > 0) {
         item.children.map(childitem => {
           if (pathname.match(childitem.path)) {
@@ -37,7 +37,7 @@ class Sidebar extends Component {
   render() {
     const { selectedKeys } = this.state;
     const { collapsed } = this.props;
-    const SideTree = routerData.map(item =>
+    const SideTree = sidebarRouterData.map(item =>
       item.children
       ? (
         <SubMenu

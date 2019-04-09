@@ -1,6 +1,6 @@
 import * as ActionConstants from '../../contants/ActionConstants';
 
-export const success = (message) => {
+export const success = message => {
   return {
     type: ActionConstants.SUCCESS,
     payload: {
@@ -9,7 +9,7 @@ export const success = (message) => {
   };
 };
 
-export const error = (message) => {
+export const error = message => {
   return {
     type: ActionConstants.ERROR,
     payload: {
@@ -21,5 +21,14 @@ export const error = (message) => {
 export const clearMessage = () => {
   return {
     type: ActionConstants.CLEAR_MESSAGE
+  };
+};
+
+export const jumpRouter = path => {
+  return {
+    type: ActionConstants.JUMP_ROUTER,
+    payload: {
+      path
+    }
   };
 };

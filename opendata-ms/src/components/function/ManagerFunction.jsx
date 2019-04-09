@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Input } from 'antd';
+import { withRouter } from 'react-router';
+import { Input, Spin } from 'antd';
 import { Table, Divider, Modal, Tag, Button } from 'antd';
 
 const color = 'green';
@@ -9,7 +10,7 @@ const Search = Input.Search;
 /**
  * 函数管理组件
  */
-export default class FunctionManager extends React.Component {
+class FunctionManager extends React.Component {
   /**
    * 构成组件参数
    */
@@ -48,6 +49,10 @@ export default class FunctionManager extends React.Component {
     this.props.requestFunctionData();
   }
 
+  handleClick = path => {
+    this.props.history.push(path);
+  };
+
   /**
    * 显示模态框函数
    */
@@ -65,12 +70,21 @@ export default class FunctionManager extends React.Component {
       title: '函数名称',
       dataIndex: 'functionName',
       key: 'functionName',
-      render: text => <a href="javascript:;">{text}</a>
+      render: functionName => (
+        <a onClick={this.handleClick.bind(this, '/function/' + functionName)}>
+          {functionName}
+        </a>
+      )
     },
     {
       title: '更新者',
       dataIndex: 'lastModifier',
-      key: 'lastModifier'
+      key: 'lastModifier',
+      render: user => (
+        <span onClick={this.handleClick.bind(this, '/user/' + user)}>
+          {user}
+        </span>
+      )
     },
     {
       title: '更新时间',
@@ -116,27 +130,31 @@ export default class FunctionManager extends React.Component {
   render() {
     return (
       <div className="functionmanager">
-        <Search
-            onSearch={value => console.log(value)}
-            placeholder="输入函数名称搜索"
-            style={{ width: 200 }}
-        />
-        <Table
-            columns={this.columns}
-            dataSource={this.props.functionData}
-            pagination={{ pageSize: this.state.pageSize }}
-        />
-        <br />
-        <Modal
-            modalVisible={this.state.modalVisible}
-            onCancel={this.handleCancel}
-            onOk={this.handleOk}
-            title={'Basic Modal'}
-        >
-          {/* 表格  表头： 时间 更新用户   */}
-          {this.props.functionData}
-        </Modal>
+        <Spin spinning={this.props.loadStatus}>
+          <Search
+              onSearch={value => console.log(value)}
+              placeholder="输入函数名称搜索"
+              style={{ width: 200 }}
+          />
+          <Table
+              columns={this.columns}
+              dataSource={this.props.functionData}
+              pagination={{ pageSize: this.state.pageSize }}
+          />
+          <br />
+          <Modal
+              modalVisible={this.state.modalVisible}
+              onCancel={this.handleCancel}
+              onOk={this.handleOk}
+              title={'Basic Modal'}
+          >
+            {/* 表格  表头： 时间 更新用户   */}
+            {this.props.functionData}
+          </Modal>
+        </Spin>
       </div>
     );
   }
 }
+
+export default withRouter(FunctionManager);

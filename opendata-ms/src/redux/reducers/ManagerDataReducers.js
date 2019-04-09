@@ -4,11 +4,8 @@ const initialState = {
   treeData: [{
     name:'数据目录'
   }],
-  loadStatus: ''
+  loadStatus: false
 };
-
-const loadStatus = 'loading';
-const successStatus = 'success';
 
 export default function (state = initialState, action) {
   switch (action.type) {
@@ -17,7 +14,7 @@ export default function (state = initialState, action) {
         return {
           ...state,
           treeData: action.payload.treeData,
-          loadStatus: successStatus
+          loadStatus: false
         };
       }
 
@@ -25,7 +22,7 @@ export default function (state = initialState, action) {
       {
         return {
           ...state,
-          loadStatus: loadStatus
+          loadStatus: true
         };
       }
 

@@ -3,11 +3,8 @@ import * as ActionConstants from '../../contants/ActionConstants';
 const initialState = {
   jobList: [],
   countList: {},
-  loadStatus: ''
+  loadStatus: false
 };
-
-const loadStatus = 'loading';
-const successStatus = 'success';
 
 export default function (state = initialState, action) {
   switch (action.type) {
@@ -17,7 +14,7 @@ export default function (state = initialState, action) {
           ...state,
           jobList: action.payload.jobList,
           countList: action.payload.countList,
-          loadStatus: successStatus
+          loadStatus: false
         };
       }
 
@@ -25,7 +22,7 @@ export default function (state = initialState, action) {
       {
         return {
           ...state,
-          loadStatus: loadStatus
+          loadStatus: true
         };
       }
 

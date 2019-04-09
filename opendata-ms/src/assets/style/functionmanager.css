@@ -1,3 +1,7 @@
 .functionmanager {
     text-align: left;
 }
+
+.ant-upload-text{
+    opacity: 0.6;
+}

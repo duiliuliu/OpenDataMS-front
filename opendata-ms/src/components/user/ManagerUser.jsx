@@ -1,8 +1,9 @@
 import React from 'react';
+import { withRouter } from 'react-router';
 import PropTypes from 'prop-types';
-import { Table } from 'antd';
+import { Modal, Button, Divider, Table } from 'antd';
 
-export default class History extends React.Component {
+class ManagerUser extends React.Component {
   static propTypes = {
     data: PropTypes.arrayOf(
       PropTypes.shape({
@@ -19,14 +20,39 @@ export default class History extends React.Component {
     data: []
   };
 
+  state = {
+    modalVisible: false
+  };
+
   componentDidMount() {
     this.props.requestUserData();
   }
+
+  handleClick = path => {
+    this.props.history.push(path);
+  };
+
+  /**
+   * 显示模态框函数
+   */
+  showModal = record => {
+    this.setState({
+      modalVisible: true
+    });
+    // 通过record请求相应数据
+    this.props.requestFunctionData(record);
+  };
+
   render() {
     const columns = [
       {
         title: '用户名称',
-        dataIndex: 'name'
+        dataIndex: 'name',
+        render: user => (
+          <span onClick={this.handleClick.bind(this, '/user/' + user)}>
+            {user}
+          </span>
+        )
       },
       {
         title: '用户角色',
@@ -48,22 +74,66 @@ export default class History extends React.Component {
         dataIndex: 'created',
         defaultSortOrder: 'descend',
         sorter: (a, b) => a > b
-          // new Date(a.time.replace(/-/g, '/')) >
-          // new Date(b.time.replace(/-/g, '/'))
+        // new Date(a.time.replace(/-/g, '/')) >
+        // new Date(b.time.replace(/-/g, '/'))
       },
       {
-        title: '详细信息',
+        title: () => (
+          <div>
+            <span>操作</span>
+            <Divider type="vertical" />
+            <Divider type="vertical" />
+            <Divider type="vertical" />
+            <Button size="small"
+                type="default"
+            >
+              添加用户
+            </Button>
+          </div>
+        ),
         dataIndex: 'info',
-        render: text => <a href="javascript:;">{text}</a>
+        render: (text, record) => (
+          <span>
+            <Button
+                ghost
+                onClick={() => this.showModal.bind(this, record)}
+                size="small"
+                type="primary"
+            >
+              设置权限
+            </Button>
+            <Divider type="vertical" />
+            <Button ghost
+                size="small"
+                type="danger"
+            >
+              删除
+            </Button>
+          </span>
+        )
       }
     ];
     return (
-      <Table
-          columns={columns}
-          dataSource={this.props.userData}
-          loading={this.props.loading}
-          pagination={{ pageSize: 10 }}
-      />
+      <div>
+        <Table
+            columns={columns}
+            dataSource={this.props.userData}
+            loading={this.props.loading}
+            pagination={{ pageSize: 10 }}
+        />
+        <br />
+        <Modal
+            modalVisible={this.state.modalVisible}
+            onCancel={this.handleCancel}
+            onOk={this.handleOk}
+            title={'Basic Modal'}
+        >
+          {/* 表格  表头： 时间 更新用户   */}
+          {this.props.functionData}
+        </Modal>
+      </div>
     );
   }
 }
+
+export default withRouter(ManagerUser);

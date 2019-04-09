@@ -1,20 +1,24 @@
 /* statusbar */
 
-.status-bar{
+.status-bar {
     text-align: left;
 }
 
-.status-bar .divider{
+.status-bar .divider {
     margin: 6px;
     margin-left: 4px;
     margin-right: 8px;
 }
 
-.status-bar .status-bar-content{
+.status-bar .status-bar-content {
     margin-left: 4px;
 }
 
-.status-bar .tab-right{
+.status-bar .tab-right {
     float: right;
     margin-right: 6px;
+}
+
+.jobtab {
+    text-align: center
 }

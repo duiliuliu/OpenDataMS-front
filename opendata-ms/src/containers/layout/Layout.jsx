@@ -3,7 +3,7 @@ import { BrowserRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Layout, Icon } from 'antd';
-import AppRouter from '../../router/sliderRouter';
+import AppRouter from '../../router';
 import PagesHeader from '../../components/layout/PageHeader';
 import PagesFooter from '../../components/layout/PageFooter';
 import SideBar from '../../components/layout/SideBar';

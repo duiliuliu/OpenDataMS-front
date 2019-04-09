@@ -5,7 +5,6 @@ import * as NewCollectJobActions from '../../redux/actions/NewCollectJobActions'
 const mapStateToProps = state => {
   const data = state.NewCollectJobReducers;
   const succenninfo = state.Reducer;
-  console.log(state);
   return {
     cityStatus: data.collectCityStatus,
     dataStatus: data.collectDataStatus,

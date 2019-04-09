@@ -6,7 +6,7 @@ const mapStateToProps = state => {
   const data = state.ManagerUserReducers;
   return {
     userData: data.userData,
-    loading: data.loadStatus === 'loading' ? true : false
+    loading: data.loadStatus
   };
 };
 

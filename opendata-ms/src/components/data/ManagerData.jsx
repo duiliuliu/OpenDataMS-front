@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Input, Tabs, Tree } from 'antd';
+import { Input, Tabs, Tree, Spin } from 'antd';
 
 const TabPane = Tabs.TabPane;
 const DirectoryTree = Tree.DirectoryTree;
@@ -21,7 +21,7 @@ export default class DataManager extends React.Component {
         data: PropTypes.array
       })
     ),
-    requestTreeData:PropTypes.func.isRequired
+    requestTreeData: PropTypes.func.isRequired
   };
   static defaultProps = {
     treeData: [
@@ -150,40 +150,43 @@ export default class DataManager extends React.Component {
   render() {
     return (
       <div className="datamanager">
-        <Tabs
-            activeKey={this.state.activeKey}
-            hideAdd
-            onChange={this.onChange}
-            onEdit={this.onEdit}
-            type="editable-card"
-        >
-          <TabPane closable={false}
-              key="tree"
-              tab="数据目录">
-            <Input
-                onChange={this.onSearch}
-                placeholder="输入名称搜索"
-                style={{ width: 200 }}
-            />
-            <br />
-            <DirectoryTree
-                autoExpandParent={false}
-                multiple
-                onExpand={this.onExpand}
-                onSelect={this.add}
+        <Spin spinning={this.props.loadStatus}>
+          <Tabs
+              activeKey={this.state.activeKey}
+              hideAdd
+              onChange={this.onChange}
+              onEdit={this.onEdit}
+              type="editable-card"
+          >
+            <TabPane closable={false}
+                key="tree"
+                tab="数据目录"
             >
-              {this.TreeMap(this.props.treeData)}
-            </DirectoryTree>
-          </TabPane>
-          {this.state.panes.map(pane => (
-            <TabPane closable={pane.closable}
-                key={pane.key}
-                tab={pane.title}
-            >
-              {pane.content}
+              <Input
+                  onChange={this.onSearch}
+                  placeholder="输入名称搜索"
+                  style={{ width: 200 }}
+              />
+              <br />
+              <DirectoryTree
+                  autoExpandParent={false}
+                  multiple
+                  onExpand={this.onExpand}
+                  onSelect={this.add}
+              >
+                {this.TreeMap(this.props.treeData)}
+              </DirectoryTree>
             </TabPane>
-          ))}
-        </Tabs>
+            {this.state.panes.map(pane => (
+              <TabPane closable={pane.closable}
+                  key={pane.key}
+                  tab={pane.title}
+              >
+                {pane.content}
+              </TabPane>
+            ))}
+          </Tabs>
+        </Spin>
       </div>
     );
   }

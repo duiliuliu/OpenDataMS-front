@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router';
 import PropTypes from 'prop-types';
 import { Divider, Tag, Avatar } from 'antd';
 import NativeIcon from '../icons/NativeIcon';
@@ -16,7 +17,8 @@ const statusStyle = {
 /**
  * 组件 状态栏
  */
-export default class StatusTab extends Component {
+
+class StatusTab extends Component {
   /**
    * 构成组件参数：
    * job 任务对象
@@ -55,6 +57,10 @@ export default class StatusTab extends Component {
     underLine: false,
     isDetail: false
   };
+
+  handleClick = path => {
+    this.props.history.push(path);
+  };
   /**
    * 可做手机适应，屏小时选择列式展示
    */
@@ -65,23 +71,26 @@ export default class StatusTab extends Component {
         <Divider className="divider" />
         <span className="status-bar-content">
           <span style={{ marginRight: offset }}>
-            <a href={'/job/' + job.name}>
+            <a onClick={this.handleClick.bind(this, '/job/' + job.name)}>
               <Tag color={statusStyle[job.status]}>{job.status}</Tag>
             </a>
           </span>
           <span style={{ marginRight: offset }}>
-            <a href={'/job/' + job.name}>
+            <a onClick={this.handleClick.bind(this, '/job/' + job.name)}>
               <span>#{job.name}</span>
             </a>
           </span>
           {this.props.isDetail && (
             <span style={{ marginRight: offset }}>
-              <a href={'/data/' + job.data}>
+              <a onClick={this.handleClick.bind(this, '/data/' + job.data)}>
                 <span>{job.data}</span>
               </a>
             </span>
           )}
-          <span style={{ marginRight: offset }}>
+          <span
+              onClick={this.handleClick.bind(this, '/user/' + job.creator.name)}
+              style={{ marginRight: offset }}
+          >
             <Avatar
                 icon={job.creator.photo}
                 size="small"
@@ -113,3 +122,5 @@ export default class StatusTab extends Component {
     );
   }
 }
+
+export default withRouter(StatusTab);
