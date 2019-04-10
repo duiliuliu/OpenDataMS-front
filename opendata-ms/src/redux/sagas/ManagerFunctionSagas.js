@@ -1,6 +1,6 @@
 import { put, call, takeLatest } from 'redux-saga/effects';
 import * as ManagerFunctionActions from '../actions/ManagerFunctionActions';
-import * as ActionConstants from '../../contants/ActionConstants';
+import * as ActionConstants from '../../constants/ActionConstants';
 import { getData } from '../../api/Api';
 
 const { loadFunctionData, fetchFunctionData } = ManagerFunctionActions;

@@ -1,6 +1,6 @@
 import { put, call, fork, takeLatest } from 'redux-saga/effects';
 import * as NewCollectJobActions from '../actions/NewCollectJobActions';
-import * as ActionConstants from '../../contants/ActionConstants';
+import * as ActionConstants from '../../constants/ActionConstants';
 import { getData, putData } from '../../api/Api';
 import { successAsync, errorAsync } from './index';
 

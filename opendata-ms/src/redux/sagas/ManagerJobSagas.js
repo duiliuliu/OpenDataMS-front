@@ -4,7 +4,7 @@ import {
   takeLatest
 } from 'redux-saga/effects';
 import * as ManagerJobActions from '../actions/ManagerJobActions';
-import * as ActionConstants from '../../contants/ActionConstants';
+import * as ActionConstants from '../../constants/ActionConstants';
 import {
   getData
 } from '../../api/Api';
@@ -30,7 +30,7 @@ function* requestJobListAsync(action) {
       'data': {
         jobList: [{
             status: 'pending',
-            name: 'name',
+            name: 'name1',
             created: 'created',
             creator: {
               name: 'username',
@@ -41,7 +41,7 @@ function* requestJobListAsync(action) {
           },
           {
             status: 'pending',
-            name: 'name',
+            name: 'name2',
             created: 'created',
             creator: {
               name: 'username',

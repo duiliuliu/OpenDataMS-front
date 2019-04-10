@@ -5,7 +5,7 @@ import {
   takeLatest
 } from 'redux-saga/effects';
 import * as NewCleanJobActions from '../actions/NewCleanJobActions';
-import * as ActionConstants from '../../contants/ActionConstants';
+import * as ActionConstants from '../../constants/ActionConstants';
 import {
   getData,
   putData

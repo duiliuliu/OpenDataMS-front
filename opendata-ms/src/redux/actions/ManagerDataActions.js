@@ -1,4 +1,4 @@
-import * as ActionsConstant from '../../contants/ActionConstants';
+import * as ActionsConstant from '../../constants/ActionConstants';
 
 export const requestTreeData = ()=>{
     return {

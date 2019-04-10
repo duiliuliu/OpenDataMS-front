@@ -6,6 +6,7 @@ import ManagerJobReducers from './reducers/ManagerJobReducers';
 import ManagerDataReducers from './reducers/ManagerDataReducers';
 import ManagerUserReducers from './reducers/ManagerUserReducers';
 import ManagerFunctionReducers from './reducers/ManagerFunctionReducers';
+import JobReducers from './reducers/JobReducers';
 
 const allReducers = {
   Reducer,
@@ -14,7 +15,8 @@ const allReducers = {
   ManagerJobReducers,
   ManagerDataReducers,
   ManagerUserReducers,
-  ManagerFunctionReducers
+  ManagerFunctionReducers,
+  JobReducers
 };
 
 const rootReducer = combineReducers(allReducers);

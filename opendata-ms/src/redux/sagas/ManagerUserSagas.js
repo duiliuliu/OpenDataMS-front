@@ -1,19 +1,9 @@
-import {
-  put,
-  call,
-  takeLatest
-} from 'redux-saga/effects';
+import { put, call, takeLatest } from 'redux-saga/effects';
 import * as ManagerUserActions from '../actions/ManagerUserActions';
-import * as ActionConstants from '../../contants/ActionConstants';
-import {
-  getData
-} from '../../api/Api';
+import * as ActionConstants from '../../constants/ActionConstants';
+import { getData } from '../../api/Api';
 
-const {
-  fetchUserData,
-  loadUserData
-} = ManagerUserActions;
-
+const { fetchUserData, loadUserData } = ManagerUserActions;
 
 function* requestUserDataAsync() {
   try {
@@ -28,14 +18,14 @@ function* requestUserDataAsync() {
 
     const arr = Array(30);
     arr.fill({
-      name: '用户1',
+      name: '用户',
       role: '角色',
       created: '时间',
       info: 'xinxi'
     });
     const response = {
-      'data': arr,
-      'success': true
+      data: arr,
+      success: true
     };
     yield put(fetchUserData(response.data));
   }

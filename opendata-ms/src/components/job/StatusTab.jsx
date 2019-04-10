@@ -32,7 +32,10 @@ class StatusTab extends Component {
       data: PropTypes.string,
       name: PropTypes.string,
       created: PropTypes.string,
-      creator: PropTypes.object,
+      creator: PropTypes.shape({
+        name: PropTypes.string,
+        photo: PropTypes.string
+      }),
       completed: PropTypes.string
     }),
     action: PropTypes.element,

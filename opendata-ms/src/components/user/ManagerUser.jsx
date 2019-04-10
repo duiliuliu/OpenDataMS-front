@@ -21,7 +21,8 @@ class ManagerUser extends React.Component {
   };
 
   state = {
-    modalVisible: false
+    modalVisible: false,
+    user: {}
   };
 
   componentDidMount() {
@@ -35,12 +36,11 @@ class ManagerUser extends React.Component {
   /**
    * 显示模态框函数
    */
-  showModal = record => {
+  showModal = text => {
     this.setState({
-      modalVisible: true
+      modalVisible: true,
+      user: text
     });
-    // 通过record请求相应数据
-    this.props.requestFunctionData(record);
   };
 
   render() {
@@ -49,9 +49,7 @@ class ManagerUser extends React.Component {
         title: '用户名称',
         dataIndex: 'name',
         render: user => (
-          <span onClick={this.handleClick.bind(this, '/user/' + user)}>
-            {user}
-          </span>
+          <a onClick={this.handleClick.bind(this, '/user/' + user)}>{user}</a>
         )
       },
       {
@@ -92,23 +90,23 @@ class ManagerUser extends React.Component {
           </div>
         ),
         dataIndex: 'info',
-        render: (text, record) => (
+        render: text => (
           <span>
             <Button
                 ghost
-                onClick={() => this.showModal.bind(this, record)}
+                onClick={this.showModal.bind(this, text)}
                 size="small"
                 type="primary"
             >
-              设置权限
+              修改权限
             </Button>
-            <Divider type="vertical" />
+            {/* <Divider type="vertical" />
             <Button ghost
                 size="small"
                 type="danger"
             >
               删除
-            </Button>
+            </Button> */}
           </span>
         )
       }
@@ -123,13 +121,19 @@ class ManagerUser extends React.Component {
         />
         <br />
         <Modal
-            modalVisible={this.state.modalVisible}
-            onCancel={this.handleCancel}
-            onOk={this.handleOk}
-            title={'Basic Modal'}
+            maskClosable
+            onCancel={() => {
+            this.setState({
+              modalVisible: false
+            });
+          }}
+            onOk={() => {}}
+            title={'用户角色权限设置'}
+            visible={this.state.modalVisible}
         >
+          <span>角色权限设置</span>
           {/* 表格  表头： 时间 更新用户   */}
-          {this.props.functionData}
+          {/* {this.props.functionData} */}
         </Modal>
       </div>
     );

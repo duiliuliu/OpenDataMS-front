@@ -1,5 +1,5 @@
 import { put, call, fork, takeLatest } from 'redux-saga/effects';
-import * as ActionConstants from '../../contants/ActionConstants';
+import * as ActionConstants from '../../constants/ActionConstants';
 import { putData } from '../../api/Api';
 import { successAsync, errorAsync } from './index';
 

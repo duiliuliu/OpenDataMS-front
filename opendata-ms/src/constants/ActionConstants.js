@@ -19,6 +19,12 @@ export const JUMP_ROUTER = 'JUMP_ROUTER';
  * SUBMIT_* 提交*
  */
 
+/**job */
+
+export const REQUEST_JOB = 'REQUEST_JOB';
+export const LOAD_JOB = 'LOAD_JOB';
+export const FETCH_JOB = 'FETCH_JOB';
+
 /**newJob */
 
 export const REQUEST_COLLECT_CITY_LIST = 'REQUEST_COLLECT_CITY_LIST';

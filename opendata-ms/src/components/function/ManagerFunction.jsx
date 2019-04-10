@@ -41,6 +41,7 @@ class FunctionManager extends React.Component {
     this.state = {
       pageSize: 10,
       modalVisible: false,
+      function:{},
       currentFunc: ''
     };
   }
@@ -49,19 +50,21 @@ class FunctionManager extends React.Component {
     this.props.requestFunctionData();
   }
 
-  handleClick = path => {
-    this.props.history.push(path);
+  handleClick = () => {
+    // this.props.history.push(path);
   };
 
   /**
    * 显示模态框函数
    */
-  showModal = record => {
-    this.setState({
-      modalVisible: true
-    });
-    // 通过record请求相应数据
-    this.props.requestFunctionData(record);
+  showModal = text => {
+    this.setState(
+      {
+        modalVisible: true,
+        function:text
+      }
+    );
+    // this.props.requestFunctionHistory(text.functionName);
   };
 
   // 表格列绘制
@@ -77,7 +80,7 @@ class FunctionManager extends React.Component {
       )
     },
     {
-      title: '更新者',
+      title: '更新用户',
       dataIndex: 'lastModifier',
       key: 'lastModifier',
       render: user => (
@@ -104,11 +107,11 @@ class FunctionManager extends React.Component {
     {
       title: '操作',
       key: 'action',
-      render: (text, record) => (
+      render: text => (
         <span>
           <Button
               ghost
-              onClick={() => this.showModal.bind(this, record)}
+              onClick={this.showModal.bind(this, text)}
               type="primary"
           >
             查看变更历史
@@ -143,13 +146,19 @@ class FunctionManager extends React.Component {
           />
           <br />
           <Modal
-              modalVisible={this.state.modalVisible}
-              onCancel={this.handleCancel}
-              onOk={this.handleOk}
-              title={'Basic Modal'}
+              footer={null}
+              maskClosable
+              onCancel={() => {
+              this.setState({
+                  modalVisible: false
+                });
+              }}
+              title={this.state.function.functionName+'变更历史'}
+              visible={this.state.modalVisible}
           >
+            <span>modal</span>
             {/* 表格  表头： 时间 更新用户   */}
-            {this.props.functionData}
+            {/* {this.props.functionData} */}
           </Modal>
         </Spin>
       </div>

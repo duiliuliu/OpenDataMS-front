@@ -4,7 +4,7 @@ import {
     takeLatest
 } from 'redux-saga/effects';
 import * as ManagerDataActions from '../actions/ManagerDataActions';
-import * as ActionConstants from '../../contants/ActionConstants';
+import * as ActionConstants from '../../constants/ActionConstants';
 import {
     getData
 } from '../../api/Api';

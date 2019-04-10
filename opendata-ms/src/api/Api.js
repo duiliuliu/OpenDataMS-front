@@ -1,7 +1,7 @@
 import {
   mockApi,
-  APi
-} from '../contants/apiConstants';
+  api
+} from '../constants/apiConstants';
 
 /**
  * POST更新资源
@@ -77,7 +77,7 @@ export function getData(url, params) {
       url += '&' + paramsArray.join('&');
     }
   }
-  return fetch(APi + url, {
+  return fetch(api + url, {
       method: 'GET',
       headers: {
         'user-agent': 'Mozilla/4.0 MDN Example',
@@ -108,7 +108,7 @@ export function deleteData(url, params) {
       url += '&' + paramsArray.join('&');
     }
   }
-  return fetch(APi + url, {
+  return fetch(api + url, {
       method: 'DELETE',
       headers: {
         'user-agent': 'Mozilla/4.0 MDN Example',

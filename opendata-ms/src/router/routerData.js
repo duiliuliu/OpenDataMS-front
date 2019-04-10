@@ -1,6 +1,9 @@
 import React from 'react';
 import NewJob from '../containers/job/NewJob';
-import CurrentJob from '../components/job/currentJob/CurrentJob';
+import Job from '../containers/job/Job';
+import User from '../components/user/User';
+import Data from '../components/data/Data';
+import Function from '../components/function/Function';
 import ManagerJob from '../containers/job/ManagerJob';
 import RegisteFunction from '../containers/function/RegisteFunction';
 import ManagerFunction from '../containers/function/ManagerFunction';
@@ -40,7 +43,7 @@ export const sidebarRouterData = [
         key: 'currentJob',
         text: '当前任务',
         path: '/job/current',
-        component: CurrentJob
+        component: Job
       },
       {
         key: 'managerJob',
@@ -101,40 +104,28 @@ export const routerData = [
   {
     /**user 子页面 */
     key: 'userSubPage',
-    path: '/user/:id',
+    path: '/user/:userName',
     // eslint-disable-next-line react/no-multi-comp
-    component: ({ match }) => {
-      return (
-        <div>
-          <h2>User: {match.params.id}</h2>
-        </div>
-      );
-    }
+    component: User
   },
   {
     /**function 子页面 */
     key: 'functionSubPage',
-    path: '/function/:id',
+    path: '/function/:functionName',
     // eslint-disable-next-line react/no-multi-comp
-    component: ({ match }) => {
-      return (
-        <div>
-          <h2>function: {match.params.id}</h2>
-        </div>
-      );
-    }
+    component: Function
+  },
+  {
+    /**data 子页面 */
+    key: 'dataSubPage',
+    path: '/data/:id',
+    // eslint-disable-next-line react/no-multi-comp
+    component: Data
   },
   {
     /**job 子页面 */
     key: 'jobSubPage',
-    path: '/job/:id',
-    // eslint-disable-next-line react/no-multi-comp
-    component: ({ match }) => {
-      return (
-        <div>
-          <h2>job: {match.params.id}</h2>
-        </div>
-      );
-    }
+    path: '/job/:jobName',
+    component: Job
   }
 ];

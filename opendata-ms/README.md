@@ -33,7 +33,7 @@
     ├─api
     ├─components
     ├─containers
-    ├─contants
+    ├─constant
     ├─icons
     ├─redux
     │  ├─actions

@@ -14,7 +14,7 @@ import {
   InputNumber,
   message
 } from 'antd';
-import { Validating } from '../../../contants/EnumConstants';
+import { Validating } from '../../../constants/EnumConstants';
 import * as StringUtil from '../../../util/StringUtil';
 import * as ListUtil from '../../../util/ListUtil';
 

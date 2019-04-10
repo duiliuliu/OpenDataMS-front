@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Input, Form, Button, Upload, Icon, Switch, Col, message } from 'antd';
-import { Validating } from '../../contants/EnumConstants';
+import { Validating } from '../../constants/EnumConstants';
 import * as StringUtil from '../../util/StringUtil';
 
 export default class FunctionRegister extends React.Component {

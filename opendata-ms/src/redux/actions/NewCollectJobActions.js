@@ -1,4 +1,4 @@
-import * as ActionConstants from '../../contants/ActionConstants';
+import * as ActionConstants from '../../constants/ActionConstants';
 
 /**
  * 請求采集任务城市
