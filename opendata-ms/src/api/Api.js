@@ -1,7 +1,7 @@
 import {
   mockApi,
   api
-} from '../constants/apiConstants';
+} from '../constants/ApiConstants';
 
 /**
  * POST更新资源
