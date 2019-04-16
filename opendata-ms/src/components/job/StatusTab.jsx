@@ -3,6 +3,7 @@ import { withRouter } from 'react-router';
 import PropTypes from 'prop-types';
 import { Divider, Tag, Avatar } from 'antd';
 import NativeIcon from '../icons/NativeIcon';
+import * as routerConstants from '../../constants/routerConstants';
 
 /**
  * 常量 不同的状态颜色映射
@@ -74,24 +75,42 @@ class StatusTab extends Component {
         <Divider className="divider" />
         <span className="status-bar-content">
           <span style={{ marginRight: offset }}>
-            <a onClick={this.handleClick.bind(this, '/job/' + job.name)}>
+            <a
+                onClick={this.handleClick.bind(
+                this,
+                routerConstants.JOB + '/' + job.name
+              )}
+            >
               <Tag color={statusStyle[job.status]}>{job.status}</Tag>
             </a>
           </span>
           <span style={{ marginRight: offset }}>
-            <a onClick={this.handleClick.bind(this, '/job/' + job.name)}>
+            <a
+                onClick={this.handleClick.bind(
+                this,
+                routerConstants.JOB + '/' + job.name
+              )}
+            >
               <span>#{job.name}</span>
             </a>
           </span>
           {this.props.isDetail && (
             <span style={{ marginRight: offset }}>
-              <a onClick={this.handleClick.bind(this, '/data/' + job.data)}>
+              <a
+                  onClick={this.handleClick.bind(
+                  this,
+                  routerConstants.DATA + '/' + job.data
+                )}
+              >
                 <span>{job.data}</span>
               </a>
             </span>
           )}
           <span
-              onClick={this.handleClick.bind(this, '/user/' + job.creator.name)}
+              onClick={this.handleClick.bind(
+              this,
+              routerConstants.USER + '/' + job.creator.name
+            )}
               style={{ marginRight: offset }}
           >
             <Avatar

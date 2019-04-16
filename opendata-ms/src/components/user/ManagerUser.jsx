@@ -2,6 +2,7 @@ import React from 'react';
 import { withRouter } from 'react-router';
 import PropTypes from 'prop-types';
 import { Modal, Button, Divider, Table } from 'antd';
+import * as routerConstants from '../../constants/routerConstants';
 
 class ManagerUser extends React.Component {
   static propTypes = {
@@ -49,7 +50,14 @@ class ManagerUser extends React.Component {
         title: '用户名称',
         dataIndex: 'name',
         render: user => (
-          <a onClick={this.handleClick.bind(this, '/user/' + user)}>{user}</a>
+          <a
+              onClick={this.handleClick.bind(
+              this,
+              routerConstants.USER + '/' + user
+            )}
+          >
+            {user}
+          </a>
         )
       },
       {

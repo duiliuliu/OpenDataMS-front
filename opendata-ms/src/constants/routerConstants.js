@@ -26,3 +26,6 @@ export const FUNCTION_MANAGER = ALIAS + '/function/manager';
 export const DATA = ALIAS + '/data';
 export const DATA_DETAIL = ALIAS + '/data/:id';
 export const DATA_MANAGER = ALIAS + '/data/manager';
+
+// 图表
+export const ICON = ALIAS + '/icon';
