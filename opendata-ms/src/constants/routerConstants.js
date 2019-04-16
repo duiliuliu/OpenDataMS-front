@@ -2,7 +2,7 @@ const ALIAS = '/OpenDataMS-front';
 // 主页
 export const Home = ALIAS + '/dashboard';
 
-export const ROOT = ALIAS + '';
+export const ROOT = ALIAS + '/';
 
 // 用户
 export const USER = ALIAS + '/user';

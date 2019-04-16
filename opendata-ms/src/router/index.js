@@ -2,6 +2,7 @@ import React from 'react';
 import { Route, Redirect, Switch } from 'react-router-dom';
 import { sidebarRouterData, dashboard, routerData } from './routerData';
 import NotFoundPage from '../components/Exception/NotFoundPage';
+import { ROOT } from '../constants/routerConstants';
 
 function getRouterComponent(items, compontents) {
   items.forEach(element => {
@@ -35,7 +36,7 @@ export default class AppRouter extends React.Component {
           <Route
               exact
               key="home"
-              path="/"
+              path={ROOT}
               render={() => <Redirect to={dashboard.path} />}
           />
           {sidebarRouterComponents.map(item => (
@@ -46,7 +47,7 @@ export default class AppRouter extends React.Component {
                 path={item.path}
             />
           ))}
-          {otherRouterComponents.map((item,index) => 
+          {otherRouterComponents.map((item,index) =>
             <Route
                 component={item.component}
                 key={item.key+':'+index}
