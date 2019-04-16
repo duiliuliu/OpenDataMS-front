@@ -1,4 +1,5 @@
 import React from 'react';
+import * as routerConstants from '../constants/routerConstants';
 import NewJob from '../containers/job/NewJob';
 import Job from '../containers/job/Job';
 import User from '../components/user/User';
@@ -18,14 +19,14 @@ export const sidebarRouterData = [
     key: 'dashboard',
     icon: 'home',
     text: '首页',
-    path: '/dashboard',
+    path: routerConstants.Home,
     component: () => <div>主页</div>
   },
   {
     key: 'user',
     icon: 'team',
     text: '用户',
-    path: '/user/manager',
+    path: routerConstants.USER_MANAGER,
     component: ManagerUser
   },
   {
@@ -36,19 +37,19 @@ export const sidebarRouterData = [
       {
         key: 'newJob',
         text: '新建任务',
-        path: '/job/new',
+        path: routerConstants.JOB_NEW,
         component: NewJob
       },
       {
         key: 'currentJob',
         text: '当前任务',
-        path: '/job/current',
+        path: routerConstants.JOB_CURRENT,
         component: Job
       },
       {
         key: 'managerJob',
         text: '管理任务',
-        path: '/job/manager',
+        path: routerConstants.JOB_MANAGER,
         component: ManagerJob
       }
     ]
@@ -61,13 +62,13 @@ export const sidebarRouterData = [
       {
         key: 'regsiteFunction',
         text: '注册函数',
-        path: '/function/regisite',
+        path: routerConstants.FUNCTION_NEW,
         component: RegisteFunction
       },
       {
         key: 'managerFunction',
         text: '函数管理',
-        path: '/function/manager',
+        path: routerConstants.FUNCTION_MANAGER,
         component: ManagerFunction
       }
     ]
@@ -76,7 +77,7 @@ export const sidebarRouterData = [
     key: 'data',
     icon: 'laptop',
     text: '数据',
-    path: '/data/manager',
+    path: routerConstants.FUNCTION_MANAGER,
     component: ManagerData
   }
 ];
@@ -91,7 +92,7 @@ export const routerData = [
   {
     /**data 子页面 */
     key: 'dataSubPage',
-    path: '/data/:id',
+    path: routerConstants.DATA_DETAIL,
     // eslint-disable-next-line react/no-multi-comp
     component: ({ match }) => {
       return (
@@ -104,28 +105,25 @@ export const routerData = [
   {
     /**user 子页面 */
     key: 'userSubPage',
-    path: '/user/:userName',
-    // eslint-disable-next-line react/no-multi-comp
+    path: routerConstants.USER_DETAIL,
     component: User
   },
   {
     /**function 子页面 */
     key: 'functionSubPage',
-    path: '/function/:functionName',
-    // eslint-disable-next-line react/no-multi-comp
+    path: routerConstants.FUNCTION_DETAIL,
     component: Function
   },
   {
     /**data 子页面 */
     key: 'dataSubPage',
-    path: '/data/:id',
-    // eslint-disable-next-line react/no-multi-comp
+    path: routerConstants.DATA_DETAIL,
     component: Data
   },
   {
     /**job 子页面 */
     key: 'jobSubPage',
-    path: '/job/:jobName',
+    path: routerConstants.JOB_DETAIL,
     component: Job
   }
 ];
