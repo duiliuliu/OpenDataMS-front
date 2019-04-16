@@ -1,6 +1,6 @@
 import {
-  mockApi,
-  api
+  MOCK_API,
+  API
 } from '../constants/ApiConstants';
 
 /**
@@ -13,7 +13,7 @@ import {
  * .catch(error => console.error(error))
  */
 export function postData(url, data) {
-  return fetch(mockApi + url, {
+  return fetch(MOCK_API + url, {
       body: JSON.stringify(data), // must match 'Content-Type' header
       cache: 'default', // *default, no-cache, reload, force-cache, only-if-cached
       credentials: 'same-origin', // include, same-origin, *omit
@@ -39,7 +39,7 @@ export function postData(url, data) {
  * .catch(error => console.error(error))
  */
 export function putData(url, data) {
-  return fetch(mockApi + url, {
+  return fetch(MOCK_API + url, {
       body: data,
       method: 'PUT',
       headers: {
@@ -77,7 +77,7 @@ export function getData(url, params) {
       url += '&' + paramsArray.join('&');
     }
   }
-  return fetch(api + url, {
+  return fetch(API + url, {
       method: 'GET',
       headers: {
         'user-agent': 'Mozilla/4.0 MDN Example',
@@ -108,7 +108,7 @@ export function deleteData(url, params) {
       url += '&' + paramsArray.join('&');
     }
   }
-  return fetch(api + url, {
+  return fetch(API + url, {
       method: 'DELETE',
       headers: {
         'user-agent': 'Mozilla/4.0 MDN Example',
