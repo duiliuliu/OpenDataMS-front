@@ -10,7 +10,7 @@ const mapStateToProps = state => {
     dataStatus: data.cleanDataStatus,
     cityList: data.cleanCityList,
     dataList: data.cleanDataList,
-    functionList:data.functionList,
+    functionList:data.functionList.map(func=>func.functionName),
     dataColList:data.dataColList,
     success: succenninfo.success,
     message: succenninfo.message
