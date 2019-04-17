@@ -4,8 +4,8 @@ self.__precacheManifest = [
     "url": "/OpenDataMS-front/static/media/吃货.7817e920.svg"
   },
   {
-    "revision": "87157ccefe8469b7eca7",
-    "url": "/OpenDataMS-front/static/js/main.87157cce.chunk.js"
+    "revision": "fb7b26ea75e780354578",
+    "url": "/OpenDataMS-front/static/js/main.fb7b26ea.chunk.js"
   },
   {
     "revision": "518dd60dc9277ba72d27cf5d06ad34ff",
@@ -136,7 +136,7 @@ self.__precacheManifest = [
     "url": "/OpenDataMS-front/static/css/2.b9343927.chunk.css"
   },
   {
-    "revision": "e71d442f7ae85380e6bd79f75bd92eb6",
+    "revision": "1a222aa57bd2056aa02eb106e306ac1c",
     "url": "/OpenDataMS-front/index.html"
   }
 ];
