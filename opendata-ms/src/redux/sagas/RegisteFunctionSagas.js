@@ -1,12 +1,13 @@
-import { put, call, fork, takeLatest } from 'redux-saga/effects';
+import { call, fork, takeLatest } from 'redux-saga/effects';
 import * as ActionConstants from '../../constants/ActionConstants';
+import { FUNCTION_API } from '../../constants/ApiConstants';
 import { putData } from '../../api/Api';
 import { successAsync, errorAsync } from './index';
 
 function* submitFunctionAsync(action) {
   try {
     const response = yield call(
-      putData.bind(this, '/function', {
+      putData.bind(this, FUNCTION_API, {
         function: action.payload.functionObj
       })
     );

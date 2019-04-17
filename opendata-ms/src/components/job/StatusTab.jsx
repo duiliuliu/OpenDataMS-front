@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router';
 import PropTypes from 'prop-types';
-import { Divider, Tag, Avatar } from 'antd';
+import { Divider, Tag, Avatar, Row, Col } from 'antd';
 import NativeIcon from '../icons/NativeIcon';
 import * as routerConstants from '../../constants/routerConstants';
 
@@ -73,71 +73,94 @@ class StatusTab extends Component {
     return (
       <div className="status-bar">
         <Divider className="divider" />
-        <span className="status-bar-content">
-          <span style={{ marginRight: offset }}>
-            <a
-                onClick={this.handleClick.bind(
-                this,
-                routerConstants.JOB + '/' + job.name
-              )}
-            >
-              <Tag color={statusStyle[job.status]}>{job.status}</Tag>
-            </a>
-          </span>
-          <span style={{ marginRight: offset }}>
-            <a
-                onClick={this.handleClick.bind(
-                this,
-                routerConstants.JOB + '/' + job.name
-              )}
-            >
-              <span>#{job.name}</span>
-            </a>
-          </span>
-          {this.props.isDetail && (
-            <span style={{ marginRight: offset }}>
-              <a
+        <Row>
+          <span className="status-bar-content">
+            <Col span={2}>
+              <span style={{ marginRight: offset }}>
+                <a
+                    onClick={this.handleClick.bind(
+                    this,
+                    routerConstants.JOB + '/' + job.name
+                  )}
+                >
+                  <Tag color={statusStyle[job.status]}>{job.status}</Tag>
+                </a>
+              </span>
+            </Col>
+
+            <Col span={3}>
+              <span style={{ marginRight: offset }}>
+                <a
+                    onClick={this.handleClick.bind(
+                    this,
+                    routerConstants.JOB + '/' + job.name
+                  )}
+                >
+                  <span>#{job.name}</span>
+                </a>
+              </span>
+            </Col>
+
+            {this.props.isDetail && (
+              <Col span={3}>
+                <span style={{ marginRight: offset }}>
+                  <a
+                      onClick={this.handleClick.bind(
+                      this,
+                      routerConstants.DATA + '/' + job.data
+                    )}
+                  >
+                    <span>{job.data}</span>
+                  </a>
+                </span>
+              </Col>
+            )}
+
+            <Col span={3}>
+              <span
                   onClick={this.handleClick.bind(
                   this,
-                  routerConstants.DATA + '/' + job.data
+                  routerConstants.USER + '/' + job.creator.name
                 )}
+                  style={{ marginRight: offset }}
               >
-                <span>{job.data}</span>
-              </a>
-            </span>
-          )}
-          <span
-              onClick={this.handleClick.bind(
-              this,
-              routerConstants.USER + '/' + job.creator.name
+                <Avatar
+                    icon={job.creator.photo}
+                    size="small"
+                    style={{ margin: '4px' }}
+                />
+                <span>{job.creator.name}</span>
+              </span>
+            </Col>
+
+            <Col span={3}>
+              <span style={{ marginRight: offset }}>
+                <NativeIcon height={20}
+                    type="clock"
+                    width={20}
+                />
+                <span>{job.created}</span>
+              </span>
+            </Col>
+
+            {this.props.isDetail && (
+              <Col span={3}>
+                <span style={{ marginRight: offset }}>
+                  <NativeIcon height={20}
+                      type="clock"
+                      width={20}
+                  />
+                  <span>{job.created}</span>
+                </span>
+              </Col>
             )}
-              style={{ marginRight: offset }}
+          </span>
+          <Col offset={this.props.isDetail? 3 : 8}
+              span={3}
           >
-            <Avatar
-                icon={job.creator.photo}
-                size="small"
-                style={{ margin: '4px' }}
-            />
-            <span>{job.creator.name}</span>
-          </span>
-          <span style={{ marginRight: offset }}>
-            <NativeIcon height={20}
-                type="clock"
-                width={20}
-            />
-            <span>{job.created}</span>
-          </span>
-          {this.props.isDetail && (
-            <span style={{ marginRight: offset }}>
-              <NativeIcon height={20}
-                  type="clock"
-                  width={20}
-              />
-              <span>{job.created}</span>
-            </span>
-          )}
-        </span>
-        <span className="tab-right">{action}</span>
+            <span className="tab-right">{action}</span>
+          </Col>
+        </Row>
 
         {underLine && <Divider className="divider" />}
       </div>

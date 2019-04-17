@@ -100,7 +100,6 @@ export default class JobList extends Component {
                 isDetail
                 job={job}
                 key={job.name + index}
-                offset={this.state.offset}
             />
           ))
         ) : (

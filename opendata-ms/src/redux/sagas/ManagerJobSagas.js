@@ -5,6 +5,7 @@ import {
 } from 'redux-saga/effects';
 import * as ManagerJobActions from '../actions/ManagerJobActions';
 import * as ActionConstants from '../../constants/ActionConstants';
+import { JOB_API } from '../../constants/ApiConstants';
 import {
   getData
 } from '../../api/Api';
@@ -19,7 +20,7 @@ function* requestJobListAsync(action) {
   try {
     const param = action.payload.param;
     yield put(loadJobList());
-    const response = yield call(getData.bind(this, '/job', param));
+    const response = yield call(getData.bind(this, JOB_API, param));
     yield put(fetchJobList(response.data));
   } catch (error) {
     /**

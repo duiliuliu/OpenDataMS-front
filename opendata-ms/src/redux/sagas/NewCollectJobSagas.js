@@ -1,6 +1,11 @@
 import { put, call, fork, takeLatest } from 'redux-saga/effects';
 import * as NewCollectJobActions from '../actions/NewCollectJobActions';
 import * as ActionConstants from '../../constants/ActionConstants';
+import {
+  JOB_API,
+  DATA_CITY_CPI,
+  DATA_API
+} from '../../constants/ApiConstants';
 import { getData, putData } from '../../api/Api';
 import { successAsync, errorAsync } from './index';
 
@@ -14,7 +19,7 @@ const {
 function* requestCollectCityListAsync() {
   try {
     yield put(loadCollectCityList());
-    const response = yield call(getData.bind(this, '/job/city'));
+    const response = yield call(getData.bind(this, DATA_CITY_CPI));
     yield put(fetchCollectCityList(response.data));
   } catch (error) {
     /**
@@ -45,7 +50,7 @@ function* requestCollectDataListAsync(action) {
   try {
     yield put(loadCollectDataList());
     const response = yield call(
-      getData.bind(this, '/job/data', {
+      getData.bind(this, DATA_API, {
         city: action.payload.city
       })
     );
@@ -73,7 +78,7 @@ function* requestCollectDataListAsync(action) {
 function* submitCollectJobAsync(action) {
   try {
     const response = yield call(
-      putData.bind(this, '/job', {
+      putData.bind(this, JOB_API, {
         job: action.payload.job
       })
     );

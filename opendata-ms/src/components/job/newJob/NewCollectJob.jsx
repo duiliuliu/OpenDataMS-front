@@ -337,18 +337,6 @@ export default class NewCollectJob extends React.Component {
                 {' '}
                 保存至本地{' '}
               </span>
-              {this.state.isSaveNative && (
-                <Upload
-                    action="/download.do"
-                    listType="picture"
-                    name="logo"
-                    onChange={this.saveOrigin}
-                >
-                  <Button>
-                    <Icon type="download" /> save
-                  </Button>
-                </Upload>
-              )}
             </Col>
           </Row>
         </Form.Item>

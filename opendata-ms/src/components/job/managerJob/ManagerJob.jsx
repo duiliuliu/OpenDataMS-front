@@ -6,7 +6,12 @@ import NumberIcon from '../../icons/NumberIcon';
 
 const TabPane = Tabs.TabPane;
 
-const tabs = ['所有任务', '待定任务', '运行中任务', '已完成任务'];
+const tabs = [
+  { text: '所有任务', key: 'All' },
+  { text: '待定任务', key: 'Pending' },
+  { text: '运行中任务', key: 'Runing' },
+  { text: '已完成任务', key: 'Finished' }
+];
 
 /**
  * 任务管理组件
@@ -66,11 +71,11 @@ export default class ManagerJob extends Component {
         >
           {tabs.map(tab => (
             <TabPane
-                key={tab}
+                key={tab.key}
                 tab={
                 <span>
-                  {tab}
-                  <NumberIcon number={this.props.countList[tab]} />
+                  {tab.text}
+                  <NumberIcon number={this.props.countList[tab.key]} />
                 </span>
               }
             >

@@ -1,6 +1,7 @@
 import { put, call, takeLatest } from 'redux-saga/effects';
 import * as ManagerUserActions from '../actions/ManagerUserActions';
 import * as ActionConstants from '../../constants/ActionConstants';
+import { USER_API } from '../../constants/ApiConstants';
 import { getData } from '../../api/Api';
 
 const { fetchUserData, loadUserData } = ManagerUserActions;
@@ -8,7 +9,7 @@ const { fetchUserData, loadUserData } = ManagerUserActions;
 function* requestUserDataAsync() {
   try {
     yield put(loadUserData());
-    const response = yield call(getData.bind(this, '/user'));
+    const response = yield call(getData.bind(this, USER_API));
     yield put(fetchUserData(response.data));
   } catch (error) {
     /**

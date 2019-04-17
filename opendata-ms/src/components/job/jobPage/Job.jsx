@@ -16,13 +16,6 @@ export default class CurrentJob extends Component {
   static propTypes = {
     // jobName: PropTypes.string.isRequired,
     requestJob: PropTypes.func.isRequired,
-    messages: PropTypes.arrayOf(
-      PropTypes.shape({
-        type: PropTypes.string,
-        text: PropTypes.string
-      })
-    ),
-    status: PropTypes.string,
     job: PropTypes.shape({
       name: PropTypes.string,
       created: PropTypes.string,
@@ -30,12 +23,16 @@ export default class CurrentJob extends Component {
         name: PropTypes.string,
         photo: PropTypes.string
       }),
-      status: PropTypes.string
+      status: PropTypes.string,
+      messages: PropTypes.arrayOf(
+        PropTypes.shape({
+          type: PropTypes.string,
+          text: PropTypes.string
+        })
+      )
     })
   };
   static defaultProps = {
-    messages: [],
-    status: '',
     job: {
       name: 'jobNname',
       created: '20190101',
@@ -43,6 +40,7 @@ export default class CurrentJob extends Component {
         name: 'username',
         photo: 'photo'
       },
+      messages: [],
       status: 'pending'
     }
   };
@@ -71,14 +69,15 @@ export default class CurrentJob extends Component {
           <StatusTab
               action={
               <Button size="small"
-                  type="primary">
+                  type="primary"
+              >
                 Retry
               </Button>
             }
               job={this.props.job}
               offset={15}
           />
-          <MessageWindow messages={this.props.messages} />
+          <MessageWindow messages={this.props.job.messages} />
         </Spin>
       </div>
     );

@@ -5,6 +5,7 @@ import {
 } from 'redux-saga/effects';
 import * as ManagerDataActions from '../actions/ManagerDataActions';
 import * as ActionConstants from '../../constants/ActionConstants';
+import { DATA_API } from '../../constants/ApiConstants';
 import {
     getData
 } from '../../api/Api';
@@ -18,7 +19,7 @@ const {
 function* requestTreeDataAsync() {
     try {
         yield put(loadTreeData());
-        const response = yield call(getData.bind(this, '/data'));
+        const response = yield call(getData.bind(this, DATA_API));
         yield put(fetchTreeData(response.data));
     } catch (error) {
         /**

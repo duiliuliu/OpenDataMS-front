@@ -1,6 +1,7 @@
 import { put, call, takeLatest } from 'redux-saga/effects';
 import * as ManagerFunctionActions from '../actions/ManagerFunctionActions';
 import * as ActionConstants from '../../constants/ActionConstants';
+import { FUNCTION_API } from '../../constants/ApiConstants';
 import { getData } from '../../api/Api';
 
 const { loadFunctionData, fetchFunctionData } = ManagerFunctionActions;
@@ -8,7 +9,7 @@ const { loadFunctionData, fetchFunctionData } = ManagerFunctionActions;
 function* requestFunctionDataAsync() {
   try {
     loadFunctionData, yield put(loadFunctionData());
-    const response = yield call(getData.bind(this, '/function'));
+    const response = yield call(getData.bind(this, FUNCTION_API));
     yield put(fetchFunctionData(response.data));
   } catch (error) {
     /**

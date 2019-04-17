@@ -5,8 +5,6 @@ import { requestJob } from '../../redux/actions/JobActions';
 const mapStateToProps = state => {
   const data = state.JobReducers;
   return {
-    messages: data.messages,
-    status: data.status,
     job: data.job,
     loadStatus: data.loadStatus
   };

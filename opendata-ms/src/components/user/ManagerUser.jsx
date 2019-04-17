@@ -79,9 +79,7 @@ class ManagerUser extends React.Component {
         title: '创建时间',
         dataIndex: 'created',
         defaultSortOrder: 'descend',
-        sorter: (a, b) => a > b
-        // new Date(a.time.replace(/-/g, '/')) >
-        // new Date(b.time.replace(/-/g, '/'))
+        sorter: (a, b) => a.created > b.created ? 1 : -1
       },
       {
         title: () => (

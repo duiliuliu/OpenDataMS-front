@@ -1,6 +1,7 @@
 import { put, call, takeLatest } from 'redux-saga/effects';
 import { loadJob, fetchJob } from '../actions/JobActions';
 import * as ActionConstants from '../../constants/ActionConstants';
+import * as ApiConstants from '../../constants/ApiConstants';
 import { getData } from '../../api/Api';
 import moment from 'moment';
 
@@ -8,7 +9,9 @@ function* requestJobAsync(action) {
   const jobName = action.payload.jobName;
   try {
     yield put(loadJob());
-    const response = yield call(getData.bind(this, '/job/' + jobName));
+    const response = yield call(
+      getData.bind(this, ApiConstants.JOB_API + '/' + jobName)
+    );
     yield put(fetchJob(response.data));
   } catch (error) {
     /**
@@ -17,6 +20,12 @@ function* requestJobAsync(action) {
     console.log('失败====模拟 job');
     const response = {
       data: {
+        name: jobName,
+        created: moment().format('YYYY-MM-DD'),
+        creator: {
+          name: 'username',
+          photo: 'photo'
+        },
         messages: [
           {
             type: 'info',
@@ -31,16 +40,7 @@ function* requestJobAsync(action) {
             text: 'warnomessage'
           }
         ],
-        status: 'finished',
-        job: {
-          name: jobName,
-          created: moment().format('YYYY-MM-DD'),
-          creator: {
-            name: 'username',
-            photo: 'photo'
-          },
-          status: 'finished'
-        }
+        status: 'finished'
       }
     };
     yield put(fetchJob(response.data));
