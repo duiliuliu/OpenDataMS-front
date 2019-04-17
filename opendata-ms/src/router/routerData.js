@@ -77,7 +77,7 @@ export const sidebarRouterData = [
     key: 'data',
     icon: 'laptop',
     text: '数据',
-    path: routerConstants.FUNCTION_MANAGER,
+    path: routerConstants.DATA_MANAGER,
     component: ManagerData
   }
 ];
