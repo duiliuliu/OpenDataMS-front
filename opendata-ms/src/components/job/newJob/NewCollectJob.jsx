@@ -7,8 +7,6 @@ import {
   Switch,
   Radio,
   Button,
-  Upload,
-  Icon,
   Row,
   Col,
   InputNumber,
