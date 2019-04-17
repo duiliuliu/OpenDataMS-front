@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/OpenDataMS-front/precache-manifest.d67dd082dcc7f31c961a038d49966d59.js"
+  "/OpenDataMS-front/precache-manifest.89cebc011a109a91b9d03cf025d026c1.js"
 );
 
 workbox.clientsClaim();
