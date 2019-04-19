@@ -123,6 +123,7 @@ function* requestDataColListAsync(action) {
 }
 
 function* submitCleanJobAsync(action) {
+  const jobName = action.job.name;
   try {
     const response = yield call(
       putData.bind(this, JOB_API, {
@@ -131,7 +132,7 @@ function* submitCleanJobAsync(action) {
     );
     yield fork(successAsync, '成功提交任务：' + response.name);
   } catch (e) {
-    yield fork(errorAsync, '提交任务失败！：');
+    yield fork(errorAsync, '提交任务失败！：' + jobName);
   }
 }
 
