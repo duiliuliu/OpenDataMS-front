@@ -10,6 +10,7 @@ import RegisteFunction from '../containers/function/RegisteFunction';
 import ManagerFunction from '../containers/function/ManagerFunction';
 import ManagerData from '../containers/data/ManagerData';
 import ManagerUser from '../containers/user/ManagerUser';
+import Dashboard from '../components/Dashboard';
 
 /**
  * 侧边栏router
@@ -20,7 +21,7 @@ export const sidebarRouterData = [
     icon: 'home',
     text: '首页',
     path: routerConstants.Home,
-    component: () => <div>主页</div>
+    component: Dashboard
   },
   {
     key: 'user',

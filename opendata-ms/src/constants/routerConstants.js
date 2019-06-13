@@ -1,4 +1,5 @@
-const ALIAS = '/OpenDataMS-front';
+// const ALIAS = '/OpenDataMS-front';
+const ALIAS = '';
 // 主页
 export const Home = ALIAS + '/dashboard';
 
